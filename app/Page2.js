@@ -16,10 +16,12 @@ var Page2 = React.createClass({
                     <div className="card">
                         <h3>Business Area</h3>
                         Select your business area logo. {this.state.imageSelected}
-                        <img src="./images/getinge_group.png" className="selectImages" onclick="this.selectImage(1)"/>
-                        <img src="./images/maquet_getinge_group.png" className="selectImages"  onclick="this.selectImage(2)"/>
-                        <img src="./images/getinge_getinge_group.png" className="selectImages"  onclick="this.selectImage(3)"/>
-                        <img src="./images/arjo_huntleigh_getinge_group.png" className="selectImages"  onclick="this.selectImage(4)"/>
+                        <ul className="logoselector">
+                            <li className="selectImages getingegroup" onclick="this.selectImage(1)">Getinge Group</li>
+                            <li className="selectImages maquet" onclick="this.selectImage(2)">Maquet Getinge Group</li>
+                            <li className="selectImages getinge" onclick="this.selectImage(3)">Getinge Getinge Group</li>
+                            <li className="selectImages arjohuntleigh" onclick="this.selectImage(4)">Arjo Huntleigh Getinge Group</li>
+                        </ul>
                         <label>Company Name/Business Area</label>
                         <input className="textfields"/>
                     </div>

@@ -53,7 +53,7 @@
 
     }
     .content {
-        overflow: hidden;
+        overflow: visible;
         .card {
             border: #696969 solid 1px;
             font-family: "Helvetic Neue", Helvetica, Arial;
@@ -61,17 +61,13 @@
             @include flex-grow(1);
             padding-bottom: 1.8em;
             padding-left: .5em;
-            height: 420px;
+            height: auto;
             width: 540px;
             overflow: hidden;
             .selectImages {
                 @extend %flexbox;
                 @include flex-direction(column);
                 @include flex-grow(1);
-                border: solid #ffffff 1px;
-            }
-            .selectImages:hover {
-                border: solid #000000 1px;
             }
 
             h3 {
@@ -202,5 +198,57 @@
 
     }
 
+}
+.logoselector {
+    width: 60%;
+    margin: 0 auto;
+
+    .selectImages {
+        width: 100%;
+        height: 0;
+        background-size: cover;
+        text-indent: -9999rem;
+        padding-bottom: 36%;
+        position: relative;
+        opacity: .5;
+        &:after {
+            content: '';
+            width: 100%;
+            height: 0;
+            display: block;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+
+        }
+        &.active, &:hover {
+            opacity: 1;
+        }
+        +.selectImages {
+            margin-top: 1em;
+        }
+
+        &.getingegroup:after{
+
+            background: url(./images/logotypes/getingegroup.svg) no-repeat;
+            padding-bottom: 9.04%;
+        }
+        &.maquet:after {
+            background: url(./images/logotypes/maquet_getingegroup.svg) no-repeat;
+            padding-bottom: 34.04%;
+
+
+        }
+        &.getinge:after{
+            background: url(./images/logotypes/getinge_getingegroup.svg) no-repeat;
+            padding-bottom: 35.37%;
+
+        }
+        &.arjohuntleigh:after {
+            background: url(./images/logotypes/arjohuntleigh_getingegroup.svg) no-repeat;
+            padding-bottom: 18.08%;
+
+        }
+    }
 }
 
