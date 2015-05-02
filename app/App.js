@@ -20,18 +20,31 @@ var App = React.createClass({
                     user_city: "",
                     user_state: "",
                     user_zip: "",
-                    user_country: ""
+                    user_country: "",
+                    user_phone: "",
+                    user_mobile: "",
+                    user_email: ""
                 }
             };
         },
         updateValues: function (userObj,page) {
+            var oldUserObj = this.state.userObj;
             switch(page) {
                 case 1:
                     this.setState({
                         userObj:{
                             user_name: userObj.user_name,
                             user_position: userObj.user_position,
-                            user_department: userObj.user_department
+                            user_department: userObj.user_department,
+                            user_street: oldUserObj.user_street,
+                            user_city: oldUserObj.user_city,
+                            user_state: oldUserObj.user_state,
+                            user_zip: oldUserObj.user_zip,
+                            user_country: oldUserObj.user_country,
+                            user_phone: oldUserObj.user_phone,
+                            user_mobile: oldUserObj.user_mobile,
+                            user_email: oldUserObj.user_email
+
                         }
                     });
                     break;
@@ -41,11 +54,34 @@ var App = React.createClass({
                 case 3:
                     this.setState({
                         userObj: {
+                            user_name: oldUserObj.user_name,
+                            user_position: oldUserObj.user_position,
+                            user_department: oldUserObj.user_department,
                             user_street: userObj.user_street,
                             user_city: userObj.user_city,
                             user_state: userObj.user_state,
                             user_zip: userObj.user_zip,
-                            user_country: userObj.user_country
+                            user_country: userObj.user_country,
+                            user_phone: oldUserObj.user_phone,
+                            user_mobile: oldUserObj.user_mobile,
+                            user_email: oldUserObj.user_email
+                        }
+                    });
+                    break;
+                case 4:
+                    this.setState({
+                        userObj: {
+                            user_name: oldUserObj.user_name,
+                            user_position: oldUserObj.user_position,
+                            user_department: oldUserObj.user_department,
+                            user_street: oldUserObj.user_street,
+                            user_city: oldUserObj.user_city,
+                            user_state: oldUserObj.user_state,
+                            user_zip: oldUserObj.user_zip,
+                            user_country: oldUserObj.user_country,
+                            user_phone: userObj.user_phone,
+                            user_mobile: userObj.user_mobile,
+                            user_email: userObj.user_email
                         }
                     });
                     break;
@@ -80,26 +116,37 @@ var App = React.createClass({
                                 <Link to="page5">Page 5</Link>
                             </li>
                         </ul>
+                        <form>
                         <TransitionGroup className="transGroup" component="div" transitionName="card">
                             <RouteHandler key={name} updateCall={this.updateValues} initUserObj={this.state.userObj} />
                         </TransitionGroup>
+                        </form>
                     </div>
                     <div className="resultArea">
                         <h3>Signature Preview</h3>
                         <span>Your signature will display below as you fill out your information to the left. Be sure to
                             include all required fields.</span>
 
-                        <hr className="grey"/>
-                        <div>
-                            <div>{this.state.userObj.user_name}</div>
-                            <div>{this.state.userObj.user_position}</div>
-                            <div>{this.state.userObj.user_department}</div>
-                        </div>
+                        <br />
                         <hr className="black" />
+                        <div style={{fontFamily:'Arial', fontSize:'12px', color:'#000', lineHeight:'14px'}} ref="copy">
+                        <br />
+                        {this.state.userObj.user_name}<br />
+                        {this.state.userObj.user_position}<br />
+                        {this.state.userObj.user_department}<br />
+                        <br />-------------------------------------<br />
                         <img src="images/getinge_group.png" />
-                        <div>
-                            <div>{this.state.userObj.user_street}</div>
-                            <div>{this.state.userObj.user_city}, {this.state.userObj.user_state} {this.state.userObj.user_zip} {this.state.userObj.user_country}</div>
+                        <br />
+                            <br />
+                        {this.state.userObj.user_street}<br />
+                        {this.state.userObj.user_city}, {this.state.userObj.user_state} {this.state.userObj.user_zip}<br />
+                        {this.state.userObj.user_country}<br />
+                        <br />
+
+                            {this.state.userObj.user_phone}<br />
+                            {this.state.userObj.user_mobile}<br />
+                            {this.state.userObj.user_email}<br />
+                        
                         </div>
 
                     </div>

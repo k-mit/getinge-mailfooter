@@ -1,5 +1,12 @@
 var React = require('react');
 
+var STATES = [
+    'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI',
+    'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS',
+    'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR',
+    'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'
+];
+
 var Page3 = React.createClass({
     getInitialState: function(){
         return {
@@ -12,6 +19,24 @@ var Page3 = React.createClass({
             }
         };
     },
+    renderSelect: function(id, label, values, selectedValue) {
+        var lkey=1;
+        var options = values.map(function(value) {
+            if (selectedValue==value) {
+                lkey++;
+                return <option value={value} key={lkey} selected="selected">{value}</option>
+            }else{
+                lkey++;
+                return <option value={value} key={lkey}>{value}</option>
+            }
+        })
+        return (
+            <select className="selectfield" id={id} ref={id} onChange={this.handleChange}>
+                <option value="" key={lkey++}>Select state</option>
+        {options}
+            </select>
+        )
+    },
     handleChange: function(event) {
         this.setState({
             userObj : {
@@ -21,8 +46,9 @@ var Page3 = React.createClass({
                 user_zip: this.refs.user_zip_input.getDOMNode().value,
                 user_country: this.refs.user_country_input.getDOMNode().value
             }
+        }, function(){
+            this.props.updateCall(this.state.userObj,3);
         });
-        this.props.updateCall(this.state.userObj,3);
     },
 
     render: function () {
@@ -36,7 +62,7 @@ var Page3 = React.createClass({
                         <label>City</label>
                         <input value={this.state.userObj.user_city} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_city_input" />
                         <label>State/Territory (optional)</label>
-                        <input value={this.state.userObj.user_state} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_state_input" />
+                        {this.renderSelect('user_state_input', 'State', STATES,this.state.userObj.user_state)}
                         <label>Zip code</label>
                         <input value={this.state.userObj.user_zip} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_zip_input" />
                         <label>Country</label>

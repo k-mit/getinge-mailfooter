@@ -93,6 +93,12 @@
             width: 90%;
             @extend %flexbox;
             border: lightgray solid thin;
+            font-size: 1.1em;
+        }
+        .selectfield{
+            width: 90%;
+            @extend %flexbox;
+            border: lightgray solid thin;
             font-size: 1.5em;
         }
     }

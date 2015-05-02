@@ -17,8 +17,9 @@ var Page1 = React.createClass({
                 user_position: this.refs.user_position_input.getDOMNode().value,
                 user_department: this.refs.user_department_input.getDOMNode().value
             }
+        }, function(){
+            this.props.updateCall(this.state.userObj,1);
         });
-        this.props.updateCall(this.state.userObj,1);
     },
 
     render: function () {
@@ -28,7 +29,7 @@ var Page1 = React.createClass({
                 <div className="card">
                     <h3>Employee Info</h3>
                     <label>Name</label>
-                    <input value={this.state.userObj.user_name} placeholder="Name" onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_name_input" />
+                    <input value={this.state.userObj.user_name} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_name_input" />
                     <label>Position/Title</label>
                     <input value={this.state.userObj.user_position} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_position_input" />
                     <label>Department</label>
