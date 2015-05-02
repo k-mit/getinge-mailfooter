@@ -1,0 +1,206 @@
+@import "flexbox";
+
+/*--------------------------------------------------------------------*/
+
+.flexbox {
+    @extend %flexbox;
+}
+
+.flexbox-inline {
+    @extend %inline-flex;
+}
+
+/*--------------------------------------------------------------------*/
+
+//------------------------------------------------------------
+
+.mg_widget {
+    $color_main: #fff;
+    height: 450px;
+    position: absolute;
+    @extend %flexbox;
+    @include flex-direction(row);
+    .resultArea {
+        font-family: "Helvetic Neue", Helvetica, Arial;
+        border: #696969 solid 1px;
+        height: 476px;
+        width: 550px;
+        padding: 1.25rem;
+        h3{
+            font-weight: 300;
+            @include font-size(24px);
+            padding: 0;
+            margin: 0;
+            margin-bottom: 1.5625rem;
+        }
+        span{
+            font-weight: 300;
+            @include font-size(14px);
+        }
+        hr{
+            border: 0;
+            background: #fff;
+        }
+        hr.grey{
+            border-bottom: 1px dashed #ccc;
+            margin-bottom: 1.5625rem;
+            padding-top: 1rem;
+        }
+        hr.black{
+            border-bottom: 1px dashed #000;
+            padding-top: 1rem;
+        }
+
+    }
+    .content {
+        overflow: hidden;
+        .card {
+            border: #696969 solid 1px;
+            font-family: "Helvetic Neue", Helvetica, Arial;
+            background-color: $color_main;
+            @include flex-grow(1);
+            padding-bottom: 1.8em;
+            padding-left: .5em;
+            height: 420px;
+            width: 540px;
+            overflow: hidden;
+            .selectImages {
+                @extend %flexbox;
+                @include flex-direction(column);
+                @include flex-grow(1);
+                border: solid #ffffff 1px;
+            }
+            .selectImages:hover {
+                border: solid #000000 1px;
+            }
+
+            h3 {
+                @include font-size(24px);
+                font-weight: 300;
+                padding-bottom: 0;
+                margin-bottom: 0;
+            }
+            label {
+                @include font-size(14px);
+                font-family: "Helvetic Neue", Helvetica, Arial;
+                font-weight: 300;
+                @extend %flexbox;
+                width: 99%;
+
+            }
+        }
+        .textfields {
+            width: 90%;
+            @extend %flexbox;
+            border: lightgray solid thin;
+            font-size: 1.5em;
+        }
+    }
+    .page1{
+        .content{
+            .card{
+                label{
+                    padding-top: 1.8em;
+                    padding-bottom: .6em;
+                }
+            }
+        }
+    }
+    .page3{
+        .content{
+            .card{
+                label{
+                    padding-top: .8em;
+                    padding-bottom: .4em;
+                }
+            }
+        }
+    }
+    .page4{
+        .content{
+            .card{
+                label{
+                    padding-top: 1.8em;
+                    padding-bottom: .6em;
+                }
+            }
+        }
+    }
+    .page5{
+        .content{
+            .card{
+                label{
+                    padding-top: 1.8em;
+                    padding-bottom: .6em;
+                }
+                button{
+                    background-color: white;
+                    width: 111px;
+                    height: 37px;
+                    border: lightgray solid thin;
+                    @include border-radius(4px);
+                    margin-top: 1em;
+                    margin-bottom: 1em;
+                    margin-right: 1em;
+                    font-family: "Helvetic Neue", Helvetica, Arial;
+                    font-weight: 300;
+                    @include font-size(14px);
+                    float: left;
+
+                }
+                .buttonText{
+                    margin: 1em;
+                    width: 470px;
+                    font-family: "Helvetic Neue", Helvetica, Arial;
+                    font-weight: 300;
+                    @include font-size(14px);
+
+                }
+            }
+        }
+    }
+    .card-enter {
+        @include opacity(0.01);
+        @include transition(opacity .4s ease-out);
+    }
+
+    .card-enter.card-enter-active {
+        @include opacity(1);
+    }
+
+    .card-leave {
+        @include opacity(0);
+        @include transition(opacity .001s linear);
+    }
+
+    .card-leave.card-leave-active {
+        @include opacity(0.01);
+    }
+
+    .table-view {
+        list-style-type: none;
+        @extend %flexbox;
+        @include flex-direction(row);
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        .selected {
+            background-color: #001364;
+            color: #f5f5f5;
+        }
+        .table-view-cell {
+            border: #696969 solid 1px;
+            @include flex-grow(1);
+            text-align: center;
+            height: 25px;
+            margin: 0;
+            padding: 0;
+            a {
+                margin: 0;
+            }
+        }
+
+    }
+
+}
+
