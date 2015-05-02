@@ -146,7 +146,7 @@ var App = React.createClass({
                             {this.state.userObj.user_phone}<br />
                             {this.state.userObj.user_mobile}<br />
                             {this.state.userObj.user_email}<br />
-                        
+
                         </div>
 
                     </div>
