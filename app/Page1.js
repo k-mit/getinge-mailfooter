@@ -18,7 +18,7 @@ var Page1 = React.createClass({
                 user_department: this.refs.user_department_input.getDOMNode().value
             }
         });
-        this.props.updateCall(this.state.userObj);
+        this.props.updateCall(this.state.userObj,1);
     },
 
     render: function () {

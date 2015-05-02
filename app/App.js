@@ -15,18 +15,42 @@ var App = React.createClass({
                 userObj: {
                     user_name: "",
                     user_position: "",
-                    user_department: ""
+                    user_department: "",
+                    user_street: "",
+                    user_city: "",
+                    user_state: "",
+                    user_zip: "",
+                    user_country: ""
                 }
             };
         },
-        updateValues: function (userObj) {
-            this.setState({
-                userObj:{
-                    user_name: userObj.user_name,
-                    user_position: userObj.user_position,
-                    user_department: userObj.user_department
-                }
-            });
+        updateValues: function (userObj,page) {
+            switch(page) {
+                case 1:
+                    this.setState({
+                        userObj:{
+                            user_name: userObj.user_name,
+                            user_position: userObj.user_position,
+                            user_department: userObj.user_department
+                        }
+                    });
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+                    this.setState({
+                        userObj: {
+                            user_street: userObj.user_street,
+                            user_city: userObj.user_city,
+                            user_state: userObj.user_state,
+                            user_zip: userObj.user_zip,
+                            user_country: userObj.user_country
+                        }
+                    });
+                    break;
+            }
+
         },
         contextTypes: {
             router: React.PropTypes.func
@@ -72,8 +96,10 @@ var App = React.createClass({
                             <div>{this.state.userObj.user_department}</div>
                         </div>
                         <hr className="black" />
+                        <img src="images/getinge_group.png" />
                         <div>
-
+                            <div>{this.state.userObj.user_street}</div>
+                            <div>{this.state.userObj.user_city}, {this.state.userObj.user_state} {this.state.userObj.user_zip} {this.state.userObj.user_country}</div>
                         </div>
 
                     </div>
