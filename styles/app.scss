@@ -91,6 +91,9 @@
             border: lightgray solid thin;
             font-size: 1.1em;
         }
+        .error{
+            border-color: red;
+        }
         .selectfield{
             width: 90%;
             @extend %flexbox;

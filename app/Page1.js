@@ -18,6 +18,8 @@ var Page1 = React.createClass({
                 user_department: this.refs.user_department_input.getDOMNode().value
             }
         }, function(){
+            this.refs.user_name_input.getDOMNode().setAttribute('minlength',3);
+            this.refs.user_position_input.getDOMNode().setAttribute('minlength',2);
             this.props.updateCall(this.state.userObj,1);
         });
     },
@@ -29,11 +31,11 @@ var Page1 = React.createClass({
                 <div className="card">
                     <h3>Employee Info</h3>
                     <label>Name</label>
-                    <input value={this.state.userObj.user_name} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_name_input" />
+                    <input type="text" value={this.state.userObj.user_name} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_name_input" required/>
                     <label>Position/Title</label>
-                    <input value={this.state.userObj.user_position} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_position_input" />
+                    <input type="text" value={this.state.userObj.user_position} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_position_input" required/>
                     <label>Department</label>
-                    <input value={this.state.userObj.user_department} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_department_input" />
+                    <input type="text" value={this.state.userObj.user_department}  onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_department_input" required/>
                 </div>
             </div>
         </div>

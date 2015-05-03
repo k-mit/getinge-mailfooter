@@ -18,6 +18,9 @@ var Page4 = React.createClass({
                 user_email: this.refs.user_email_input.getDOMNode().value
             }
         }, function(){
+            this.refs.user_phone_input.getDOMNode().setAttribute('minlength',2);
+            this.refs.user_mobile_input.getDOMNode().setAttribute('minlength',2);
+            this.refs.user_email_input.getDOMNode().setAttribute('minlength',2);
             this.props.updateCall(this.state.userObj,4);
         });
     },
@@ -32,7 +35,7 @@ var Page4 = React.createClass({
                         <label>Mobile</label>
                         <input value={this.state.userObj.user_mobile} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_mobile_input" />
                         <label>Email Address</label>
-                        <input value={this.state.userObj.user_email} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_email_input" />
+                        <input type="email" value={this.state.userObj.user_email} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_email_input" />
                     </div>
                 </div>
             </div>

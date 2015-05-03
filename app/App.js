@@ -116,7 +116,7 @@ var App = React.createClass({
                                 <Link to="page5">Page 5</Link>
                             </li>
                         </ul>
-                        <form>
+                        <form id="mainform" >
                         <TransitionGroup className="transGroup" component="div" transitionName="card">
                             <RouteHandler key={name} updateCall={this.updateValues} initUserObj={this.state.userObj} />
                         </TransitionGroup>

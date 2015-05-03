@@ -47,6 +47,11 @@ var Page3 = React.createClass({
                 user_country: this.refs.user_country_input.getDOMNode().value
             }
         }, function(){
+            this.refs.user_street_input.getDOMNode().setAttribute('minlength',2);
+            this.refs.user_city_input.getDOMNode().setAttribute('minlength',2);
+            this.refs.user_state_input.getDOMNode().setAttribute('minlength',2);
+            this.refs.user_zip_input.getDOMNode().setAttribute('minlength',1);
+            this.refs.user_country_input.getDOMNode().setAttribute('minlength',2);
             this.props.updateCall(this.state.userObj,3);
         });
     },
@@ -58,15 +63,15 @@ var Page3 = React.createClass({
                     <div className="card">
                         <h3>Address</h3>
                         <label>Street Address</label>
-                        <input value={this.state.userObj.user_street} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_street_input" />
+                        <input value={this.state.userObj.user_street} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_street_input" required/>
                         <label>City</label>
-                        <input value={this.state.userObj.user_city} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_city_input" />
+                        <input value={this.state.userObj.user_city} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_city_input" required/>
                         <label>State/Territory (optional)</label>
                         {this.renderSelect('user_state_input', 'State', STATES,this.state.userObj.user_state)}
                         <label>Zip code</label>
-                        <input value={this.state.userObj.user_zip} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_zip_input" />
+                        <input value={this.state.userObj.user_zip} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_zip_input" required/>
                         <label>Country</label>
-                        <input value={this.state.userObj.user_country} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_country_input" />
+                        <input value={this.state.userObj.user_country} onBlur={this.handleChange} onChange={this.handleChange} className="textfields" ref="user_country_input" required/>
                     </div>
                 </div>
             </div>
