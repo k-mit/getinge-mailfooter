@@ -7,6 +7,8 @@ var Page2 = require('./Page2');
 var Page3 = require('./Page3');
 var Page4 = require('./Page4');
 var Page5 = require('./Page5');
+var ZeroClipboard = require('zeroclipboard');
+var ReactZeroClipboard = require('react-zeroclipboard');
 var user_name;
 
 var App = React.createClass({
@@ -143,12 +145,19 @@ var App = React.createClass({
                         {this.state.userObj.user_country}<br />
                         <br />
 
-                            {this.state.userObj.user_phone}<br />
-                            {this.state.userObj.user_mobile}<br />
-                            {this.state.userObj.user_email}<br />
+                            {this.state.userObj.user_phone.length>0 ? 'Phone:':''} {this.state.userObj.user_phone} <br />
+                            {this.state.userObj.user_mobile>0 ? 'Cell:':''} {this.state.userObj.user_mobile}<br />
+                            <a href="mailto:{this.state.userObj.user_email}" style={{fontFamily:'Arial', fontSize:'12px', color:'#000', lineHeight:'14px'}}>{this.state.userObj.user_email}</a><br />
 
                         </div>
-
+                        <div>
+                            <div>
+                                <p>Click the button to copy some text</p>
+                                <ReactZeroClipboard text="Hello, world!">
+                                    <button>Copy</button>
+                                </ReactZeroClipboard>
+                            </div>
+                        </div>
                     </div>
                 </div>
             );
