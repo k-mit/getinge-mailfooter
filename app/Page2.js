@@ -20,19 +20,39 @@ var LogoSelector = React.createClass({
             logos        : {
                 'getingegroup' : {
                     title: 'Getinge Group',
-                    url  : 'images/logotypes/getingegroup.png'
+                    url  : 'images/logotypes/getingegroup.png',
+                    link : 'http://www.getingegroup.com/',
+                    size : {
+                        width: 199,
+                        height: 19
+                    }
                 },
                 'maquet'       : {
                     title: 'Maquet Getinge Group',
-                    url  : 'images/logotypes/maquet_getingegroup.png'
+                    url  : 'images/logotypes/maquet_getingegroup.png',
+                    link : 'http://www.maquet.com/',
+                    size : {
+                        width: 199,
+                        height: 68
+                    }
                 },
                 'getinge'      : {
                     title: 'Getinge Getinge Group',
-                    url  : 'images/logotypes/getinge_getingegroup.png'
+                    url  : 'images/logotypes/getinge_getingegroup.png',
+                    link : 'http://www.getinge.com/',
+                    size : {
+                        width: 199,
+                        height: 71
+                    }
                 },
                 'arjohuntleigh': {
                     title: 'Arjo Huntleigh Getinge Group',
-                    url  : 'images/logotypes/arjohuntleigh_getingegroup.png'
+                    url  : 'images/logotypes/arjohuntleigh_getingegroup.png',
+                    link : 'http://www.arjohuntleigh.com/',
+                    size : {
+                        width: 198,
+                        height: 36
+                    }
                 }
             }
         };
@@ -42,7 +62,7 @@ var LogoSelector = React.createClass({
         this.setState({imageSelected: target.props.shortname},function () {
             this.props.updateCall({'logo': {
                 name: this.state.imageSelected,
-                logourl : this.state.logos[this.state.imageSelected].url
+                properties : this.state.logos[this.state.imageSelected]
             }})
 
         });

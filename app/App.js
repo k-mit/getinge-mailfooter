@@ -20,27 +20,35 @@ var App = React.createClass({
         return {
             userObj: {
                 info    : {
-                    user_name      : "",
-                    user_position  : "",
-                    user_department: ""
+                    user_name      : "James Smith",
+                    user_position  : "Dummy person",
+                    user_department: "Getinge Group Signature Generator"
                 },
                 address : {
-                    user_street : "",
-                    user_city   : "",
+                    user_street : "335 Angle drive",
+                    user_city   : "Metropolis",
                     user_state  : "",
-                    user_zip    : "",
-                    user_country: ""
+                    user_zip    : "11200",
+                    user_country: "Somewhere"
 
                 },
                 logo    : {
-                    name   : "",
-                    logourl: "",
+                    name      : "",
+                    properties: {
+                        title: 'Getinge Group',
+                        url  : 'images/logotypes/getingegroup.png',
+                        link : 'http://www.getingegroup.com/',
+                        size : {
+                            width: 199,
+                            height: 19
+                        }
+                    }
                 },
-                company : "",
+                company : "Getinge Group Signature Generator",
                 contacts: {
-                    user_phone : "",
-                    user_mobile: "",
-                    user_email : ""
+                    user_phone : "+46 8 555 44 44",
+                    user_mobile: "+46 739 00 00",
+                    user_email : "john.smith@signaturegenerator.com"
 
                 }
             }
@@ -49,7 +57,7 @@ var App = React.createClass({
     updateValues   : function (userObj) {
         var stateObj = addons.update(this.state.userObj, {$merge: userObj});
 
-        this.setState({userObj: stateObj},function () {
+        this.setState({userObj: stateObj}, function () {
             console.log(this.state.userObj);
         });
     },
