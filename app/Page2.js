@@ -1,29 +1,98 @@
 var React = require('react');
 
-var Page2 = React.createClass({
-    getInitialState: function(){
+var LogoItem = React.createClass({
+    handleClick: function (e) {
+        this.props.onClick(this);
+    },
+    render     : function () {
+        var classString = "selectLogo " + this.props.shortname + (this.props.selected ? ' active' : '');
+
+        return (
+            <li className={classString} onClick={this.handleClick}>{this.props.title}</li>
+        )
+    }
+});
+
+var LogoSelector = React.createClass({
+    getInitialState: function () {
         return {
-            imageSelected: -1
+            imageSelected: this.props.imageSelected,
+            logos        : {
+                'getingegroup' : {
+                    title: 'Getinge Group',
+                    url  : 'images/logotypes/getingegroup.png'
+                },
+                'maquet'       : {
+                    title: 'Maquet Getinge Group',
+                    url  : 'images/logotypes/maquet_getingegroup.png'
+                },
+                'getinge'      : {
+                    title: 'Getinge Getinge Group',
+                    url  : 'images/logotypes/getinge_getingegroup.png'
+                },
+                'arjohuntleigh': {
+                    title: 'Arjo Huntleigh Getinge Group',
+                    url  : 'images/logotypes/arjohuntleigh_getingegroup.png'
+                }
+            }
         };
     },
-    render: function () {
-        var selectImage = function(imageClicked){
-            this.setState({ imageSelected: imageClicked });
+    handleClick    : function (target) {
+        console.log(target.props.shortname);
+        this.setState({imageSelected: target.props.shortname},function () {
+            this.props.updateCall({'logo': {
+                name: this.state.imageSelected,
+                logourl : this.state.logos[this.state.imageSelected].url
+            }})
+
+        });
+    },
+    render         : function () {
+        var self = this;
+        var logoNodes = Object.keys(this.state.logos).map(function (key) {
+            var logoitem = self.state.logos[key];
+
+            var selected = key === self.state.imageSelected;
+            return (
+                <LogoItem selected={selected} key={key} url={logoitem.url} shortname={key} onClick={self.handleClick}>
+                    {logoitem.title}
+                </LogoItem>
+            );
+        });
+        return (
+            <ul className="logoselector">
+                {logoNodes}
+            </ul>
+        );
+
+    }
+});
+var Page2 = React.createClass({
+    getInitialState: function () {
+        return {
+            company: this.props.initUserObj.company
         };
+    },
+    handleChange: function (name, event) {
+        var change = {};
+        change[name] = event.target.value;
+        this.setState(change, function () {
+            this.props.updateCall({company: this.state.company});
+        });
+
+    },
+
+    render         : function () {
         return (
             <div className="page page2">
                 <div className="content">
                     <div className="card">
                         <h3>Business Area</h3>
-                        Select your business area logo. {this.state.imageSelected}
-                        <ul className="logoselector">
-                            <li className="selectImages getingegroup" onclick="this.selectImage(1)">Getinge Group</li>
-                            <li className="selectImages maquet" onclick="this.selectImage(2)">Maquet Getinge Group</li>
-                            <li className="selectImages getinge" onclick="this.selectImage(3)">Getinge Getinge Group</li>
-                            <li className="selectImages arjohuntleigh" onclick="this.selectImage(4)">Arjo Huntleigh Getinge Group</li>
-                        </ul>
+                {this.props.key}
+                        Select your business area logo.
+                        <LogoSelector imageSelected={this.props.initUserObj.logo.name} updateCall={this.props.updateCall}/>
                         <label>Company Name/Business Area</label>
-                        <input className="textfields"/>
+                        <input value={this.state.company} className="textfields" onChange={this.handleChange.bind(this,'company')}/>
                     </div>
                 </div>
             </div>

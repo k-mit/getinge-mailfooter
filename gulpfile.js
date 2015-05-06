@@ -59,9 +59,11 @@ var browserifyTask = function (options) {
       .pipe(gulpif(!options.development, streamify(uglify())))
       .pipe(gulp.dest(options.dest))
       .pipe(gulpif(options.development, livereload()))
-      .pipe(notify(function () {
-        console.log('APP bundle built in ' + (Date.now() - start) + 'ms');
-      }));
+      .pipe(notify({
+            title: "APP bundled",
+            message: 'APP bundle built in ' + (Date.now() - start) + 'ms',
+            onLast: true
+        }));
   };
 
   // Fire up Watchify when developing
@@ -91,6 +93,7 @@ var browserifyTask = function (options) {
 		});
 
   	var rebundleTests = function () {
+        return;
   		var start = Date.now();
   		console.log('Building TEST bundle');
   		testBundler.bundle()
@@ -189,10 +192,20 @@ var sassTask = function (options) {
     }
 }
 
-
+var copyAssetsTask = function (options) {
+    gulp.src('./app/fonts/**/*.{ttf,woff,eot,eof,svg}')
+        .pipe(gulp.dest(options.dest+'/fonts'));
+    gulp.src('./app/images/**/*.{jpg,png,gif,jpeg}')
+        .pipe(gulp.dest(options.dest+'/images'));
+};
 // Starts our development workflow
 gulp.task('default', function () {
+    copyAssetsTask(
+        {
+            dest:'./build'
+        }
 
+    );
     browserifyTask({
         development: true,
         src: './app/main.js',
@@ -210,6 +223,12 @@ gulp.task('default', function () {
 });
 
 gulp.task('deploy', function () {
+    copyAssetsTask(
+        {
+            dest:'./dist'
+        }
+
+    );
 
     browserifyTask({
     development: false,

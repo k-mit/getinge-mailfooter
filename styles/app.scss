@@ -64,7 +64,7 @@
             height: auto;
             width: 540px;
             overflow: hidden;
-            .selectImages {
+            .selectLogo {
                 @extend %flexbox;
                 @include flex-direction(column);
                 @include flex-grow(1);
@@ -212,7 +212,8 @@
     width: 60%;
     margin: 0 auto;
 
-    .selectImages {
+    .selectLogo {
+
         width: 100%;
         height: 0;
         background-size: cover;
@@ -233,7 +234,13 @@
         &.active, &:hover {
             opacity: 1;
         }
-        +.selectImages {
+        &.active:before{
+            display: block;
+
+
+
+        }
+        +.selectLogo {
             margin-top: 1em;
         }
 
@@ -256,6 +263,9 @@
         &.arjohuntleigh:after {
             background: url(./images/logotypes/arjohuntleigh_getingegroup.svg) no-repeat;
             padding-bottom: 18.08%;
+
+        }
+        &.is-selected {
 
         }
     }

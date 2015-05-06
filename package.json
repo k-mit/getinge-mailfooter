@@ -37,6 +37,7 @@
     "gulp-sass": "^1.3.3",
     "gulp-sourcemaps": "^1.5.2",
     "joi": "^6.4.1",
+    "react": "^0.13.2",
     "react-router": "^0.13.3",
     "react-validation-mixin": "^4.0.4",
     "react-zeroclipboard": "^1.0.0",
