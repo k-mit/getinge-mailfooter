@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "babelify": "^6.0.2",
+    "dropzone": "^4.0.1",
     "envify": "^3.4.0",
     "gulp-concat": "^2.5.2",
     "gulp-header": "^1.2.2",
