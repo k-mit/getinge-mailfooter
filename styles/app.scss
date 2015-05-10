@@ -164,10 +164,16 @@
                 .dropzone{
                     margin-top: 2em;
                 }
+                .dz-preview{
+                    display: none;
+                }
+                .dzReactClass{
+                    margin-top: 1em;
+                }
                 .pe{
                     text-align: center;
-                    margin: 1em;
-                    width: 470px;
+                    margin-top: 2em;
+                    width: 100%;
                     font-family: "Helvetic Neue", Helvetica, Arial;
                     font-weight: 300;
                     @include font-size(14px);
@@ -218,6 +224,9 @@
 
     }
 
+}
+.banner{
+    margin-left: -2em;
 }
 .logoselector {
     width: 60%;

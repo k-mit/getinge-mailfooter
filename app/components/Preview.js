@@ -16,6 +16,7 @@ var Preview = React.createClass({
             this.setState(nextProps.initUserObj);
         },
         rawFooter                : function () {
+            var banner = this.state.banner.image ? '<a href="'+this.state.banner.link+'" class="banner"><img src="'+this.state.banner.image+'"></a>' : '';
             return '<div style="font-family: \'Arial\'; font-size: 12px; color: #000; line-height: 14px">' +
                    this.state.info.user_name + '<br>\n' +
                    this.state.info.user_position + '<br>\n' +
@@ -33,6 +34,8 @@ var Preview = React.createClass({
                    (this.state.contacts.user_phone.length > 0 ? 'Phone:' : '') + ' ' + this.state.contacts.user_phone + '<br>\n' +
                    (this.state.contacts.user_mobile.length > 0 ? 'Mobile:' : '') + ' ' + this.state.contacts.user_mobile + '<br>\n' +
                    '<a href="mailto:' + this.state.contacts.user_email + '" style="font-family: \'Arial\';font-size  : 12px;color     : #0046ad;line-height: 14px">' + this.state.contacts.user_email + '</a>' + '<br>\n' +
+                   '<hr/>'+
+                    banner+
                    '</div>';
         },
         render                   : function () {

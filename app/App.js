@@ -18,7 +18,8 @@ var addons = {
 var App = React.createClass({
     getInitialState: function () {
         return {
-            userObj: {
+            userObjTemp: {
+                initValues: true,
                 info    : {
                     user_name      : "James Smith",
                     user_position  : "Dummy person",
@@ -50,6 +51,63 @@ var App = React.createClass({
                     user_mobile: "+46 739 00 00",
                     user_email : "john.smith@signaturegenerator.com"
 
+                },
+                banner: {
+                    link: "",
+                    image: false,
+                    file: [
+                        {
+                            preview: "images/banner_placeholder.png"
+                        }
+                    ],
+                    width: 503,
+                    height: 108
+                }
+            },
+            userObj: {
+                initValues: false,
+                info    : {
+                    user_name      : "",
+                    user_position  : "",
+                    user_department: ""
+                },
+                address : {
+                    user_street : "",
+                    user_city   : "",
+                    user_state  : "",
+                    user_zip    : "",
+                    user_country: ""
+
+                },
+                logo    : {
+                    name      : "",
+                    properties: {
+                        title: 'Getinge Group',
+                        url  : 'images/logotypes/getingegroup.png',
+                        link : 'http://www.getingegroup.com/',
+                        size : {
+                            width: 199,
+                            height: 19
+                        }
+                    }
+                },
+                company : "",
+                contacts: {
+                    user_phone : "",
+                    user_mobile: "",
+                    user_email : ""
+
+                },
+                banner: {
+                    link: "",
+                    image: false,
+                    file: [
+                        {
+                            preview: "images/banner_placeholder.png"
+                        }
+                    ],
+                    width: 503,
+                    height: 108
                 }
             }
         };
@@ -91,13 +149,11 @@ var App = React.createClass({
                             <Link to="extras">Extras</Link>
                         </li>
                     </ul>
-                    <form id="mainform" >
                         <TransitionGroup className="transGroup" component="div" transitionName="card">
                             <RouteHandler key={name} hash updateCall={this.updateValues} initUserObj={this.getUserObject()} />
                         </TransitionGroup>
-                    </form>
                 </div>
-                <Preview initUserObj={this.state.userObj} />
+                <Preview initUserObj={this.state.userObj} userObjTemp={this.state.userObjTemp} />
             </div>
         );
     }

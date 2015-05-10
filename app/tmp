@@ -1,0 +1,5 @@
+acceptedFiles:      "image/*",
+dictDefaultMessage: '', 
+thumbnailWidth:     0,
+thumbnailHeight:    0,
+dictInvalidFileType: 'Only png or jpg files in the correct size'

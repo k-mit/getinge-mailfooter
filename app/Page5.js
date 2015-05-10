@@ -1,25 +1,40 @@
 var React = require('react');
 var Dropzone = require('dropzone');
-Dropzone.autoDiscover = false;
 
 
 var Page5 = React.createClass({
     getInitialState: function () {
-        return {
-            file: [
-                {
-                    preview: "images/banner_placeholder.png",
-                },
-            ],
-            width: '503px',
-            height: '108px'
-        };
+        console.log(this.props.initUserObj);
+        return this.props.initUserObj.banner;
     },
+    onDrop: function (file, fileOk) {
+        if (fileOk == 1) {
+            file.preview = URL.createObjectURL(file);
+            this.setState({file: [file]});
+            var change = {};
+            var change2 = {};
+            change['file'] = this.state.file;
+            this.setState(change, function () {
+                this.props.updateCall({banner: this.state});
+            });
+            change2['image'] = file.preview;
+            this.setState(change2, function () {
+                this.props.updateCall({banner: this.state});
+            });
+            console.log('File format was ok!');
+        } else {
+            console.log('File format was not ok!');
 
-    onDrop: function (file) {
-        this.setState({file: file});
+        }
     },
+    handleChange: function (name, event) {
+        var change = {};
+        change[name] = event.target.value;
+        this.setState(change, function () {
+            this.props.updateCall({banner: this.state});
+        });
 
+    },
     render: function () {
         return (
             <div className="page page5">
@@ -27,22 +42,18 @@ var Page5 = React.createClass({
                     <div className="card">
                         <h3>Promotional Banner (optional)</h3>
                         <label>Link that banner should link to</label>
-                        <input className="textfields linkfield"/>
-                        <DzReact onDrop={this.onDrop} width={503} height={108} maxWidth={503} maxHeight={108}>
-                            <div className="dropText">
-                                <p className="pe">Try dropping some files here, or click to select files to upload.
-                                    <br />
-                                    <br />
-                                    File formats accepted are JPG and PNG only.
-                                    Dimensions must be 606x141 pixels.</p>
-                            </div>
-                        </DzReact>
-                        <div className="UploadButtonDiv">
-                            <button>Upload Image</button>
-                            <div className="buttonText"></div>
-                        </div>
+                        <input className="textfields linkfield" value={this.state.link} onChange={this.handleChange.bind(this, 'link')}/>
+                        <Uploader onUploadComplete={this.onDrop} >
+                            <p className="pe">
+                                <strong>Drop files in this box or click here.</strong>
+                                <br/>
+                                File formats accepted are JPG and PNG only.
+                                <br />
+                                Dimensions must be 606x141 pixels.
+                            </p>
+                        </Uploader>
                         <label>Image preview</label>
-                        <img src={this.state.file[0].preview} height={this.state.height} width={this.state.width}/>
+                        <img src={this.state.file[0].preview} height={this.state.height} width={this.state.width} className="dropzone-previews"/>
                     </div>
                 </div>
             </div>
@@ -50,150 +61,126 @@ var Page5 = React.createClass({
     }
 
 });
-Dropzone.autoDiscover = false;
-var maxImageWidth = 800,
-    maxImageHeight = 800;
-Dropzone.options.DzReactId = {
 
-    // Make sure only images are accepted
-    acceptedFiles: "image/jpg,image/png",
-    autoDiscover: false,
-    init: function () {
-        console.log('INIT!!')
-        // Register for the thumbnail callback.
-        // When the thumbnail is created the image dimensions are set.
-        this.on("thumbnail", function (file) {
-            // Do the dimension checks you want to do
-            if (file.width > maxImageWidth || file.height > maxImageHeight) {
-                file.rejectDimensions()
-            }
-            else {
-                file.acceptDimensions();
-            }
-        });
-    },
+var maxImageWidth = 606,
+    maxImageHeight = 141;
 
-    // Instead of directly accepting / rejecting the file, setup two
-    // functions on the file that can be called later to accept / reject
-    // the file.
-    accept: function (file, done) {
-        file.acceptDimensions = done;
-        file.rejectDimensions = function () {
-            done("Invalid dimension.");
-        };
-        // Of course you could also just put the `done` function in the file
-        // and call it either with or without error in the `thumbnail` event
-        // callback, but I think that this is cleaner.
-    }
-};
-var DzReact = React.createClass({
+
+var Uploader = React.createClass({
     getInitialState: function () {
         return {
-            isDragActive: false
+            isDragActive: false,
+            fileOk: 3
         }
     },
+    // invoked immediately after mounting occurs, initialize plugins
+    componentDidMount: function () {
+        var self = this;
 
-    propTypes: {
-        onDrop: React.PropTypes.func.isRequired,
-        width: React.PropTypes.number,
-        height: React.PropTypes.number,
-        maxWidth: React.PropTypes.number,
-        maxHeight: React.PropTypes.number,
-        style: React.PropTypes.object
+        Dropzone.autoDiscover = false;
+        var myDropzone = new Dropzone(this.getDOMNode(), {
+            url: '/#/extras',
+            acceptedFiles: "image/*",
+            dictDefaultMessage: '',
+            thumbnailWidth: 0,
+            thumbnailHeight: 0,
+            dictInvalidFileType: 'Only png or jpg files in the correct size',
+            accept: function (file, done) {
+                if (self.state.fileOk == 3) {
+                    this.emit("addedfile", file);
+                    this.emit("thumbnail", file, file.preview);
+                }
+                done;
+            },
+            init: function () {
+                this.on("addedfile", function (file) {
+                    file.acceptFile = function () {
+                        self.setState({fileOk: 1});
+                    }
+                    file.rejectFile = function () {
+                        self.setState({fileOk: 0});
+                    }
+                });
 
-    },
+                this.on("thumbnail", function (file) {
+                    if (file.width != 606 || file.height != 141 || !(file.type == "image/png" || file.type == "image/png")) {
+                        self.props.onUploadComplete(file, 0);
+                    } else {
+                        self.props.onUploadComplete(file, 1);
+                    }
 
-    onDragLeave: function (e) {
-        this.setState({
-            isDragActive: false
+                    // Do the dimension checks you want to do
+                });
+            }
         });
-    },
 
-    onDragOver: function (e) {
-        e.preventDefault();
-        e.dataTransfer.dropEffect = "copy";
+        myDropzone.on("complete", function (file) {
+            if (self.state.fileOk == 3) {
+                this.emit("addedfile", file);
+                this.emit("thumbnail", file, file.preview);
+            }
 
-        this.setState({
-            isDragActive: true
+            self.props.onUploadComplete(file, self.state.fileOk);
         });
+        this.props.myDropzone = myDropzone;
     },
 
+    onClick: function () {
+        this.refs.fileInput.getDOMNode().click();
+    },
     onDrop: function (e) {
-        e.preventDefault();
-
-        this.setState({
-            isDragActive: false
-        });
-
+        var self = this;
         var files;
         if (e.dataTransfer) {
             files = e.dataTransfer.files;
         } else if (e.target) {
             files = e.target.files;
         }
+        files = Array.prototype.slice.call(files);
+        if (this.state.fileOk == 3) {
+            files[0].preview = URL.createObjectURL(files[0]);
+            var file = files[0];
 
-        for (var i = 0; i < files.length; i++) {
-            files[i].preview = URL.createObjectURL(files[i]);
-        }
-
-        if (this.props.onDrop) {
-            files = Array.prototype.slice.call(files);
-            this.props.onDrop(files);
-        }
-    },
-
-    onClick: function () {
-        this.refs.fileInput.getDOMNode().click();
-    },
-
-    componentDidMount: function () {
-        var options = {
-            autoDiscover: false
-        };
-        for (var opt in Dropzone.prototype.defaultOptions) {
-            var prop = this.props[opt];
-            if (prop) {
-                options[opt] = prop;
-                continue;
+            var img = new Image();
+            img.onload = function () {
+                file.width = this.width;
+                file.height = this.height;
+                if (file.width != 606 || file.height != 141 || !(file.type == "image/png" || file.type == "image/png")) {
+                    self.props.onUploadComplete(file, 0);
+                } else {
+                    self.props.onUploadComplete(file, 1);
+                }
             }
-            options[opt] = Dropzone.prototype.defaultOptions[opt];
+            img.src = file.preview;
         }
-        //this.dropzone = new Dropzone(this.getDOMNode(), options);
-        //console.log(Dropzone)
     },
-
-    componentWillUnmount: function () {
-        this.dropzone.destroy();
-        this.dropzone = null;
-    },
-
     render: function () {
-
-        var className = this.props.className || 'dropzone';
+        var inputstyle = {display: 'none'};
+        var className = this.props.className || 'dzReactClass';
         if (this.state.isDragActive) {
             className += ' active';
         }
         ;
 
         var style = this.props.style || {
-                width: this.props.width + 'px' || 100,
-                height: this.props.height + 'px' || 100,
-                borderStyle: this.state.isDragActive ? "solid" : "dashed"
+                width: this.props.width || 503,
+                height: this.props.height || 108,
+                borderStyle: "dashed",
+                borderWidth: "thin"
             };
-        var inputstyle = {display: 'none'};
 
         if (this.props.className) {
             style = this.props.style;
         }
-
         return (
-            <div id="DzReactId" className={className} style={style} onClick={this.onClick} onDragLeave={this.onDragLeave} onDragOver={this.onDragOver} onDrop={this.onDrop}>
-            {this.props.children}
-                <input type="file" style={inputstyle} multiple="false" ref="fileInput" onChange={this.onDrop} />
-            </div>
+            <form action="/#/extras" className="dropzone" id="dropzone" method="post">
+                <div className={className} style={style} onDragLeave={this.onDragLeave} onDragEnter={this.onDragEnter} onClick={this.onClick}>
+                    {this.props.children}
+                    <input type="file" style={inputstyle} ref="fileInput" onChange={this.onDrop} />
+                    <i className="fa fa-cloud-upload fa-4x"></i>
+                </div>
+            </form>
         );
     }
-
 });
-
 module.exports = Page5;
