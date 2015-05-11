@@ -24,12 +24,18 @@ var Page4 = React.createClass({
                 <div className="content">
                     <div className="card">
                         <h3>Contact Information</h3>
-                        <label>Phone</label>
-                        <input value={this.state.user_phone} onChange={this.handleChange.bind(this,'user_phone')} className="textfields" ref="user_phone_input" />
-                        <label>Mobile</label>
-                        <input value={this.state.user_mobile} onChange={this.handleChange.bind(this,'user_mobile')} className="textfields" ref="user_mobile_input" />
-                        <label>Email Address</label>
-                        <input type="email" value={this.state.user_email} onChange={this.handleChange.bind(this,'user_email')} className="textfields" ref="user_email_input" />
+                        <div className="form-group form-group-lg">
+                            <label className="control-label">Phone</label>
+                            <input type="text" value={this.state.user_phone} onChange={this.handleChange.bind(this,'user_phone')} placeholder="Phone" className="form-control" ref="user_phone_input" required/>
+                        </div>
+                        <div className="form-group form-group-lg">
+                            <label className="control-label">Mobile</label>
+                            <input type="text" value={this.state.user_mobile} onChange={this.handleChange.bind(this,'user_mobile')} placeholder="Mobile" className="form-control" ref="user_mobile_input" required/>
+                        </div>
+                        <div className="form-group form-group-lg">
+                            <label className="control-label">Email Address</label>
+                            <input type="email" value={this.state.user_email} onChange={this.handleChange.bind(this,'user_email')} placeholder="Email Address" className="form-control" ref="user_email_input" required/>
+                        </div>
                     </div>
                 </div>
             </div>

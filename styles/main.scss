@@ -1,8 +1,15 @@
-@import "variables";
-@import "fonts";
-@import "flexbox.scss";
-@import "transition.scss";
-@import "opacity.scss";
-@import "font-size.scss";
-@import "border-radius.scss";
-@import "app.scss";
+@import "fonts.scss";
+#ggmfg {
+    font-family: 'HelveticaNeueW01-45Ligh',sans-serif;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    @import "_bootstrap";
+    @import "variables";
+    @import "flexbox.scss";
+    @import "transition.scss";
+    @import "opacity.scss";
+    @import "font-size.scss";
+    @import "border-radius.scss";
+    @import "app.scss";
+}

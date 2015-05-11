@@ -24,15 +24,21 @@ var Page1 = React.createClass({
         return (
             <div className="page page1">
                 <div className="content">
-                    <div className="card">
+                    <form className="form">
                         <h3>Employee Info</h3>
-                        <label>Name</label>
-                        <input type="text" value={this.state.user_name} onChange={this.handleChange.bind(this,'user_name')} className="textfields" ref="user_name_input" required/>
-                        <label>Position/Title</label>
-                        <input type="text" value={this.state.user_position} onChange={this.handleChange.bind(this,'user_position')} className="textfields" ref="user_position_input" required/>
-                        <label>Department</label>
-                        <input type="text" value={this.state.user_department} onChange={this.handleChange.bind(this,'user_department')} className="textfields" ref="user_department_input" required/>
-                    </div>
+                        <div className="form-group form-group-lg">
+                            <label className="control-label">Full Name</label>
+                            <input type="text" value={this.state.user_name} onChange={this.handleChange.bind(this,'user_name')} placeholder="Name" className="form-control" ref="user_name_input" required/>
+                        </div>
+                        <div className="form-group form-group-lg">
+                            <label className="control-label">Position / Title</label>
+                            <input type="text" value={this.state.user_position} onChange={this.handleChange.bind(this,'user_position')} placeholder="Position/Title" className="form-control" ref="user_position_input" required/>
+                        </div>
+                        <div className="form-group form-group-lg">
+                            <label className="control-label">Department</label>
+                            <input type="text" value={this.state.user_department} onChange={this.handleChange.bind(this,'user_department')} placeholder="Department" className="form-control" ref="user_department_input" required/>
+                        </div>
+                    </form>
                 </div>
             </div>
         );

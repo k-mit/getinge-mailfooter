@@ -51,16 +51,26 @@ var Page3 = React.createClass({
                 <div className="content">
                     <div className="card">
                         <h3>Address</h3>
-                        <label>Street Address</label>
-                        <input value={this.state.user_street} onChange={this.handleChange.bind(this,'user_street')} className="textfields" ref="user_street_input" required/>
-                        <label>City</label>
-                        <input value={this.state.user_city} onChange={this.handleChange.bind(this,'user_city')} className="textfields" ref="user_city_input" required/>
-                        <label>State/Territory (optional)</label>
-                        {this.renderSelect('user_state_input', 'State', STATES,this.state.user_state)}
-                        <label>Zip code</label>
-                        <input value={this.state.user_zip} onChange={this.handleChange.bind(this,'user_zip')} className="textfields" ref="user_zip_input" required/>
-                        <label>Country</label>
-                        <input value={this.state.user_country} onChange={this.handleChange.bind(this,'user_country')} className="textfields" ref="user_country_input" required/>
+                        <div className="form-group form-group-lg">
+                            <label className="control-label">Street Address</label>
+                            <input type="text" value={this.state.user_street} onChange={this.handleChange.bind(this,'user_street')} placeholder="Street Address" className="form-control" ref="user_street_input" required/>
+                        </div>
+                        <div className="form-group form-group-lg">
+                            <label className="control-label">City</label>
+                            <input type="text" value={this.state.user_city} onChange={this.handleChange.bind(this,'user_city')} placeholder="City" className="form-control" ref="user_city_input" required/>
+                        </div>
+                        <div className="form-group form-group-lg">
+                            <label className="control-label">Company Name/Business Area</label>
+                            <input type="text" value={this.state.user_state} onChange={this.handleChange.bind(this,'user_state')} placeholder="State" className="form-control" ref="user_state_input" required/>
+                        </div>
+                        <div className="form-group form-group-lg">
+                            <label className="control-label">Zip code</label>
+                            <input type="text" value={this.state.user_zip} onChange={this.handleChange.bind(this,'user_zip')} placeholder="Zip code" className="form-control" ref="user_zip_input" required/>
+                        </div>
+                        <div className="form-group form-group-lg">
+                            <label className="control-label">Country</label>
+                            <input type="text" value={this.state.user_country} onChange={this.handleChange.bind(this,'user_country')} placeholder="Country" className="form-control" ref="user_country_input" required/>
+                        </div>
                     </div>
                 </div>
             </div>

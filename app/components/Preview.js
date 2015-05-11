@@ -9,7 +9,6 @@ var ReactZeroClipboard = require('react-zeroclipboard');
 
 var Preview = React.createClass({
         getInitialState          : function () {
-            console.log(this.props.initUserObj);
             return this.props.initUserObj;
         },
         componentWillReceiveProps: function (nextProps) {
@@ -40,7 +39,7 @@ var Preview = React.createClass({
         },
         render                   : function () {
             return (
-                <div className="resultArea">
+                <div id="Preview" className="col-md-6">
                     <h3>Signature Preview</h3>
                     <span>Your signature will display below as you fill out your information to the left. Be sure to
                         include all required fields.</span>
@@ -50,9 +49,9 @@ var Preview = React.createClass({
                     <div id="footer" dangerouslySetInnerHTML={{__html: this.rawFooter()}}/>
                     <div>
                         <div>
-                            <p>Click the button to copy some text</p>
+                            <p>Press the button to copy the footer to the clipboard and then paste it into your mail clients field for the footer.</p>
                             <ReactZeroClipboard text={this.rawFooter}>
-                                <button>Copy</button>
+                                <button className="largerbutton">Copy footer to clipboard</button>
                             </ReactZeroClipboard>
                         </div>
                     </div>

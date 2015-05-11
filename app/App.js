@@ -21,7 +21,7 @@ var App = React.createClass({
             userObjTemp: {
                 initValues: true,
                 info    : {
-                    user_name      : "James Smith",
+                    user_name      : "John Smith",
                     user_position  : "Dummy person",
                     user_department: "Getinge Group Signature Generator"
                 },
@@ -116,7 +116,7 @@ var App = React.createClass({
         var stateObj = addons.update(this.state.userObj, {$merge: userObj});
 
         this.setState({userObj: stateObj}, function () {
-            console.log(this.state.userObj);
+            //console.log(this.state.userObj);
         });
     },
     contextTypes   : {
@@ -130,22 +130,22 @@ var App = React.createClass({
 
         var name = this.context.router.getCurrentPath();
         return (
-            <div className="mg_widget">
-                <div>
-                    <ul className="table-view" table-view>
-                        <li className="table-view-cell">
+            <div id="ggmfg" className="row">
+                <div id="Configure" className="col-md-6">
+                    <ul className="navigator">
+                        <li className="navigator__item">
                             <Link to="info">Info</Link>
                         </li>
-                        <li className="table-view-cell">
+                        <li className="navigator__item">
                             <Link to="area">Business Area</Link>
                         </li>
-                        <li className="table-view-cell">
+                        <li className="navigator__item">
                             <Link to="address">Address</Link>
                         </li>
-                        <li className="table-view-cell">
+                        <li className="navigator__item">
                             <Link to="contacts">Contact info</Link>
                         </li>
-                        <li className="table-view-cell">
+                        <li className="navigator__item">
                             <Link to="extras">Extras</Link>
                         </li>
                     </ul>

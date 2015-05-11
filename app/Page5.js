@@ -41,8 +41,10 @@ var Page5 = React.createClass({
                 <div className="content">
                     <div className="card">
                         <h3>Promotional Banner (optional)</h3>
-                        <label>Link that banner should link to</label>
-                        <input className="textfields linkfield" value={this.state.link} onChange={this.handleChange.bind(this, 'link')}/>
+                        <div className="form-group form-group-lg">
+                            <label className="control-label">Banner link target</label>
+                            <input type="text" value={this.state.url} onChange={this.handleChange.bind(this,'url')} placeholder="http://www.getingegroup.com" className="form-control linkfield" ref="user_country_input" required/>
+                        </div>
                         <Uploader onUploadComplete={this.onDrop} >
                             <p className="pe">
                                 <strong>Drop files in this box or click here.</strong>

@@ -26,6 +26,7 @@ var LogoSelector = React.createClass({
                         width: 199,
                         height: 19
                     }
+
                 },
                 'maquet'       : {
                     title: 'Maquet Getinge Group',
@@ -58,7 +59,6 @@ var LogoSelector = React.createClass({
         };
     },
     handleClick    : function (target) {
-        console.log(target.props.shortname);
         this.setState({imageSelected: target.props.shortname},function () {
             this.props.updateCall({'logo': {
                 name: this.state.imageSelected,
@@ -111,8 +111,10 @@ var Page2 = React.createClass({
                 {this.props.key}
                         Select your business area logo.
                         <LogoSelector imageSelected={this.props.initUserObj.logo.name} updateCall={this.props.updateCall}/>
-                        <label>Company Name/Business Area</label>
-                        <input value={this.state.company} className="textfields" onChange={this.handleChange.bind(this,'company')}/>
+                        <div className="form-group form-group-lg">
+                            <label className="control-label">Company Name/Business Area</label>
+                            <input type="text" value={this.state.company} onChange={this.handleChange.bind(this,'company')} placeholder="Company Name/Business Area" className="form-control" ref="user_name_input" required/>
+                        </div>
                     </div>
                 </div>
             </div>
