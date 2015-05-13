@@ -45,7 +45,7 @@ var Page5 = React.createClass({
                             <label className="control-label">Banner link target</label>
                             <input type="text" value={this.state.url} onChange={this.handleChange.bind(this,'url')} placeholder="http://www.getingegroup.com" className="form-control linkfield" ref="user_country_input" required/>
                         </div>
-                        <Uploader onUploadComplete={this.onDrop} >
+                        <Uploader onUploadComplete={this.onDrop} fileObj={this.state.file}>
                             <p className="pe">
                                 <strong>Drop files in this box or click here.</strong>
                                 <br/>
@@ -54,8 +54,6 @@ var Page5 = React.createClass({
                                 Dimensions must be 606x141 pixels.
                             </p>
                         </Uploader>
-                        <label>Image preview</label>
-                        <img src={this.state.file[0].preview} height={this.state.height} width={this.state.width} className="dropzone-previews"/>
                     </div>
                 </div>
             </div>
@@ -168,7 +166,9 @@ var Uploader = React.createClass({
                 width: this.props.width || 503,
                 height: this.props.height || 108,
                 borderStyle: "dashed",
-                borderWidth: "thin"
+                borderWidth: "thin",
+                backgroundImage: "url("+this.props.fileObj[0].preview+")" || '',
+                backgroundSize: "cover"
             };
 
         if (this.props.className) {
