@@ -52,7 +52,7 @@ var Preview = React.createClass({
                         <div>
                             <p>Press the button to copy the footer to the clipboard and then paste it into your mail clients field for the footer.</p>
                             <ReactZeroClipboard text={this.rawFooter}>
-                                <OverlayTrigger container={this} trigger='click' placement='top' overlay={<Popover title='Footer generated'>The HTML-code to show your footer has been copied to your clipboard. Paste the footer into your email client</Popover>}>
+                                <OverlayTrigger container={this} trigger='focus' placement='top' overlay={<Popover title='Footer generated'>The HTML-code to show your footer has been copied to your clipboard. Paste the footer into your email client</Popover>}>
                                     <button className="btn btn-primary btn-lg">Copy footer to clipboard</button>
                                 </OverlayTrigger>
 
