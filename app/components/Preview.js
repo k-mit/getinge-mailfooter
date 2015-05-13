@@ -18,22 +18,22 @@ var Preview = React.createClass({
         rawFooter                : function () {
             var banner = this.state.banner.image ? '<a href="'+this.state.banner.link+'" class="banner"><img src="'+this.state.banner.image+'"></a>' : '';
             return '<div style="font-family: \'Arial\'; font-size: 12px; color: #000; line-height: 14px">' +
-                   this.state.info.user_name + '<br>\n' +
-                   this.state.info.user_position + '<br>\n' +
-                   this.state.info.user_department + '<br>\n' +
+                (this.state.info.user_name ? this.state.info.user_name + '<br>\n' : '')  +
+                (this.state.info.user_position? this.state.info.user_position + '<br>\n':'') +
+                (this.state.info.user_department ? this.state.info.user_department + '<br>\n':'') +
                    '<br>\n' +
                    '-------------------------------------<br>\n' +
                    '<br>\n' +
-                   '<a href="' + this.state.logo.properties.link + '" target="_blank"><img border="0" width="' + this.state.logo.properties.size.width + '" height="' + this.state.logo.properties.size.height + '" title="' + this.state.logo.properties.title + '" alt="' + this.state.logo.properties.title + '"  src="' + this.state.logo.properties.url + '" /></a><br>\n' +
+                (this.state.logo.properties.link ? '<a href="' + this.state.logo.properties.link + '" target="_blank"><img border="0" width="' + this.state.logo.properties.size.width + '" height="' + this.state.logo.properties.size.height + '" title="' + this.state.logo.properties.title + '" alt="' + this.state.logo.properties.title + '"  src="' + this.state.logo.properties.url + '" /></a><br>\n':'') +
                    '<br>\n' +
-                   this.state.company + '<br>\n' +
-                   this.state.address.user_street + '<br>\n' +
-                   this.state.address.user_city + ', ' + this.state.address.user_state + ' ' + this.state.address.user_zip + '<br>\n' +
-                   this.state.address.user_country + '<br>\n' +
+                (this.state.company ? this.state.company + '<br>\n':'') +
+                (this.state.address.user_street ? this.state.address.user_street + '<br>\n' : '') +
+                (this.state.address.user_city || this.state.address.user_state || this.state.address.user_zip ? this.state.address.user_city + ', ' + this.state.address.user_state + ' ' + this.state.address.user_zip + '<br>\n':'') +
+                (this.state.address.user_country ? this.state.address.user_country + '<br>\n':'') +
                    '<br>\n' +
-                   (this.state.contacts.user_phone.length > 0 ? 'Phone:' : '') + ' ' + this.state.contacts.user_phone + '<br>\n' +
-                   (this.state.contacts.user_mobile.length > 0 ? 'Mobile:' : '') + ' ' + this.state.contacts.user_mobile + '<br>\n' +
-                   '<a href="mailto:' + this.state.contacts.user_email + '" style="font-family: \'Arial\';font-size  : 12px;color     : #0046ad;line-height: 14px">' + this.state.contacts.user_email + '</a>' + '<br>\n' +
+                   (this.state.contacts.user_phone.length > 0 ? 'Phone:'+' ' + this.state.contacts.user_phone + '<br>\n' : '') +
+                   (this.state.contacts.user_mobile.length > 0 ? 'Mobile:' + ' ' + this.state.contacts.user_mobile + '<br>\n' : '') +
+                (this.state.contacts.user_email ? '<a href="mailto:' + this.state.contacts.user_email + '" style="font-family: \'Arial\';font-size  : 12px;color     : #0046ad;line-height: 14px">' + this.state.contacts.user_email + '</a>' + '<br>\n':'') +
                    '<hr/>'+
                     banner+
                    '</div>';
