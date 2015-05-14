@@ -19,37 +19,39 @@ var App = React.createClass({
     getInitialState: function () {
         return {
             userObjTemp: {
-                initValues: true,
-                info    : {
-                    user_name      : "John Smith",
-                    user_position  : "Dummy person",
+                preview: {
+                    address_format: 'USA'
+                },
+                info: {
+                    user_name: "John Smith",
+                    user_position: "Dummy person",
                     user_department: "Getinge Group Signature Generator"
                 },
-                address : {
-                    user_street : "335 Angle drive",
-                    user_city   : "Metropolis",
-                    user_state  : "",
-                    user_zip    : "11200",
+                address: {
+                    user_street: "335 Angle drive",
+                    user_city: "Metropolis",
+                    user_state: "AL",
+                    user_zip: "11200",
                     user_country: "Somewhere"
 
                 },
-                logo    : {
-                    name      : "",
+                logo: {
+                    name: "",
                     properties: {
                         title: 'Getinge Group',
-                        url  : 'images/logotypes/getingegroup.png',
-                        link : 'http://www.getingegroup.com/',
-                        size : {
+                        url: 'images/logotypes/getingegroup.png',
+                        link: 'http://www.getingegroup.com/',
+                        size: {
                             width: 199,
                             height: 19
                         }
                     }
                 },
-                company : "Getinge Group Signature Generator",
+                company: "Getinge Group Signature Generator",
                 contacts: {
-                    user_phone : "+46 8 555 44 44",
+                    user_phone: "+46 8 555 44 44",
                     user_mobile: "+46 739 00 00",
-                    user_email : "john.smith@signaturegenerator.com"
+                    user_email: "john.smith@signaturegenerator.com"
 
                 },
                 banner: {
@@ -65,37 +67,37 @@ var App = React.createClass({
                 }
             },
             userObj: {
-                initValues: false,
-                info    : {
-                    user_name      : "",
-                    user_position  : "",
+                address_format: 'USA',
+                info: {
+                    user_name: "",
+                    user_position: "",
                     user_department: ""
                 },
-                address : {
-                    user_street : "",
-                    user_city   : "",
-                    user_state  : "",
-                    user_zip    : "",
+                address: {
+                    user_street: "",
+                    user_city: "",
+                    user_state: "",
+                    user_zip: "",
                     user_country: ""
 
                 },
-                logo    : {
-                    name      : "",
+                logo: {
+                    name: "",
                     properties: {
                         title: 'Getinge Group',
-                        url  : 'images/logotypes/getingegroup.png',
-                        link : 'http://www.getingegroup.com/',
-                        size : {
+                        url: 'images/logotypes/getingegroup.png',
+                        link: 'http://www.getingegroup.com/',
+                        size: {
                             width: 199,
                             height: 19
                         }
                     }
                 },
-                company : "",
+                company: "",
                 contacts: {
-                    user_phone : "",
+                    user_phone: "",
                     user_mobile: "",
-                    user_email : ""
+                    user_email: ""
 
                 },
                 banner: {
@@ -112,21 +114,18 @@ var App = React.createClass({
             }
         };
     },
-    updateValues   : function (userObj) {
+    updateValues: function (userObj) {
         var stateObj = addons.update(this.state.userObj, {$merge: userObj});
-
-        this.setState({userObj: stateObj}, function () {
-            //console.log(this.state.userObj);
-        });
+        this.setState({userObj: stateObj});
     },
-    contextTypes   : {
+    contextTypes: {
         router: React.PropTypes.func
     },
 
     getUserObject: function () {
         return this.state.userObj;
     },
-    render       : function () {
+    render: function () {
 
         var name = this.context.router.getCurrentPath();
         return (
@@ -149,11 +148,11 @@ var App = React.createClass({
                             <Link to="extras">Extras</Link>
                         </li>
                     </ul>
-                        <TransitionGroup className="transGroup" component="div" transitionName="card">
-                            <RouteHandler key={name} hash updateCall={this.updateValues} initUserObj={this.getUserObject()} />
-                        </TransitionGroup>
+                    <TransitionGroup className="transGroup" component="div" transitionName="card">
+                        <RouteHandler key={name} hash updateCall={this.updateValues} initUserObj={this.getUserObject()} />
+                    </TransitionGroup>
                 </div>
-                <Preview initUserObj={this.state.userObj} userObjTemp={this.state.userObjTemp} />
+                <Preview initUserObj={this.state.userObj} initUserObjTemp={this.state.userObjTemp} updateCall={this.updateValues} />
             </div>
         );
     }
