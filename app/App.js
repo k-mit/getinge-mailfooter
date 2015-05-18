@@ -24,14 +24,16 @@ var App = React.createClass({
                 info: {
                     user_name: null,
                     user_position: null,
-                    user_department: null
+                    user_department: null,
+                    valid: false
                 },
                 address: {
                     user_street: null,
                     user_city: null,
                     user_state: null,
                     user_zip: null,
-                    user_country: null
+                    user_country: null,
+                    valid: false
 
                 },
                 logo: {
@@ -44,13 +46,15 @@ var App = React.createClass({
                             width: 199,
                             height: 19
                         }
-                    }
+                    },
+                    valid: false
                 },
                 company: null,
                 contacts: {
                     user_phone: null,
                     user_mobile: null,
-                    user_email: null
+                    user_email: null,
+                    valid: false
 
                 },
                 banner: {
