@@ -7,32 +7,111 @@ var React = require('react');
 var ZeroClipboard = require('zeroclipboard');
 var ReactZeroClipboard = require('react-zeroclipboard');
 var Popover = require('react-bootstrap/lib/Popover');
-var OverlayTrigger= require('react-bootstrap/lib/OverlayTrigger');
-var addressformatsarray = ['USA','Sweden'];
+var OverlayTrigger = require('react-bootstrap/lib/OverlayTrigger');
+var addressformatsarray = ['USA', 'UK', 'Europe'];
+var ln = '<br>\n';
 var Preview = React.createClass({
         getInitialState          : function () {
-            return this.props.initUserObjTemp;
+            var defaultObject =  {
+                info    : {
+                    user_name      : "Your Full Name",
+                        user_position  : "Position or title",
+                        user_department: "Department"
+                },
+                address : {
+                    user_street : "Street address",
+                        user_city   : "City",
+                        user_state  : "",
+                        user_zip    : "00000",
+                        user_country: "Country"
+
+                },
+                logo    : {
+                    name      : "",
+                        properties: {
+                        title: 'Getinge Group',
+                            url  : 'images/logotypes/getingegroup.png',
+                            link : 'http://www.getingegroup.com/',
+                            size : {
+                            width : 199,
+                                height: 19
+                        }
+                    }
+                },
+                company : "Getinge Group",
+                    contacts: {
+                    user_phone : "+00 0 000 00 00",
+                        user_mobile: "+00 000 00 00 00",
+                        user_email : "your.email@getingegroup.com"
+
+                },
+                banner  : {
+                    link  : "",
+                        image : false,
+                        file  : [
+                        {
+                            preview: "images/banner_placeholder.png"
+                        }
+                    ],
+                        width : 503,
+                        height: 108
+                }
+            };
+            console.log(this.props.initUserObj);
+            return {
+                default: defaultObject,
+                preview : {
+                    address_format: 'USA'
+                },
+                userObj : this.props.initUserObj
+            }
         },
         componentWillReceiveProps: function (nextProps) {
 
-            this.setState(nextProps.initUserObj);
+            this.setState({userObj: nextProps.initUserObj});
         },
-        handleChange: function (name, event) {
+        getValue : function (keyString, allowBlank, getDefault) {
+            var out = getDefault ? this.state.default : this.state.userObj,
+                key = keyString.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
+                key = key.replace(/^\./, '');           // strip a leading dot
+
+            var a = key.split('.');
+            for (var i = 0, n = a.length; i < n; ++i) {
+                var k = a[i];
+                if (k in out) {
+                    out = out[k];
+                } else {
+                    return keyString;
+                }
+            }
+            if (allowBlank!== true && (out === null || out === '')) {
+                return this.getValue(keyString, true,true);
+            }
+            if(out === null) {
+                return "";
+            }
+            if(typeof out === 'string' && getDefault === true) {
+                out = '<span class="defaultext">'+out+'</span>';
+            }
+            return out;
+        },
+        handleChange             : function (name, event) {
             var change = {};
             change[name] = event.target.value;
-            this.setState(change, function () {
-                this.props.updateCall({preview: this.state});
+            this.setState({preview:change}, function () {
+                this.props.updateCall({preview: this.state.preview});
             });
 
         },
-        renderSelect: function (id, label, values, selectedValue,bindname,startoption) {
+        renderSelect             : function (id, label, values, selectedValue, bindname, startoption) {
             var lkey = 1;
             var options = values.map(function (value) {
-                    lkey++;
-                    return <option value={value} key={lkey}>{value}</option>
+                lkey++;
+                return <option value={value} key={lkey}>{value}</option>
             })
 
             return (
+
                 <select className="form-control" id={id} onChange={this.handleChange.bind(this, bindname)} ref={id} value={this.state.preview.address_format}>
                     <option value="" key={lkey++}>{startoption}</option>
                     {options}
@@ -40,38 +119,48 @@ var Preview = React.createClass({
             )
         },
         rawFooter                : function () {
-            var banner = this.state.banner.image ? '<a href="'+this.state.banner.link+'" class="banner"><img src="'+this.state.banner.image+'"></a>' : '';
+            var banner = this.getValue('banner.image') ? '<a href="' + this.getValue('banner.link') + '" class="banner"><img src="' + this.getValue('banner.image') + '"></a>' : '';
             return '<div style="font-family: \'Arial\'; font-size: 12px; color: #000; line-height: 14px">' +
-                (this.state.info.user_name ? this.state.info.user_name + '<br>\n' : '')  +
-                (this.state.info.user_position? this.state.info.user_position + '<br>\n':'') +
-                (this.state.info.user_department ? this.state.info.user_department + '<br>\n':'') +
-                   '<br>\n' +
+                   (this.getValue('info.user_name') + ln) +
+                   (this.getValue('info.user_position') ? this.getValue('info.user_position') + ln : '') +
+                   (this.getValue('info.user_department') ? this.getValue('info.user_department') + ln : '') +
+                   ln +
                    '-------------------------------------<br>\n' +
-                   '<br>\n' +
-                (this.state.logo.properties.link ? '<a href="' + this.state.logo.properties.link + '" target="_blank"><img border="0" width="' + this.state.logo.properties.size.width + '" height="' + this.state.logo.properties.size.height + '" title="' + this.state.logo.properties.title + '" alt="' + this.state.logo.properties.title + '"  src="' + this.state.logo.properties.url + '" /></a><br>\n':'') +
-                   '<br>\n' +
-                (this.state.company ? this.state.company + '<br>\n':'') +
-                    this.address_string()+
-                   '<br>\n' +
-                   (this.state.contacts.user_phone.length > 0 ? 'Phone:'+' ' + this.state.contacts.user_phone + '<br>\n' : '') +
-                   (this.state.contacts.user_mobile.length > 0 ? 'Mobile:' + ' ' + this.state.contacts.user_mobile + '<br>\n' : '') +
-                (this.state.contacts.user_email ? '<a href="mailto:' + this.state.contacts.user_email + '" style="font-family: \'Arial\';font-size  : 12px;color     : #0046ad;line-height: 14px">' + this.state.contacts.user_email + '</a>' + '<br>\n':'') +
-                   '<hr/>'+
-                    banner+
+                   ln +
+                   (this.getValue('logo.properties.link') ? '<a href="' + this.getValue('logo.properties.link') + '" target="_blank"><img border="0" width="' + this.getValue('logo.properties.size.width') + '" height="' + this.getValue('logo.properties.size.height') + '" title="' + this.getValue('logo.properties.title') + '" alt="' + this.getValue('logo.properties.title') + '"  src="' + this.getValue('logo.properties.url') + '" /></a><br>\n' : '') +
+                   ln +
+                   (this.getValue('company') ? this.getValue('company') + ln : '') +
+                   this.address_string() +
+                   ln +
+                   (this.getValue('contacts.user_phone').length > 0 ? 'Phone:' + ' ' + this.getValue('contacts.user_phone') + ln : '') +
+                   (this.getValue('contacts.user_mobile').length > 0 ? 'Mobile:' + ' ' + this.getValue('contacts.user_mobile') + ln : '') +
+                   (this.getValue('contacts.user_email') ? '<a href="mailto:' + this.getValue('contacts.user_email',true) + '" style="font-family: \'Arial\';font-size  : 12px;color     : #0046ad;line-height: 14px">' + this.getValue('contacts.user_email') + '</a>' + ln : '') +
+                   '<hr/>' +
+                   banner +
                    '</div>';
         },
-        address_string: function(){
+        address_string           : function () {
             var adstr;
-            switch(this.state.preview.address_format){
+            var street = this.getValue('address.user_street');
+            var city = this.getValue('address.user_city');
+            var state = this.getValue('address.user_state');
+            var zip = this.getValue('address.user_zip');
+            var country = this.getValue('address.user_country');
+            switch (this.state.preview.address_format) {
                 case 'USA':
-                    adstr = (this.state.address.user_street ? this.state.address.user_street + '<br>\n' : '') +
-                            (this.state.address.user_city || this.state.address.user_state || this.state.address.user_zip ? this.state.address.user_city + ', ' + this.state.address.user_state + ' ' + this.state.address.user_zip + '<br>\n':'') +
-                            (this.state.address.user_country ? this.state.address.user_country + '<br>\n':'');
+                    adstr = (street ? street + ln : '') +
+                            (city || state || zip ? city + ', ' + state + ' ' + zip + ln : '') +
+                            (country ? country + ln : '');
                     break;
-                case 'Sweden':
-                    adstr = (this.state.address.user_street ? this.state.address.user_street + '<br>\n' : '') +
-                    (this.state.address.user_city || this.state.address.user_zip ? this.state.address.user_zip + ' ' + this.state.address.user_city + '<br>\n':'') +
-                    (this.state.address.user_country ? this.state.address.user_country + '<br>\n':'');
+                case 'Europe':
+                    adstr = (street ? street + ln : '') +
+                            (city || zip ? zip + ' ' + city + ln : '') +
+                            (country ? country + ln : '');
+                    break;
+                case 'UK':
+                    adstr = (street ? street + ln : '') +
+                            (city || state || zip ? city + ', ' + state + ' ' + zip + ln : '') +
+                            (country ? country + ln : '');
                     break;
             }
             return adstr;
@@ -79,19 +168,25 @@ var Preview = React.createClass({
         render                   : function () {
             return (
                 <div id="Preview" className="col-md-6">
-                    <h3>Signature Preview</h3>
-                    <span>Your signature will display below as you fill out your information to the left. Be sure to
-                        include all required fields.</span>
-                    <label>Select adress format</label>
-                {this.renderSelect('addressformatselect','Address Format',addressformatsarray,this.state.preview.address_format,'address_format','Select Address Format')}
+                    <div>
+                        <h3>Signature Preview</h3>
+                        <span>Your signature will display below as you fill out your information to the left. Be sure to
+                            include all required fields.</span>
+                    </div>
+                    <hr/>
+                    <div className="form-group form-group-lg">
+                        <label className="control-label">Select address format</label>
+
+                {this.renderSelect('addressformatselect', 'Address Format', addressformatsarray, this.state.userObj.address_format, 'address_format', 'Select Address Format')}
+                    </div>
                     <hr className="black" />
                     <div id="footer" dangerouslySetInnerHTML={{__html: this.rawFooter()}}/>
                     <div>
                         <div>
-                            <p>Press the button to copy the footer to the clipboard and then paste it into your mail clients field for the footer.</p>
+                            <p>Press the button to copy the signature to the clipboard</p>
                             <ReactZeroClipboard text={this.rawFooter}>
-                                <OverlayTrigger container={this} trigger='focus' placement='top' overlay={<Popover title='Footer generated'>The HTML-code to show your footer has been copied to your clipboard. Paste the footer into your email client</Popover>}>
-                                    <button className="btn btn-primary btn-lg">Copy footer to clipboard</button>
+                                <OverlayTrigger container={this} trigger='focus' placement='top' overlay={<Popover title='Footer generated'>The HTML-code to show your signature has been copied to your clipboard. Paste the signature into your email client</Popover>}>
+                                    <button className="btn btn-primary btn-lg">Copy signature to clipboard</button>
                                 </OverlayTrigger>
 
                             </ReactZeroClipboard>

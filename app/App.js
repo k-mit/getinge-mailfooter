@@ -18,71 +18,24 @@ var addons = {
 var App = React.createClass({
     getInitialState: function () {
         return {
-            userObjTemp: {
-                preview: {
-                    address_format: 'USA'
-                },
-                info: {
-                    user_name: "John Smith",
-                    user_position: "Dummy person",
-                    user_department: "Getinge Group Signature Generator"
-                },
-                address: {
-                    user_street: "335 Angle drive",
-                    user_city: "Metropolis",
-                    user_state: "AL",
-                    user_zip: "11200",
-                    user_country: "Somewhere"
 
-                },
-                logo: {
-                    name: "",
-                    properties: {
-                        title: 'Getinge Group',
-                        url: 'images/logotypes/getingegroup.png',
-                        link: 'http://www.getingegroup.com/',
-                        size: {
-                            width: 199,
-                            height: 19
-                        }
-                    }
-                },
-                company: "Getinge Group Signature Generator",
-                contacts: {
-                    user_phone: "+46 8 555 44 44",
-                    user_mobile: "+46 739 00 00",
-                    user_email: "john.smith@signaturegenerator.com"
-
-                },
-                banner: {
-                    link: "",
-                    image: false,
-                    file: [
-                        {
-                            preview: "images/banner_placeholder.png"
-                        }
-                    ],
-                    width: 503,
-                    height: 108
-                }
-            },
             userObj: {
                 address_format: 'USA',
                 info: {
-                    user_name: "",
-                    user_position: "",
-                    user_department: ""
+                    user_name: null,
+                    user_position: null,
+                    user_department: null
                 },
                 address: {
-                    user_street: "",
-                    user_city: "",
-                    user_state: "",
-                    user_zip: "",
-                    user_country: ""
+                    user_street: null,
+                    user_city: null,
+                    user_state: null,
+                    user_zip: null,
+                    user_country: null
 
                 },
                 logo: {
-                    name: "",
+                    name: null,
                     properties: {
                         title: 'Getinge Group',
                         url: 'images/logotypes/getingegroup.png',
@@ -93,15 +46,15 @@ var App = React.createClass({
                         }
                     }
                 },
-                company: "",
+                company: null,
                 contacts: {
-                    user_phone: "",
-                    user_mobile: "",
-                    user_email: ""
+                    user_phone: null,
+                    user_mobile: null,
+                    user_email: null
 
                 },
                 banner: {
-                    link: "",
+                    link: null,
                     image: false,
                     file: [
                         {
@@ -152,7 +105,7 @@ var App = React.createClass({
                         <RouteHandler key={name} hash updateCall={this.updateValues} initUserObj={this.getUserObject()} />
                     </TransitionGroup>
                 </div>
-                <Preview initUserObj={this.state.userObj} initUserObjTemp={this.state.userObjTemp} updateCall={this.updateValues} />
+                <Preview initUserObj={this.state.userObj} updateCall={this.updateValues} />
             </div>
         );
     }
