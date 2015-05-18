@@ -1,4 +1,6 @@
 var React = require('react');
+var Router = require('react-router');
+var { Link } = Router;
 
 var STATES = [
     'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI',
@@ -88,10 +90,15 @@ var Page3 = React.createClass({
                         <div className="form-group form-group-lg">
                             <label className="control-label">Country</label>
                             {this.renderSelect('countryselect', 'Country', COUNTRIES,this.state.user_country,'user_country','Select country')}
-                            <input type="text" value={this.state.user_country} onChange={this.handleChange.bind(this, 'user_country')} placeholder="Country" className="form-control" ref="user_country_input" required/>
+                        <input type="hidden" value={this.state.user_country} onChange={this.handleChange.bind(this, 'user_country')} placeholder="Country" className="form-control" ref="user_country_input" required/>
                         </div>
                     </div>
                 </div>
+                <div>
+                    <Link className="btn btn-primary pull-left" to="area">Previous: Business Area</Link>
+                    <Link className="btn btn-primary pull-right" to="contacts">Next: Contact Info</Link>
+                </div>
+
             </div>
         );
     }

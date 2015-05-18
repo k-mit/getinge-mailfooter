@@ -1,4 +1,6 @@
 var React = require('react');
+var Router = require('react-router');
+var { Link } = Router;
 
 var InputField = React.createClass({
     getInitialState: function () {
@@ -88,6 +90,9 @@ var Page1 = React.createClass({
                         <InputField minlength={2} name="user_position" value={this.state.user_position} onChange={this.handleChange} placeholder="Position/Title" label="Position or Title" required/>
                         <InputField minlength={2} name="user_department" value={this.state.user_department} onChange={this.handleChange} placeholder="Department" label="Department" required/>
                     </form>
+                </div>
+                <div>
+                    <Link className="btn btn-primary pull-right" to="area">Next: Business Area</Link>
                 </div>
             </div>
         );

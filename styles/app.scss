@@ -52,6 +52,9 @@ a {
 }
 
 .card-enter {
+    position: absolute;
+    width: calc(100% - 1.9em);
+
     @include opacity(0.01);
     @include transition(opacity .4s ease-out);
 }

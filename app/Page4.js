@@ -1,4 +1,6 @@
 var React = require('react');
+var Router = require('react-router');
+var { Link } = Router;
 
 var Page4 = React.createClass({
     getInitialState: function(){
@@ -38,6 +40,11 @@ var Page4 = React.createClass({
                         </div>
                     </div>
                 </div>
+                <div>
+                    <Link className="btn btn-primary pull-left" to="address">Previous: Adress</Link>
+                    <Link className="btn btn-primary pull-right" to="extras">Next: Extras</Link>
+                </div>
+
             </div>
         );
     }
