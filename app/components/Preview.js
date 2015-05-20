@@ -84,6 +84,8 @@ var Preview = React.createClass({
                     return keyString;
                 }
             }
+
+            out = (typeof out === 'string') ? out : typeof out.value !== 'undefined' ? out.value : out;
             if (allowBlank!== true && (out === null || out === '')) {
                 return this.getValue(keyString, true,true);
             }

@@ -22,22 +22,20 @@ var App = React.createClass({
             userObj: {
                 address_format: 'USA',
                 info: {
-                    user_name: null,
-                    user_position: null,
-                    user_department: null,
-                    valid: false
+                    user_name: {value:null},
+                    user_position: {value:null},
+                    user_department: {value:null}
                 },
                 address: {
-                    user_street: null,
-                    user_city: null,
-                    user_state: null,
-                    user_zip: null,
-                    user_country: null,
-                    valid: false
+                    user_street: {value:null},
+                    user_city: {value:null},
+                    user_state: {value:null},
+                    user_zip: {value:null},
+                    user_country: {value:null}
 
                 },
                 logo: {
-                    name: null,
+                    name: {value:null},
                     properties: {
                         title: 'Getinge Group',
                         url: 'images/logotypes/getingegroup.png',
@@ -46,19 +44,17 @@ var App = React.createClass({
                             width: 199,
                             height: 19
                         }
-                    },
-                    valid: false
+                    }
                 },
-                company: null,
+                company: {value:null},
                 contacts: {
-                    user_phone: null,
-                    user_mobile: null,
-                    user_email: null,
-                    valid: false
+                    user_phone: {value:null},
+                    user_mobile: {value:null},
+                    user_email: {value:null}
 
                 },
                 banner: {
-                    link: null,
+                    link: {value:null},
                     image: false,
                     file: [
                         {
@@ -105,9 +101,9 @@ var App = React.createClass({
                             <Link to="extras">Extras</Link>
                         </li>
                     </ul>
-                    <TransitionGroup className="transGroup" component="div" transitionName="card">
+                {/*<TransitionGroup className="transGroup" component="div" transitionName="card">*/}
                         <RouteHandler key={name} hash updateCall={this.updateValues} initUserObj={this.getUserObject()} />
-                    </TransitionGroup>
+                {/*</TransitionGroup>*/}
                 </div>
                 <Preview initUserObj={this.state.userObj} updateCall={this.updateValues} />
             </div>
