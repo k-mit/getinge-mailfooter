@@ -16,9 +16,9 @@ var Page1 = React.createClass({
                 console.log(key, element.state[key]);
                 if(element.state[key].valid === false) validated = false;
             }
-            if (!confirm('Some fields are not filled corretly, do you want to leave this page?')) {
-                transition.abort();
-            }
+            //if (!confirm('Some fields are not filled corretly, do you want to leave this page?')) {
+            //    transition.abort();
+            //}
 
         }
     },
