@@ -36,6 +36,10 @@ var InputField = React.createClass({
         }
         return v;
     },
+    componentWillMount : function () {
+        console.log(this.state.showerror, this.state.value);
+        this.state.showerror = (this.state.value !== null && this.state.showerror === false) ? true : this.state.showerror;
+    },
     handleBlur : function () {
         this.setState({showerror: true});
         console.log('blur');
