@@ -7,7 +7,6 @@ var InputField = require('./components/InputField');
 
 var Page5 = React.createClass({
     getInitialState: function () {
-        console.log(this.props.initUserObj);
         return this.props.initUserObj.banner;
     },
     onDrop         : function (file, fileOk) {
@@ -44,7 +43,7 @@ var Page5 = React.createClass({
                 <div className="content">
                     <div className="card">
                         <h3>Promotional Banner (optional)</h3>
-                        <InputField name="url" value={this.state.url.value} onChange={this.handleChange} placeholder="http://www.getingegroup.com" label="Banner Link Target" required/>
+                        <InputField name="link" value={this.state.link.value} onChange={this.handleChange} placeholder="http://www.getingegroup.com" label="Banner Link Target" required/>
                         <Uploader onUploadComplete={this.onDrop} fileObj={this.state.file}>
                             <p className="pe">
                                 <strong>Drop files in this box or click here.</strong>
