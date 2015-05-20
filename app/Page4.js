@@ -1,24 +1,22 @@
 var React = require('react');
 var Router = require('react-router');
 var { Link } = Router;
+var InputField = require('./components/InputField');
 
 var Page4 = React.createClass({
     getInitialState: function(){
         return this.props.initUserObj.contacts;
 
     },
-    handleChange: function (name, event) {
+    handleChange: function(fieldvalues) {
         var change = {};
-        change[name] = event.target.value;
+        change[fieldvalues.name] = fieldvalues;
         this.setState(change, function () {
             this.props.updateCall({contacts: this.state});
         });
 
     },
     componentDidMount: function() {
-        this.refs.user_phone_input.getDOMNode().setAttribute('minlength',2);
-        this.refs.user_mobile_input.getDOMNode().setAttribute('minlength',2);
-        this.refs.user_email_input.getDOMNode().setAttribute('minlength',2);
     },
     render: function () {
         return (
@@ -26,18 +24,9 @@ var Page4 = React.createClass({
                 <div className="content">
                     <div className="card">
                         <h3>Contact Information</h3>
-                        <div className="form-group form-group-lg">
-                            <label className="control-label">Phone</label>
-                            <input type="text" value={this.state.user_phone} onChange={this.handleChange.bind(this,'user_phone')} placeholder="Phone" className="form-control" ref="user_phone_input" required/>
-                        </div>
-                        <div className="form-group form-group-lg">
-                            <label className="control-label">Mobile</label>
-                            <input type="text" value={this.state.user_mobile} onChange={this.handleChange.bind(this,'user_mobile')} placeholder="Mobile" className="form-control" ref="user_mobile_input" required/>
-                        </div>
-                        <div className="form-group form-group-lg">
-                            <label className="control-label">Email Address</label>
-                            <input type="email" value={this.state.user_email} onChange={this.handleChange.bind(this,'user_email')} placeholder="Email Address" className="form-control" ref="user_email_input" required/>
-                        </div>
+                        <InputField name="user_phone" value={this.state.user_phone.value} onChange={this.handleChange} placeholder="Phone" label="Phone"/>
+                        <InputField name="user_mobile" value={this.state.user_mobile.value} onChange={this.handleChange} placeholder="Mobile" label="Mobile"/>
+                        <InputField name="user_email" value={this.state.user_email.value} onChange={this.handleChange} placeholder="Email Address" label="Email Address" required/>
                     </div>
                 </div>
                 <div>

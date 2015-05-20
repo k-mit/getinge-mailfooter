@@ -1,6 +1,7 @@
 var React = require('react');
 var Router = require('react-router');
 var { Link } = Router;
+var InputField = require('./components/InputField');
 
 var LogoItem = React.createClass({
     handleClick: function (e) {
@@ -95,9 +96,10 @@ var Page2 = React.createClass({
             company: this.props.initUserObj.company
         };
     },
-    handleChange: function (name, event) {
+    handleChange: function (fieldvalues) {
         var change = {};
-        change[name] = event.target.value;
+        change[fieldvalues.name] = fieldvalues;
+
         this.setState(change, function () {
             this.props.updateCall({company: this.state.company});
         });
@@ -113,10 +115,7 @@ var Page2 = React.createClass({
                 {this.props.key}
                         Select your business area logo.
                         <LogoSelector imageSelected={this.props.initUserObj.logo.name} updateCall={this.props.updateCall}/>
-                        <div className="form-group form-group-lg">
-                            <label className="control-label">Company Name/Business Area</label>
-                            <input type="text" value={this.state.company} onChange={this.handleChange.bind(this,'company')} placeholder="Company Name/Business Area" className="form-control" ref="user_name_input" required/>
-                        </div>
+                        <InputField name="company" value={this.state.company.value} onChange={this.handleChange} placeholder="Company Name/Business Area" label="Company Name/Business Area" required/>
                     </div>
                 </div>
                 <div>

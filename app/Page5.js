@@ -3,6 +3,7 @@ var Dropzone = require('dropzone');
 
 var Router = require('react-router');
 var { Link } = Router;
+var InputField = require('./components/InputField');
 
 var Page5 = React.createClass({
     getInitialState: function () {
@@ -29,9 +30,9 @@ var Page5 = React.createClass({
 
         }
     },
-    handleChange   : function (name, event) {
+    handleChange   : function (fieldvalues) {
         var change = {};
-        change[name] = event.target.value;
+        change[fieldvalues.name] = fieldvalues;
         this.setState(change, function () {
             this.props.updateCall({banner: this.state});
         });
@@ -43,10 +44,7 @@ var Page5 = React.createClass({
                 <div className="content">
                     <div className="card">
                         <h3>Promotional Banner (optional)</h3>
-                        <div className="form-group form-group-lg">
-                            <label className="control-label">Banner link target</label>
-                            <input type="text" value={this.state.url} onChange={this.handleChange.bind(this, 'url')} placeholder="http://www.getingegroup.com" className="form-control linkfield" ref="user_country_input" required/>
-                        </div>
+                        <InputField name="url" value={this.state.url.value} onChange={this.handleChange} placeholder="http://www.getingegroup.com" label="Banner Link Target" required/>
                         <Uploader onUploadComplete={this.onDrop} fileObj={this.state.file}>
                             <p className="pe">
                                 <strong>Drop files in this box or click here.</strong>

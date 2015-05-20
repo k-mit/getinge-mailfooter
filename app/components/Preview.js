@@ -134,8 +134,8 @@ var Preview = React.createClass({
                    (this.getValue('company') ? this.getValue('company') + ln : '') +
                    this.address_string() +
                    ln +
-                   (this.getValue('contacts.user_phone').length > 0 ? 'Phone:' + ' ' + this.getValue('contacts.user_phone') + ln : '') +
-                   (this.getValue('contacts.user_mobile').length > 0 ? 'Mobile:' + ' ' + this.getValue('contacts.user_mobile') + ln : '') +
+                   (this.getValue('contacts.user_phone',true).length > 0 ? 'Phone:' + ' ' + this.getValue('contacts.user_phone',true) + ln : '') +
+                   (this.getValue('contacts.user_mobile',true).length > 0 ? 'Mobile:' + ' ' + this.getValue('contacts.user_mobile',true) + ln : '') +
                    (this.getValue('contacts.user_email') ? '<a href="mailto:' + this.getValue('contacts.user_email',true) + '" style="font-family: \'Arial\';font-size  : 12px;color     : #0046ad;line-height: 14px">' + this.getValue('contacts.user_email') + '</a>' + ln : '') +
                    '<hr/>' +
                    banner +
