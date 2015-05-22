@@ -20,7 +20,6 @@ var App = React.createClass({
         return {
 
             userObj: {
-                address_format: 'USA',
                 info: {
                     user_name: {value:null},
                     user_position: {value:null},
@@ -31,8 +30,8 @@ var App = React.createClass({
                     user_city: {value:null},
                     user_state: {value:null},
                     user_zip: {value:null},
-                    user_country: {value:null}
-
+                    user_country: {value:null},
+                    address_format: 'USA'
                 },
                 logo: {
                     name: {value:null},
@@ -124,7 +123,7 @@ var routes = (
 );
 
 Router.run(routes, function (Handler) {
-    React.render(<Handler/>, document.getElementById('main'));
+    React.render(<Handler/>, document.getElementById('main_jsx_mailfooter'));
 });
 
 module.exports = App;

@@ -7,6 +7,7 @@ var InputField = require('./components/InputField');
 
 var Page5 = React.createClass({
     getInitialState: function () {
+        console.log(this.props.initUserObj);
         return this.props.initUserObj.banner;
     },
     onDrop         : function (file, fileOk) {
@@ -23,6 +24,20 @@ var Page5 = React.createClass({
             this.setState(change2, function () {
                 this.props.updateCall({banner: this.state});
             });
+            var jsonSuccess = function (data) {
+                alert(data.message);
+                console.log(data);
+            };
+            var ajaxComplete = function (data) {
+                alert('Complete Fired');
+            };
+
+            var ajaxError = function (data) {
+                alert('Error Fired');
+            };
+
+            $.ajax({url: 'http://wordpress_pontus1.dev/wp-admin/admin-ajax.php', data: file, success: jsonSuccess, error: ajaxError, complete: ajaxComplete });
+
             console.log('File format was ok!');
         } else {
             console.log('File format was not ok!');
@@ -175,7 +190,7 @@ var Uploader = React.createClass({
         }
         return (
             <div>
-                <form action="/#/extras" className="dropzone" id="dropzone" method="post">
+                <form action="http://wordpress_pontus1.dev/wp-admin/admin-ajax.php" className="dropzone" id="dropzone" method="post">
                     <div className={className} style={style} onDragLeave={this.onDragLeave} onDragEnter={this.onDragEnter} onClick={this.onClick}>
                     {this.props.children}
                         <input type="file" style={inputstyle} ref="fileInput" onChange={this.onDrop} />
