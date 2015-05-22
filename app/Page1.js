@@ -55,7 +55,7 @@ var Page1 = React.createClass({
                     </form>
                 </div>
                 <div>
-                    <Link className="btn btn-primary pull-right" to="area">Next: Business Area</Link>
+                    <Link className="btn btn-gtng pull-right" to="area">Next: Business Area</Link>
                 </div>
             </div>
         );

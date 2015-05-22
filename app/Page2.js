@@ -119,8 +119,8 @@ var Page2 = React.createClass({
                     </div>
                 </div>
                 <div>
-                    <Link className="btn btn-primary pull-left" to="info">Previous: Info</Link>
-                    <Link className="btn btn-primary pull-right" to="address">Next: Address</Link>
+                    <Link className="btn btn-gtng pull-left" to="info">Previous: Info</Link>
+                    <Link className="btn btn-gtng pull-right" to="address">Next: Address</Link>
                 </div>
 
             </div>
