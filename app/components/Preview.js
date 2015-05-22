@@ -169,7 +169,7 @@ var Preview = React.createClass({
         },
         render                   : function () {
             return (
-                <div id="Preview" className="col-md-6">
+                <div id="Preview" className="col-md-5">
                     <div>
                         <h3>Signature Preview</h3>
                         <span>Your signature will display below as you fill out your information to the left. Be sure to

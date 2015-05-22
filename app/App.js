@@ -83,7 +83,7 @@ var App = React.createClass({
         var name = this.context.router.getCurrentPath();
         return (
             <div id="ggmfg" className="row">
-                <div id="Configure" className="col-md-6">
+                <div id="Configure" className="col-md-7">
                     <ul className="navigator">
                         <li className="navigator__item">
                             <Link to="info">Info</Link>
