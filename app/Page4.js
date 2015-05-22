@@ -30,8 +30,8 @@ var Page4 = React.createClass({
                     </div>
                 </div>
                 <div>
-                    <Link className="btn btn-primary pull-left" to="address">Previous: Adress</Link>
-                    <Link className="btn btn-primary pull-right" to="extras">Next: Extras</Link>
+                    <Link className="btn btn-gtng pull-left" to="address">Previous: Adress</Link>
+                    <Link className="btn btn-gtng pull-right" to="extras">Next: Extras</Link>
                 </div>
 
             </div>

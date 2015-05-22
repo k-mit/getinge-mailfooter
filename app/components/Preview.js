@@ -165,7 +165,7 @@ var Preview = React.createClass({
         },
         render: function () {
             return (
-                <div id="Preview" className="col-md-6">
+                <div id="Preview" className="col-md-5">
                     <div>
                         <h3>Signature Preview</h3>
                         <span>Your signature will display below as you fill out your information to the left. Be sure to
@@ -180,7 +180,7 @@ var Preview = React.createClass({
                             <p>Press the button to copy the signature to the clipboard</p>
                             <ReactZeroClipboard text={this.rawFooter}>
                                 <OverlayTrigger container={this} trigger='focus' placement='top' overlay={<Popover title='Footer generated'>The HTML-code to show your signature has been copied to your clipboard. Paste the signature into your email client</Popover>}>
-                                    <button className="btn btn-primary btn-lg">Copy signature to clipboard</button>
+                                    <button className="btn btn-gtnginvert btn-lg">Copy signature to clipboard</button>
                                 </OverlayTrigger>
 
                             </ReactZeroClipboard>
