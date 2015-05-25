@@ -28,7 +28,7 @@ var App = React.createClass({
                 address: {
                     user_street: {value:null},
                     user_city: {value:null},
-                    user_state: {value:null},
+                    user_state: {value:null,valid:true},
                     user_zip: {value:null},
                     user_country: {value:null},
                     address_format: 'USA'

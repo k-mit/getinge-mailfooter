@@ -24,6 +24,8 @@ tmtags
 
 .idea/
 build/main.js
+build/main.css
+build/build/main.css.map
 build/specs.js
 build/vendors.js
 node_modules/

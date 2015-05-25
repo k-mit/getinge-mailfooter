@@ -167,7 +167,7 @@ var Preview = React.createClass({
             return this.checkNode(this.state.userObj);
         },
         checkNode : function (node) {
-            if(typeof node === 'object') {
+            if(typeof node === 'object' && node !== null) {
                 if (typeof node.value === 'undefined') {
                     for(var key in node) {
                         var child = node[key];

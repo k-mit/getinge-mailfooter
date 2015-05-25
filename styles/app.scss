@@ -230,6 +230,7 @@ a {
         background: $app_grey;
         color: $app_grey_light;
         border-color:$app_grey;
+        pointer-events: initial;
     }
 }
 
