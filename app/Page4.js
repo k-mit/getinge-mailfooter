@@ -29,7 +29,7 @@ var Page4 = React.createClass({
                         <InputField name="user_email" value={this.state.user_email.value} onChange={this.handleChange} placeholder="Email Address" label="Email Address" type="email" required/>
                     </div>
                 </div>
-                <div>
+                <div className="clearfix">
                     <Link className="btn btn-gtng pull-left" to="address">Previous: Adress</Link>
                     <Link className="btn btn-gtng pull-right" to="extras">Next: Extras</Link>
                 </div>

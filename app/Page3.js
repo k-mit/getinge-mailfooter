@@ -79,7 +79,7 @@ var Page3 = React.createClass({
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className="clearfix">
                     <Link className="btn btn-gtng pull-left" to="area">Previous: Business Area</Link>
                     <Link className="btn btn-gtng pull-right" to="contacts">Next: Contact Info</Link>
                 </div>

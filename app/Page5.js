@@ -200,7 +200,7 @@ var Uploader = React.createClass({
 
                 </form>
                 <br/>
-                <div>
+                <div className="clearfix">
                     <Link className="btn btn-gtng pull-left" to="contacts">Previous: Contact info</Link>
 
                 </div>

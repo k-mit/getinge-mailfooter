@@ -118,7 +118,7 @@ var Page2 = React.createClass({
                         <InputField name="company" value={this.state.company.value} onChange={this.handleChange} placeholder="Company Name/Business Area" label="Company Name/Business Area" required/>
                     </div>
                 </div>
-                <div>
+                <div className="clearfix">
                     <Link className="btn btn-gtng pull-left" to="info">Previous: Info</Link>
                     <Link className="btn btn-gtng pull-right" to="address">Next: Address</Link>
                 </div>

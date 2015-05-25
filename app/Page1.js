@@ -54,7 +54,7 @@ var Page1 = React.createClass({
                         <InputField minlength={2} name="user_department" value={this.state.user_department.value} onChange={this.handleChange} placeholder="Department" label="Department" required/>
                     </form>
                 </div>
-                <div>
+                <div className="clearfix">
                     <Link className="btn btn-gtng pull-right" to="area">Next: Business Area</Link>
                 </div>
             </div>
