@@ -59,14 +59,15 @@ var Page5 = React.createClass({
                     <div className="card">
                         <h3>Promotional Banner (optional)</h3>
                         <InputField name="link" value={this.state.link.value} onChange={this.handleChange} placeholder="http://www.getingegroup.com" label="Banner Link Target" required/>
+                        <p className="pe">
+                            <strong>Drop files in the box below or click on it to select a file.</strong>
+                            <br/>
+                            File formats accepted are JPG and PNG only.
+                            <br />
+                            Dimensions must be 606x141 pixels.
+                        </p>
                         <Uploader onUploadComplete={this.onDrop} fileObj={this.state.file}>
-                            <p className="pe">
-                                <strong>Drop files in this box or click here.</strong>
-                                <br/>
-                                File formats accepted are JPG and PNG only.
-                                <br />
-                                Dimensions must be 606x141 pixels.
-                            </p>
+
                         </Uploader>
                     </div>
                 </div>
