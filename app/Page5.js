@@ -7,7 +7,6 @@ var InputField = require('./components/InputField');
 
 var Page5 = React.createClass({
     getInitialState: function () {
-        console.log(this.props.initUserObj);
         return this.props.initUserObj.banner;
     },
     onDrop         : function (file, fileOk) {
@@ -24,19 +23,32 @@ var Page5 = React.createClass({
             this.setState(change2, function () {
                 this.props.updateCall({banner: this.state});
             });
+            var self = this;
             var jsonSuccess = function (data) {
-                alert(data.message);
-                console.log(data);
+                change2['image'] = data;
+                self.setState(change2, function () {
+                    this.props.updateCall({banner: this.state});
+                });
+                console.log('success:',data);
             };
             var ajaxComplete = function (data) {
-                alert('Complete Fired');
+                console.log('Complete Fired');
             };
 
             var ajaxError = function (data) {
-                alert('Error Fired');
+                console.error('Error on upload');
             };
-
-            $.ajax({url: 'http://wordpress_pontus1.dev/wp-admin/admin-ajax.php', data: file, success: jsonSuccess, error: ajaxError, complete: ajaxComplete });
+            var data = new FormData(jQuery('form')[0]);
+            $.ajax({
+                type: 'POST',
+                url: '/ajaxcall/?action=fileupload',
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: jsonSuccess,
+                error: ajaxError,
+                complete: ajaxComplete });
 
             console.log('File format was ok!');
         } else {
@@ -94,7 +106,7 @@ var Uploader = React.createClass({
 
         Dropzone.autoDiscover = false;
         var myDropzone = new Dropzone(this.getDOMNode(), {
-            url                : '/#/extras',
+            url                : '/ajaxcall/?action=fileupload',
             acceptedFiles      : "image/*",
             dictDefaultMessage : '',
             thumbnailWidth     : 0,
@@ -191,10 +203,10 @@ var Uploader = React.createClass({
         }
         return (
             <div>
-                <form action="http://wordpress_pontus1.dev/wp-admin/admin-ajax.php" className="dropzone" id="dropzone" method="post">
+                <form action="/ajaxcall/?action=fileupload" className="dropzone" id="dropzone" method="post">
                     <div className={className} style={style} onDragLeave={this.onDragLeave} onDragEnter={this.onDragEnter} onClick={this.onClick}>
                     {this.props.children}
-                        <input type="file" style={inputstyle} ref="fileInput" onChange={this.onDrop} />
+                        <input type="file" style={inputstyle} id="fileInput" name="fileInput" ref="fileInput" onChange={this.onDrop} />
                         <i className="fa fa-cloud-upload fa-4x"></i>
                     </div>
 

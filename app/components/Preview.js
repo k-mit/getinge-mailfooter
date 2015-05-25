@@ -117,7 +117,7 @@ var Preview = React.createClass({
             )
         },
         rawFooter: function () {
-            var banner = this.getValue('banner.image') ? '<a href="' + this.getValue('banner.link') + '" class="banner"><img src="' + this.getValue('banner.image') + '"></a>' : '';
+            var banner = this.getValue('banner.image') ? '<a href="' + this.getValue('banner.link',true,false) + '" class="banner"><img width="303" height="70" src="' + this.getValue('banner.image') + '"></a>' : '';
             return '<div style="font-family: \'Arial\'; font-size: 12px; color: #000; line-height: 14px">' +
                 (this.getValue('info.user_name') + ln) +
                 (this.getValue('info.user_position') ? this.getValue('info.user_position') + ln : '') +
@@ -210,6 +210,7 @@ var Preview = React.createClass({
                     <br/>
                     <div id="footer" dangerouslySetInnerHTML={{__html: this.rawFooter()}}/>
                     <div>
+                        <br />
                         <div>
                             <p>Press the button to copy the signature to the clipboard</p>
                         {copybutton}
