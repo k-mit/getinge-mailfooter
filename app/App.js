@@ -110,10 +110,20 @@ var App = React.createClass({
     }
 });
 
+function RedirectTo(destination) {
+    return React.createClass({
+        statics: {
+            willTransitionTo: function (transition) {
+                transition.redirect(destination);
+            }
+        },
+        render: function () {}
+    });
+}
 
 var routes = (
     <Route path="/" handler={App}>
-        <DefaultRoute handler={Page1}/>
+        <DefaultRoute handler={ RedirectTo('/info') }/>
         <Route path="/info" name="info" handler={Page1} />
         <Route path="/area"  name="area" handler={Page2} />
         <Route  path="/address" name="address" handler={Page3} />
@@ -125,5 +135,4 @@ var routes = (
 Router.run(routes, function (Handler) {
     React.render(<Handler/>, document.getElementById('main_jsx_mailfooter'));
 });
-
 module.exports = App;
