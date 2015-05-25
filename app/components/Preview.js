@@ -171,9 +171,8 @@ var Preview = React.createClass({
                         <span>Your signature will display below as you fill out your information to the left. Be sure to
                             include all required fields.</span>
                     </div>
-                    <hr/>
-
-                    <hr className="black" />
+                    <br/>
+                    <br/>
                     <div id="footer" dangerouslySetInnerHTML={{__html: this.rawFooter()}}/>
                     <div>
                         <div>
