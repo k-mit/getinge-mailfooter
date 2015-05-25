@@ -8,6 +8,7 @@ var ZeroClipboard = require('zeroclipboard');
 var ReactZeroClipboard = require('react-zeroclipboard');
 var Popover = require('react-bootstrap/lib/Popover');
 var OverlayTrigger = require('react-bootstrap/lib/OverlayTrigger');
+var urlPrefix = typeof window.gtng ? window.gtng.urlPrefix || '' : '';
 var ln = '<br>\n';
 var Preview = React.createClass({
         getInitialState: function () {
@@ -125,7 +126,7 @@ var Preview = React.createClass({
                 ln +
                 '<div style="height: 0px; border-top: 1px solid black; width: ' + this.getValue('logo.properties.size.width') + 'px"></div>'  +
                 ln +
-                (this.getValue('logo.properties.link') ? '<a href="' + this.getValue('logo.properties.link') + '" target="_blank"><img border="0" width="' + this.getValue('logo.properties.size.width') + '" height="' + this.getValue('logo.properties.size.height') + '" title="' + this.getValue('logo.properties.title') + '" alt="' + this.getValue('logo.properties.title') + '"  src="' + this.getValue('logo.properties.url') + '" /></a><br>\n' : '') +
+                (this.getValue('logo.properties.link') ? '<a href="' + this.getValue('logo.properties.link') + '" target="_blank"><img border="0" width="' + this.getValue('logo.properties.size.width') + '" height="' + this.getValue('logo.properties.size.height') + '" title="' + this.getValue('logo.properties.title') + '" alt="' + this.getValue('logo.properties.title') + '"  src="' + urlPrefix + this.getValue('logo.properties.url') + '" /></a><br>\n' : '') +
                 ln +
                 (this.getValue('company') ? this.getValue('company') + ln : '') +
                 this.address_string() +
