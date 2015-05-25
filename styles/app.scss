@@ -224,7 +224,11 @@ a {
         background: white;
 
     }
-
+    &.disabled {
+        background: $app_grey;
+        color: $app_grey_light;
+        border-color:$app_grey;
+    }
 }
 
 .zeroclipboard-is-hover {

@@ -58,7 +58,7 @@ var Page5 = React.createClass({
                 <div className="content">
                     <div className="card">
                         <h3>Promotional Banner (optional)</h3>
-                        <InputField name="link" value={this.state.link.value} onChange={this.handleChange} placeholder="http://www.getingegroup.com" label="Banner Link Target" required/>
+                        <InputField name="link" value={this.state.link.value} onChange={this.handleChange} placeholder="http://www.getingegroup.com" label="Banner Link Target"/>
                         <p className="pe">
                             <strong>Drop files in the box below or click on it to select a file.</strong>
                             <br/>
