@@ -26,7 +26,7 @@ var Page4 = React.createClass({
                         <h3>Contact Information</h3>
                         <InputField name="user_phone" value={this.state.user_phone.value} onChange={this.handleChange} placeholder="Phone" label="Phone"/>
                         <InputField name="user_mobile" value={this.state.user_mobile.value} onChange={this.handleChange} placeholder="Mobile" label="Mobile"/>
-                        <InputField name="user_email" value={this.state.user_email.value} onChange={this.handleChange} placeholder="Email Address" label="Email Address" required/>
+                        <InputField name="user_email" value={this.state.user_email.value} onChange={this.handleChange} placeholder="Email Address" label="Email Address" type="email" required/>
                     </div>
                 </div>
                 <div>

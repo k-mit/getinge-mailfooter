@@ -44,6 +44,13 @@ var InputField = React.createClass({
                 return message === true ? "This field has a maximum length of " + this.props.maxlength + " characters" : false;
             }
         }
+        if (this.props.type==='email'){
+            var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+            console.log('email test:' , re.test(value));
+            if (!re.test(value)){
+                return message === true ? 'This is not a valid email format' : false;
+            }
+        }
         return v;
     },
     componentWillMount : function () {
