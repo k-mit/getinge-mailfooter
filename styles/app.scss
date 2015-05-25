@@ -68,7 +68,8 @@
     &:last-child {
 
         a{
-            padding-left: 0;
+//            padding-left: 0;
+            padding-right: 1em;
             &:after {
                 display: none;
             }
@@ -109,27 +110,27 @@ a {
 
 
 .logoselector {
-    width: 60%;
+    width: 100%;
     margin: 2em auto;
-    max-width: 360px;
+    padding: 0;
     .selectLogo {
 
         width: 100%;
-        height: 0;
         background-size: cover;
-        text-indent: -9999rem;
-        padding-bottom: 36%;
         position: relative;
         cursor: pointer;
         opacity: .5;
+        list-style: none;
+        text-align: right;
+        padding: 0;
+        padding-right: 2.5em;
+        height: 100px;
+
         &:after {
             content: '';
-            width: 100%;
-            height: 0;
-            display: block;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
+            display: inline-block;
+            position: relative;
+
         }
         &.active, &:hover {
             opacity: 1;
@@ -149,38 +150,50 @@ a {
             content: $icon-check;
             border: 3px solid #fcaf17;
             color: #fcaf17;
-            width: 150%;
-            height: calc(100% + .5em);
+            width: 100%;
+            height: calc(100% + 40px);
             position: absolute;
-            left: -40%;
+            top: -20px;
             font-size: 2em;
-            padding-top: 17%;
+            text-align: left;
+            padding-top: 2em;
             box-sizing: border-box;
             text-indent: 10%;
-            top: -.25em;
+
         }
         + .selectLogo {
-            margin-top: 1.5em;
+            margin-top: 40px;
         }
 
         &.getingegroup:after {
 
             background: url(./images/logotypes/getingegroup.svg) no-repeat;
-            padding-bottom: 9.04%;
+            width: 199px;
+            height: 19px;
+            margin-top: 40px;
         }
         &.maquet:after {
             background: url(./images/logotypes/maquet_getingegroup.svg) no-repeat;
-            padding-bottom: 34.04%;
+            width: 205px;
+            height: 71px;
+            margin-top: 15px;
+
 
         }
         &.getinge:after {
             background: url(./images/logotypes/getinge_getingegroup.svg) no-repeat;
-            padding-bottom: 35.37%;
+            width: 199px;
+            height: 71px;
+            margin-top: 15px;
 
         }
         &.arjohuntleigh:after {
             background: url(./images/logotypes/arjohuntleigh_getingegroup.svg) no-repeat;
-            padding-bottom: 18.08%;
+            width: 100%;
+            max-width: 390px;
+            height: 0;
+            padding-bottom:18.461538461538%;
+            margin-top: 14px;
 
         }
         &.is-selected {
@@ -205,18 +218,24 @@ a {
     background: $app_blue;
     border-color: $app_blue;
     padding: 1em 1em;
+    width: 100%;
     &:hover {
         color: $app_blue;
         background: white;
 
     }
-
+    &.disabled {
+        background: $app_grey;
+        color: $app_grey_light;
+        border-color:$app_grey;
+    }
 }
 
 .zeroclipboard-is-hover {
     color: $app_blue;
     background-color: white;
     border-color: $app_blue;
+    width: 100%;
 }
 .dz-default{
     display: none;

@@ -8,6 +8,7 @@ var ZeroClipboard = require('zeroclipboard');
 var ReactZeroClipboard = require('react-zeroclipboard');
 var Popover = require('react-bootstrap/lib/Popover');
 var OverlayTrigger = require('react-bootstrap/lib/OverlayTrigger');
+var urlPrefix = typeof window.gtng ? window.gtng.urlPrefix || '' : '';
 var ln = '<br>\n';
 var Preview = React.createClass({
         getInitialState: function () {
@@ -56,7 +57,6 @@ var Preview = React.createClass({
                     height: 108
                 }
             };
-            console.log(this.props.initUserObj);
             return {
                 default: defaultObject,
                 userObj: this.props.initUserObj
@@ -123,9 +123,9 @@ var Preview = React.createClass({
                 (this.getValue('info.user_position') ? this.getValue('info.user_position') + ln : '') +
                 (this.getValue('info.user_department') ? this.getValue('info.user_department') + ln : '') +
                 ln +
-                '-------------------------------------<br>\n' +
+                '<div style="height: 0px; border-top: 1px solid black; width: ' + this.getValue('logo.properties.size.width') + 'px"></div>'  +
                 ln +
-                (this.getValue('logo.properties.link') ? '<a href="' + this.getValue('logo.properties.link') + '" target="_blank"><img border="0" width="' + this.getValue('logo.properties.size.width') + '" height="' + this.getValue('logo.properties.size.height') + '" title="' + this.getValue('logo.properties.title') + '" alt="' + this.getValue('logo.properties.title') + '"  src="' + this.getValue('logo.properties.url') + '" /></a><br>\n' : '') +
+                (this.getValue('logo.properties.link') ? '<a href="' + this.getValue('logo.properties.link') + '" target="_blank"><img border="0" width="' + this.getValue('logo.properties.size.width') + '" height="' + this.getValue('logo.properties.size.height') + '" title="' + this.getValue('logo.properties.title') + '" alt="' + this.getValue('logo.properties.title') + '"  src="' + urlPrefix + this.getValue('logo.properties.url') + '" /></a><br>\n' : '') +
                 ln +
                 (this.getValue('company') ? this.getValue('company') + ln : '') +
                 this.address_string() +
@@ -163,7 +163,42 @@ var Preview = React.createClass({
             }
             return adstr;
         },
+        validateUserObject () {
+            return this.checkNode(this.state.userObj);
+        },
+        checkNode : function (node) {
+            if(typeof node === 'object') {
+                if (typeof node.value === 'undefined') {
+                    for(var key in node) {
+                        var child = node[key];
+
+                        if(this.checkNode(child)===false) {
+                            return false;
+                        }
+                    }
+                } else {
+                    if (node.valid !== true) return false;
+                }
+            }
+            return true;
+        },
         render: function () {
+            var copybutton;
+            if(this.validateUserObject()) {
+                copybutton = (
+                    <ReactZeroClipboard text={this.rawFooter}>
+                        <OverlayTrigger container={this} trigger='focus' placement='top' overlay={<Popover title='Footer generated'>The HTML-code to show your signature has been copied to your clipboard. Paste the signature into your email client</Popover>}>
+                            <button className="btn btn-gtnginvert btn-lg">Copy signature to clipboard</button>
+                        </OverlayTrigger>
+                    </ReactZeroClipboard>
+                )
+            } else {
+                copybutton = (
+                    <OverlayTrigger container={this} trigger='focus' placement='top' overlay={<Popover title='Complete the form'>You have not completed the form yet. Fill out all fields and try again</Popover>}>
+                        <button className="btn btn-gtnginvert btn-lg disabled">Copy signature to clipboard</button>
+                    </OverlayTrigger>
+                )
+            }
             return (
                 <div id="Preview" className="col-md-5">
                     <div>
@@ -177,12 +212,7 @@ var Preview = React.createClass({
                     <div>
                         <div>
                             <p>Press the button to copy the signature to the clipboard</p>
-                            <ReactZeroClipboard text={this.rawFooter}>
-                                <OverlayTrigger container={this} trigger='focus' placement='top' overlay={<Popover title='Footer generated'>The HTML-code to show your signature has been copied to your clipboard. Paste the signature into your email client</Popover>}>
-                                    <button className="btn btn-gtnginvert btn-lg">Copy signature to clipboard</button>
-                                </OverlayTrigger>
-
-                            </ReactZeroClipboard>
+                        {copybutton}
                         </div>
                     </div>
                 </div>

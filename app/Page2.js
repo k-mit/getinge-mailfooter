@@ -36,8 +36,8 @@ var LogoSelector = React.createClass({
                     url  : 'images/logotypes/maquet_getingegroup.png',
                     link : 'http://www.maquet.com/',
                     size : {
-                        width: 199,
-                        height: 68
+                        width: 205,
+                        height: 71
                     }
                 },
                 'getinge'      : {
@@ -54,8 +54,8 @@ var LogoSelector = React.createClass({
                     url  : 'images/logotypes/arjohuntleigh_getingegroup.png',
                     link : 'http://www.arjohuntleigh.com/',
                     size : {
-                        width: 198,
-                        height: 36
+                        width: 390,
+                        height: 72
                     }
                 }
             }
@@ -78,7 +78,7 @@ var LogoSelector = React.createClass({
             var selected = key === self.state.imageSelected;
             return (
                 <LogoItem selected={selected} key={key} url={logoitem.url} shortname={key} onClick={self.handleClick}>
-                    {logoitem.title}
+
                 </LogoItem>
             );
         });

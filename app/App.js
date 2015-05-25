@@ -47,13 +47,13 @@ var App = React.createClass({
                 },
                 company: {value:null},
                 contacts: {
-                    user_phone: {value:null},
-                    user_mobile: {value:null},
+                    user_phone: {value:null,valid:true},
+                    user_mobile: {value:null,valid:true},
                     user_email: {value:null}
 
                 },
                 banner: {
-                    link: {value:null},
+                    link: {value:null, valid:true},
                     image: false,
                     file: [
                         {

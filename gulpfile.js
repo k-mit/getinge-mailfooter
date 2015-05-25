@@ -33,6 +33,10 @@ var dev = true;
 var dependencies = [
     'react/addons'
 ];
+var getTimerMessage = function (message, start) {
+
+    return message + ' ' + (Date.now() - start) + 'ms';
+};
 
 var browserifyTask = function (options) {
 
@@ -61,8 +65,7 @@ var browserifyTask = function (options) {
       .pipe(gulpif(options.development, livereload()))
       .pipe(notify({
             title: "APP bundled",
-            message: 'APP bundle built in ' + (Date.now() - start) + 'ms',
-            onLast: true
+            message: getTimerMessage('APP bundle built in ', start)
         }));
   };
 
@@ -225,22 +228,25 @@ gulp.task('default', function () {
 gulp.task('deploy', function () {
     copyAssetsTask(
         {
-            dest:'./dist'
+            dest:'./dist/signaturegenerator'
         }
 
     );
+    gulp.src('./app/signature_generator.php')
+        .pipe(gulp.dest('./dist'));
+
 
     browserifyTask({
     development: false,
     src: './app/main.js',
-    dest: './dist'
+    dest: './dist/signaturegenerator'
     });
 
     sassTask({
         development: false,
         src: './styles/main.scss',
         watch: './styles/**/*.scss',
-        dest: './dist'
+        dest: './dist/signaturegenerator'
     });
 
 

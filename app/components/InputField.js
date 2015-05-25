@@ -2,7 +2,6 @@ var React = require('react');
 
 var InputField = React.createClass({
     getInitialState: function () {
-        console.log(this.props);
         return {
             value : this.props.value||null,
             name : this.props.name,
@@ -31,7 +30,6 @@ var InputField = React.createClass({
         value = typeof value === 'undefined' ? this.state.value : value;
         var v = true;
         if(this.props.required === true && (value === null || value === '')) {
-            console.log(value);
             return message === true ? "This field is required" : false;
         }
         if(typeof this.props.minlength !== 'undefined') {
@@ -46,7 +44,6 @@ var InputField = React.createClass({
         }
         if (this.props.type==='email'){
             var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-            console.log('email test:' , re.test(value));
             if (!re.test(value)){
                 return message === true ? 'This is not a valid email format' : false;
             }
@@ -60,7 +57,6 @@ var InputField = React.createClass({
     },
     handleBlur : function () {
         this.setState({showerror: true});
-        console.log('blur');
     },
     render         : function () {
         var classname = "form-group form-group-lg";
