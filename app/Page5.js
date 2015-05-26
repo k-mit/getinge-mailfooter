@@ -41,7 +41,7 @@ var Page5 = React.createClass({
             var data = new FormData(jQuery('form')[0]);
             $.ajax({
                 type: 'POST',
-                url: '/ajaxcall/?action=fileupload',
+                url: '?action=fileupload',
                 data: data,
                 cache: false,
                 contentType: false,
@@ -106,7 +106,7 @@ var Uploader = React.createClass({
 
         Dropzone.autoDiscover = false;
         var myDropzone = new Dropzone(this.getDOMNode(), {
-            url                : '/ajaxcall/?action=fileupload',
+            url                : '?action=fileupload',
             acceptedFiles      : "image/*",
             dictDefaultMessage : '',
             thumbnailWidth     : 0,
@@ -203,7 +203,7 @@ var Uploader = React.createClass({
         }
         return (
             <div>
-                <form action="/ajaxcall/?action=fileupload" className="dropzone" id="dropzone" method="post">
+                <form action="?action=fileupload" className="dropzone" id="dropzone" method="post">
                     <div className={className} style={style} onDragLeave={this.onDragLeave} onDragEnter={this.onDragEnter} onClick={this.onClick}>
                     {this.props.children}
                         <input type="file" style={inputstyle} id="fileInput" name="fileInput" ref="fileInput" onChange={this.onDrop} />
