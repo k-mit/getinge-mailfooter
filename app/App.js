@@ -10,9 +10,10 @@ var Page3 = require('./Page3');
 var Page4 = require('./Page4');
 var Page5 = require('./Page5');
 var Preview = require('./components/Preview');
+var urlPrefix = typeof window.gtng ? window.gtng.urlPrefix || '' : '';
+
 var addons = {
     update: require("react/lib/update")
-
 };
 
 var App = React.createClass({
@@ -57,7 +58,7 @@ var App = React.createClass({
                     image: false,
                     file: [
                         {
-                            preview: "images/banner_placeholder.png"
+                            preview: urlPrefix + "images/banner_placeholder.png"
                         }
                     ],
                     width: 503,

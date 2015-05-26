@@ -65,7 +65,7 @@ var InputField = React.createClass({
         var warning = (valid || !this.state.showerror) ? "" : <div className="alert alert-warning" role="alert">{this.validateField(true)}</div>;
         return (
             <div className={classname}>
-                <label className="control-label">{this.props.label}</label>
+                <label className="control-label">{this.props.label} {this.props.required?(<small>(required)</small>):''}</label>
                 <input type="text" value={this.state.value} onBlur={this.handleBlur} onChange={this.handleChange} placeholder={this.props.placeholder} className="form-control" required={this.props.required}/>
                 { warning }
             </div>

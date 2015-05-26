@@ -1,8 +1,9 @@
 .navigator {
-    display: flex;
+    display: table;
     list-style: none;
     margin: 0;
     padding: 0;
+    width: 100%;
     border: 1px solid $app_blue;
 }
 #Preview {
@@ -12,7 +13,7 @@
     display: none;
 }
 .navigator__item {
-    flex-grow: 1;
+    display: table-cell;
     position: relative;
     a {
         line-height: 2em;
@@ -250,4 +251,11 @@ a {
 
 .notvalid .defaulttext {
     color: red;
+}
+label small {
+    color: $app_grey;
+    font-style: italic;
+}
+label {
+    font-weight: 200;
 }
