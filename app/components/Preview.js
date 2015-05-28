@@ -123,7 +123,7 @@ var Preview = React.createClass({
                 (this.getValue('info.user_position') ? this.getValue('info.user_position') + ln : '') +
                 (this.getValue('info.user_department') ? this.getValue('info.user_department') + ln : '') +
                 ln +
-                '<div style="height: 0px; border-top: 1px solid black; width: ' + this.getValue('logo.properties.size.width') + 'px"></div>'  +
+                '<div style="height: 0px; border-top: 1px solid #787878; width: ' + this.getValue('logo.properties.size.width') + 'px"></div>'  +
                 ln +
                 (this.getValue('logo.properties.link') ? '<a href="' + this.getValue('logo.properties.link') + '" target="_blank"><img border="0" width="' + this.getValue('logo.properties.size.width') + '" height="' + this.getValue('logo.properties.size.height') + '" title="' + this.getValue('logo.properties.title') + '" alt="' + this.getValue('logo.properties.title') + '"  src="' + urlPrefix + this.getValue('logo.properties.url') + '" /></a><br>\n' : '') +
                 ln +
@@ -206,11 +206,9 @@ var Preview = React.createClass({
                         <span>Your signature will display below as you fill out your information to the left. Be sure to
                             include all required fields.</span>
                     </div>
-                    <br/>
-                    <br/>
+                    <hr/>
                     <div id="footer" dangerouslySetInnerHTML={{__html: this.rawFooter()}}/>
                     <div>
-                        <br />
                         <div>
                             <p>Press the button to copy the signature to the clipboard</p>
                         {copybutton}
