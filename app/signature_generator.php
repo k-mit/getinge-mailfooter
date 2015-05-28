@@ -65,13 +65,12 @@ if (isset($_GET['action']) && $_GET['action'] == 'fileupload') {
     </script>
 </head>
 <body class="ggmfg">
-
 <article class="m-article">
     <?php if (have_posts()) : ?> <?php while (have_posts()) : the_post(); ?>
         <script>
             gtng = {};
             gtng.title = '<?=get_the_title()?>';
-            gtng.body = '<?=json_encode(get_the_title())?>';
+            gtng.body = "<?=str_replace(array("\r", "\n"), '', addslashes( apply_filters('the_content',get_the_content())))?>";
             gtng.urlPrefix = '<?=get_template_directory_uri();?>/signaturegenerator/';
         </script>
         <div id="main_jsx_mailfooter"></div>
