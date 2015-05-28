@@ -209,8 +209,8 @@ var Preview = React.createClass({
                     <hr/>
                     <div id="footer" dangerouslySetInnerHTML={{__html: this.rawFooter()}}/>
                     <div>
+                        <div className="description" dangerouslySetInnerHTML={{__html: window.gtng.body}}/>
                         <div>
-                            <p>Press the button to copy the signature to the clipboard</p>
                         {copybutton}
                         </div>
                     </div>
