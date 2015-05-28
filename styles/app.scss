@@ -1,3 +1,4 @@
+
 .navigator {
     display: table;
     list-style: none;
@@ -5,9 +6,6 @@
     padding: 0;
     width: 100%;
     border: 1px solid $app_blue;
-}
-#Preview {
-    margin-top: 3em;
 }
 .dz-preview{
     display: none;
@@ -260,3 +258,54 @@ label small {
 label {
     font-weight: 200;
 }
+.row.ggmfg-main {
+  padding: 0 1.5em;
+}
+#Header {
+  height: 4em;
+  background: white;
+  position: relative;
+  display: block;
+  margin-bottom: 1.5em;
+  padding-left: 1.5em;
+  .header-logo {
+    margin: 0;
+    position: absolute;
+    text-indent: -9999em;
+    font-size: 1.25em;
+    background: url(./images/logotypes/getingegroup.svg) no-repeat;
+    bottom: 1rem;
+    width: 100%;
+  }
+  .close-button {
+    font-size: 1em;
+    font-weight: 600;
+    color: $app_grey;
+    position: absolute;
+    right: 1.5em;
+    bottom: 1em;
+  }
+}
+#Configure, #Preview {
+  background: white;
+  padding: 1em;
+  margin-bottom: 1.5em;
+
+}
+#Preview h3 {
+  margin-top: 0;
+}
+
+>div.col-md-7, >div.col-md-5{
+  padding: 0;
+}
+@media (min-width: $screen-md-min) {
+  >div.col-md-7{
+    padding-right: .75em;
+  }
+  >div.col-md-5 {
+    padding-left: .75em;
+
+  }
+}
+

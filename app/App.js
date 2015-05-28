@@ -11,7 +11,7 @@ var Page4 = require('./Page4');
 var Page5 = require('./Page5');
 var Preview = require('./components/Preview');
 var urlPrefix = typeof window.gtng ? window.gtng.urlPrefix || '' : '';
-
+var Header = require('./components/Header');
 var addons = {
     update: require("react/lib/update")
 };
@@ -22,20 +22,20 @@ var App = React.createClass({
 
             userObj: {
                 info: {
-                    user_name: {value:null},
-                    user_position: {value:null},
-                    user_department: {value:null}
+                    user_name: {value: null},
+                    user_position: {value: null},
+                    user_department: {value: null}
                 },
                 address: {
-                    user_street: {value:null},
-                    user_city: {value:null},
-                    user_state: {value:null,valid:true},
-                    user_zip: {value:null},
-                    user_country: {value:null},
+                    user_street: {value: null},
+                    user_city: {value: null},
+                    user_state: {value: null, valid: true},
+                    user_zip: {value: null},
+                    user_country: {value: null},
                     address_format: 'USA'
                 },
                 logo: {
-                    name: {value:null},
+                    name: {value: null},
                     properties: {
                         title: 'Getinge Group',
                         url: 'images/logotypes/getingegroup.png',
@@ -46,15 +46,15 @@ var App = React.createClass({
                         }
                     }
                 },
-                company: {value:null},
+                company: {value: null},
                 contacts: {
-                    user_phone: {value:null,valid:true},
-                    user_mobile: {value:null,valid:true},
-                    user_email: {value:null}
+                    user_phone: {value: null, valid: true},
+                    user_mobile: {value: null, valid: true},
+                    user_email: {value: null}
 
                 },
                 banner: {
-                    link: {value:null, valid:true},
+                    link: {value: null, valid: true},
                     image: false,
                     file: [
                         {
@@ -82,30 +82,37 @@ var App = React.createClass({
 
         var name = this.context.router.getCurrentPath();
         return (
-            <div id="ggmfg" className="row">
-                <div id="Configure" className="col-md-7">
-                    <ul className="navigator">
-                        <li className="navigator__item">
-                            <Link to="info">Info</Link>
-                        </li>
-                        <li className="navigator__item">
-                            <Link to="area">Business Area</Link>
-                        </li>
-                        <li className="navigator__item">
-                            <Link to="address">Address</Link>
-                        </li>
-                        <li className="navigator__item">
-                            <Link to="contacts">Contact info</Link>
-                        </li>
-                        <li className="navigator__item">
-                            <Link to="extras">Extras</Link>
-                        </li>
-                    </ul>
+            <div id="ggmfg" >
+                <Header/>
+                <div className="row ggmfg-main">
+                    <div className="col-md-7">
+                        <div id="Configure">
+                            <ul className="navigator">
+                                <li className="navigator__item">
+                                    <Link to="info">Info</Link>
+                                </li>
+                                <li className="navigator__item">
+                                    <Link to="area">Business Area</Link>
+                                </li>
+                                <li className="navigator__item">
+                                    <Link to="address">Address</Link>
+                                </li>
+                                <li className="navigator__item">
+                                    <Link to="contacts">Contact info</Link>
+                                </li>
+                                <li className="navigator__item">
+                                    <Link to="extras">Extras</Link>
+                                </li>
+                            </ul>
                 {/*<TransitionGroup className="transGroup" component="div" transitionName="card">*/}
-                        <RouteHandler key={name} hash updateCall={this.updateValues} initUserObj={this.getUserObject()} />
+                            <RouteHandler key={name} hash updateCall={this.updateValues} initUserObj={this.getUserObject()} />
                 {/*</TransitionGroup>*/}
+                        </div>
+                    </div>
+                    <div className="col-md-5">
+                        <Preview initUserObj={this.state.userObj} updateCall={this.updateValues} />
+                    </div>
                 </div>
-                <Preview initUserObj={this.state.userObj} updateCall={this.updateValues} />
             </div>
         );
     }
@@ -118,7 +125,8 @@ function RedirectTo(destination) {
                 transition.redirect(destination);
             }
         },
-        render: function () {}
+        render: function () {
+        }
     });
 }
 

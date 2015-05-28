@@ -64,7 +64,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'fileupload') {
 
     </script>
 </head>
-<body>
+<body class="ggmfg">
+
 <article class="m-article">
     <?php if (have_posts()) : ?> <?php while (have_posts()) : the_post(); ?>
         <script>
