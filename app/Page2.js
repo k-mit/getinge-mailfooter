@@ -26,8 +26,8 @@ var LogoSelector = React.createClass({
                     url  : 'images/logotypes/getingegroup.png',
                     link : 'http://www.getingegroup.com/',
                     size : {
-                        width: 199,
-                        height: 19
+                        width: 190,
+                        height: 18
                     }
 
                 },
@@ -36,8 +36,8 @@ var LogoSelector = React.createClass({
                     url  : 'images/logotypes/maquet_getingegroup.png',
                     link : 'http://www.maquet.com/',
                     size : {
-                        width: 205,
-                        height: 71
+                        width: 160,
+                        height: 54
                     }
                 },
                 'getinge'      : {
@@ -45,8 +45,8 @@ var LogoSelector = React.createClass({
                     url  : 'images/logotypes/getinge_getingegroup.png',
                     link : 'http://www.getinge.com/',
                     size : {
-                        width: 199,
-                        height: 71
+                        width: 156,
+                        height: 55
                     }
                 },
                 'arjohuntleigh': {
@@ -54,8 +54,8 @@ var LogoSelector = React.createClass({
                     url  : 'images/logotypes/arjohuntleigh_getingegroup.png',
                     link : 'http://www.arjohuntleigh.com/',
                     size : {
-                        width: 390,
-                        height: 72
+                        width: 232,
+                        height: 42
                     }
                 }
             }
