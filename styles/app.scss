@@ -329,7 +329,12 @@ label {
     }
   }
 }
-
+.dzReactClass {
+  cursor: pointer;
+}
+.dz-clickable {
+  display: inline-block;
+}
 > div.col-md-7, > div.col-md-5 {
   padding: 0;
 }

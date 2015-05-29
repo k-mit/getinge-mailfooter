@@ -4,12 +4,16 @@ var Dropzone = require('dropzone');
 var Router = require('react-router');
 var { Link } = Router;
 var InputField = require('./components/InputField');
+var Popover = require('react-bootstrap/lib/Popover');
+var OverlayTrigger = require('react-bootstrap/lib/OverlayTrigger');
 
 var Page5 = React.createClass({
     getInitialState: function () {
         return this.props.initUserObj.banner;
     },
-    onDrop         : function (file, fileOk) {
+
+    onDrop: function (file, fileOk) {
+        this.setState({error:false});
         if (fileOk == 1) {
             file.preview = URL.createObjectURL(file);
             this.setState({file: [file]});
@@ -29,7 +33,7 @@ var Page5 = React.createClass({
                 self.setState(change2, function () {
                     this.props.updateCall({banner: this.state});
                 });
-                console.log('success:',data);
+                console.log('success:', data);
             };
             var ajaxComplete = function (data) {
                 console.log('Complete Fired');
@@ -48,15 +52,18 @@ var Page5 = React.createClass({
                 processData: false,
                 success: jsonSuccess,
                 error: ajaxError,
-                complete: ajaxComplete });
+                complete: ajaxComplete
+            });
 
             console.log('File format was ok!');
         } else {
             console.log('File format was not ok!');
+            this.setState({error:true});
+
 
         }
     },
-    handleChange   : function (fieldvalues) {
+    handleChange: function (fieldvalues) {
         var change = {};
         change[fieldvalues.name] = fieldvalues;
         this.setState(change, function () {
@@ -64,7 +71,9 @@ var Page5 = React.createClass({
         });
 
     },
-    render         : function () {
+    render: function () {
+        var uploader = (<Uploader onUploadComplete={this.onDrop} fileObj={this.state.file} />);
+
         return (
             <div className="page page5">
                 <div className="content">
@@ -78,9 +87,16 @@ var Page5 = React.createClass({
                             <br />
                             The image must be 600 pixels wide.
                         </p>
-                        <Uploader onUploadComplete={this.onDrop} fileObj={this.state.file}>
 
-                        </Uploader>
+                        <div id="findme" />
+                        {uploader}
+                        <Error active={this.state.error}><strong>Something went wrong!</strong> The image you tried to upload does not meet the requirements</Error>
+                        <br/><br/>
+                        <div className="clearfix">
+                            <Link className="btn btn-gtng pull-left" to="contacts">Previous: Contact info</Link>
+
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -88,15 +104,25 @@ var Page5 = React.createClass({
     }
 
 });
-
+var Error = React.createClass({
+    render: function () {
+        if(this.props.active) {
+            return (
+                <div className="alert alert-danger" role="alert">{this.props.children}</div>
+            )
+        } else {
+            return null;
+        }
+    }
+});
 var maxImageWidth = 600;
 
 
 var Uploader = React.createClass({
-    getInitialState  : function () {
+    getInitialState: function () {
         return {
             isDragActive: false,
-            fileOk      : 3
+            fileOk: 3
         }
     },
     // invoked immediately after mounting occurs, initialize plugins
@@ -105,20 +131,20 @@ var Uploader = React.createClass({
 
         Dropzone.autoDiscover = false;
         var myDropzone = new Dropzone(this.getDOMNode(), {
-            url                : '?action=fileupload',
-            acceptedFiles      : "image/*",
-            dictDefaultMessage : '',
-            thumbnailWidth     : 0,
-            thumbnailHeight    : 0,
+            url: '?action=fileupload',
+            acceptedFiles: "image/*",
+            dictDefaultMessage: '',
+            thumbnailWidth: 0,
+            thumbnailHeight: 0,
             dictInvalidFileType: 'Only png or jpg files in the correct size',
-            accept             : function (file, done) {
+            accept: function (file, done) {
                 if (self.state.fileOk == 3) {
                     this.emit("addedfile", file);
                     this.emit("thumbnail", file, file.preview);
                 }
                 done;
             },
-            init               : function () {
+            init: function () {
                 this.on("addedfile", function (file) {
                     file.acceptFile = function () {
                         self.setState({fileOk: 1});
@@ -154,7 +180,7 @@ var Uploader = React.createClass({
     onClick: function () {
         this.refs.fileInput.getDOMNode().click();
     },
-    onDrop : function (e) {
+    onDrop: function (e) {
         var self = this;
         var files;
         if (e.dataTransfer) {
@@ -180,7 +206,7 @@ var Uploader = React.createClass({
             img.src = file.preview;
         }
     },
-    render : function () {
+    render: function () {
         var inputstyle = {display: 'none'};
         var className = this.props.className || 'dzReactClass';
         if (this.state.isDragActive) {
@@ -189,12 +215,12 @@ var Uploader = React.createClass({
         ;
 
         var style = this.props.style || {
-                width          : this.props.width || 300,
-                height         : this.props.height || 100,
-                borderStyle    : "dashed",
-                borderWidth    : "thin",
+                width: this.props.width || 300,
+                height: this.props.height || 100,
+                borderStyle: "dashed",
+                borderWidth: "thin",
                 backgroundImage: "url(" + this.props.fileObj[0].preview + ")" || '',
-                backgroundSize : "cover"
+                backgroundSize: "cover"
             };
 
         if (this.props.className) {
@@ -210,11 +236,6 @@ var Uploader = React.createClass({
                     </div>
 
                 </form>
-                <br/>
-                <div className="clearfix">
-                    <Link className="btn btn-gtng pull-left" to="contacts">Previous: Contact info</Link>
-
-                </div>
             </div>
         );
     }
