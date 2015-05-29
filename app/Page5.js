@@ -76,7 +76,7 @@ var Page5 = React.createClass({
                             <br/>
                             File formats accepted are JPG and PNG only.
                             <br />
-                            Dimensions must be 606x141 pixels.
+                            The image must be 600 pixels wide.
                         </p>
                         <Uploader onUploadComplete={this.onDrop} fileObj={this.state.file}>
 
@@ -89,8 +89,7 @@ var Page5 = React.createClass({
 
 });
 
-var maxImageWidth = 606,
-    maxImageHeight = 141;
+var maxImageWidth = 600;
 
 
 var Uploader = React.createClass({
@@ -130,7 +129,7 @@ var Uploader = React.createClass({
                 });
 
                 this.on("thumbnail", function (file) {
-                    if (file.width != 606 || file.height != 141 || !(file.type == "image/png" || file.type == "image/png")) {
+                    if (file.width != maxImageWidth || !(file.type == "image/png" || file.type == "image/jpg" || file.type == "image/jpeg")) {
                         self.props.onUploadComplete(file, 0);
                     } else {
                         self.props.onUploadComplete(file, 1);
@@ -172,7 +171,7 @@ var Uploader = React.createClass({
             img.onload = function () {
                 file.width = this.width;
                 file.height = this.height;
-                if (file.width != 606 || file.height != 141 || !(file.type == "image/png" || file.type == "image/png")) {
+                if (file.width != maxImageWidth || !(file.type == "image/png" || file.type == "image/jpg" || file.type == "image/jpeg")) {
                     self.props.onUploadComplete(file, 0);
                 } else {
                     self.props.onUploadComplete(file, 1);
@@ -190,8 +189,8 @@ var Uploader = React.createClass({
         ;
 
         var style = this.props.style || {
-                width          : this.props.width || 503,
-                height         : this.props.height || 108,
+                width          : this.props.width || 300,
+                height         : this.props.height || 100,
                 borderStyle    : "dashed",
                 borderWidth    : "thin",
                 backgroundImage: "url(" + this.props.fileObj[0].preview + ")" || '',
