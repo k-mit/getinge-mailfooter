@@ -13,7 +13,7 @@ var Page5 = React.createClass({
     },
 
     onDrop: function (file, fileOk) {
-        this.setState({error:false});
+        this.setState({error: false});
         if (fileOk == 1) {
             file.preview = URL.createObjectURL(file);
             this.setState({file: [file]});
@@ -58,7 +58,7 @@ var Page5 = React.createClass({
             console.log('File format was ok!');
         } else {
             console.log('File format was not ok!');
-            this.setState({error:true});
+            this.setState({error: true});
 
 
         }
@@ -67,6 +67,14 @@ var Page5 = React.createClass({
         var change = {};
         change[fieldvalues.name] = fieldvalues;
         this.setState(change, function () {
+            this.props.updateCall({banner: this.state});
+        });
+
+    },
+    suffixChange: function (evt) {
+        this.setState({
+            link_suffix: evt.target.checked
+        }, function () {
             this.props.updateCall({banner: this.state});
         });
 
@@ -80,6 +88,11 @@ var Page5 = React.createClass({
                     <div className="card">
                         <h3>Promotional Banner (optional)</h3>
                         <InputField name="link" value={this.state.link.value} onChange={this.handleChange} placeholder="http://www.getingegroup.com" label="Banner Link Target"/>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="link_suffix"  onChange={this.suffixChange} checked={this.state.link_suffix} /> Append tracking parameters to the banner link if url is provided
+                            </label>
+                        </div>
                         <p className="pe">
                             <strong>Drop files in the box below or click on it to select a file.</strong>
                             <br/>
@@ -90,8 +103,11 @@ var Page5 = React.createClass({
 
                         <div id="findme" />
                         {uploader}
-                        <Error active={this.state.error}><strong>Something went wrong!</strong> The image you tried to upload does not meet the requirements</Error>
-                        <br/><br/>
+                        <Error active={this.state.error}>
+                            <strong>Something went wrong!</strong>
+                            The image you tried to upload does not meet the requirements</Error>
+                        <br/>
+                        <br/>
                         <div className="clearfix">
                             <Link className="btn btn-gtng pull-left" to="contacts">Previous: Contact info</Link>
 
@@ -105,8 +121,8 @@ var Page5 = React.createClass({
 
 });
 var Error = React.createClass({
-    render: function () {
-        if(this.props.active) {
+    render: function () {
+        if (this.props.active) {
             return (
                 <div className="alert alert-danger" role="alert">{this.props.children}</div>
             )

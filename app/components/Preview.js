@@ -9,6 +9,7 @@ var ReactZeroClipboard = require('react-zeroclipboard');
 var Popover = require('react-bootstrap/lib/Popover');
 var OverlayTrigger = require('react-bootstrap/lib/OverlayTrigger');
 var urlPrefix = typeof window.gtng ? window.gtng.urlPrefix || '' : '';
+var bannerSuffix = typeof window.gtng ? window.gtng.bannerSuffix || 'utm_source=email&utm_medium=signature&utm_campaign=banner' : 'utm_source=email&utm_medium=signature&utm_campaign=banner';
 var ln = '<br>\n';
 var Preview = React.createClass({
         getInitialState: function () {
@@ -47,13 +48,14 @@ var Preview = React.createClass({
                 },
                 banner: {
                     link: "",
+                    link_suffix: false,
                     image: false,
                     file: [
                         {
                             preview: "images/banner_placeholder.png"
                         }
                     ],
-                    width: 503,
+                    width: 300,
                     height: 108
                 }
             };
@@ -117,7 +119,8 @@ var Preview = React.createClass({
             )
         },
         rawFooter: function () {
-            var banner = this.getValue('banner.image') ? '<a href="' + this.getValue('banner.link',true,false) + '" class="banner"><img width="50%" height="50%" src="' + this.getValue('banner.image') + '"></a>' : '';
+            var bannerHref = this.getValue('banner.link',true,false)!== '';
+            var banner = this.getValue('banner.image') ? (bannerHref?'<a href="' + this.getValue('banner.link',true,false) + (this.getValue('banner.link_suffix')?(this.getValue('banner.link',true,false).indexOf('?')===-1?'?':'&')+bannerSuffix:'') + '" class="banner">':'')+'<img width="50%" height="50%" src="' + this.getValue('banner.image') + '">'+(bannerHref?'</a>':'') : '';
             return '<div style="font-family: \'Arial\'; font-size: 12px; color: #000; line-height: 14px">' +
                 (this.getValue('info.user_name') + ln) +
                 (this.getValue('info.user_position') ? this.getValue('info.user_position') + ln : '') +

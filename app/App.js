@@ -42,7 +42,7 @@ var App = React.createClass({
                         link: 'http://www.getingegroup.com/',
                         size: {
                             width: 199,
-                            height: 19
+                            height: 52
                         }
                     }
                 },
@@ -55,6 +55,7 @@ var App = React.createClass({
                 },
                 banner: {
                     link: {value: null, valid: true},
+                    link_suffix: true,
                     image: false,
                     file: [
                         {
