@@ -42,7 +42,7 @@ var App = React.createClass({
                         link: 'http://www.getingegroup.com/',
                         size: {
                             width: 199,
-                            height: 52
+                            height: 67
                         }
                     }
                 },
@@ -50,6 +50,7 @@ var App = React.createClass({
                 contacts: {
                     user_phone: {value: null, valid: true},
                     user_mobile: {value: null, valid: true},
+                    user_fax: {value: null, valid: true},
                     user_email: {value: null}
 
                 },

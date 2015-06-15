@@ -43,6 +43,7 @@ var Preview = React.createClass({
                 contacts: {
                     user_phone: "+00 0 000 00 00",
                     user_mobile: "+00 000 00 00 00",
+                    user_fax: "+00 000 00 00 00",
                     user_email: "your.email@getingegroup.com"
 
                 },
@@ -120,13 +121,11 @@ var Preview = React.createClass({
         },
         rawFooter: function () {
             var bannerHref = this.getValue('banner.link',true,false)!== '';
-            var banner = this.getValue('banner.image') ? (bannerHref?'<a href="' + this.getValue('banner.link',true,false) + (this.getValue('banner.link_suffix')?(this.getValue('banner.link',true,false).indexOf('?')===-1?'?':'&')+bannerSuffix:'') + '" class="banner">':'')+'<img width="50%" height="50%" src="' + this.getValue('banner.image') + '">'+(bannerHref?'</a>':'') : '';
+            var banner = this.getValue('banner.image') ? (bannerHref?'<a href="' + this.getValue('banner.link',true,false) + (this.getValue('banner.link_suffix')?(this.getValue('banner.link',true,false).indexOf('?')===-1?'?':'&')+bannerSuffix:'') + '" class="banner">':'')+'<img width="300" height="'+Math.round(parseInt(this.getValue('banner.file.height'))/2)+'" src="' + this.getValue('banner.image') + '">'+(bannerHref?'</a>':'') : '';
             return '<div style="font-family: \'Arial\'; font-size: 12px; color: #000; line-height: 14px">' +
                 (this.getValue('info.user_name') + ln) +
                 (this.getValue('info.user_position') ? this.getValue('info.user_position') + ln : '') +
                 (this.getValue('info.user_department') ? this.getValue('info.user_department') + ln : '') +
-                ln +
-                '<div style="height: 0px; border-top: 1px solid #787878; width: ' + this.getValue('logo.properties.size.width') + 'px"></div>'  +
                 ln +
                 (this.getValue('logo.properties.link') ? '<a href="' + this.getValue('logo.properties.link') + '" target="_blank"><img border="0" width="' + this.getValue('logo.properties.size.width') + '" height="' + this.getValue('logo.properties.size.height') + '" title="' + this.getValue('logo.properties.title') + '" alt="' + this.getValue('logo.properties.title') + '"  src="' + urlPrefix + this.getValue('logo.properties.url') + '" /></a><br>\n' : '') +
                 ln +
@@ -135,8 +134,8 @@ var Preview = React.createClass({
                 ln +
                 (this.getValue('contacts.user_phone', true).length > 0 ? 'Phone:' + ' ' + this.getValue('contacts.user_phone', true) + ln : '') +
                 (this.getValue('contacts.user_mobile', true).length > 0 ? 'Mobile:' + ' ' + this.getValue('contacts.user_mobile', true) + ln : '') +
-                (this.getValue('contacts.user_email') ? '<a href="mailto:' + this.getValue('contacts.user_email', true) + '" style="font-family: \'Arial\';font-size  : 12px;color     : #0046ad;line-height: 14px">' + this.getValue('contacts.user_email') + '</a>' + ln : '') +
-                '<hr/>' +
+                (this.getValue('contacts.user_fax', true).length > 0 ? 'Fax:' + ' ' + this.getValue('contacts.user_fax', true) + ln : '') +
+                (this.getValue('contacts.user_email') ? '<a href="mailto:' + this.getValue('contacts.user_email', true) + '" style="font-family: \'Arial\';font-size  : 12px;color     : #0046ad;line-height: 14px">' + this.getValue('contacts.user_email') + '</a>' + ln : '') + ln +
                 banner +
                 '</div>';
         },
@@ -211,6 +210,7 @@ var Preview = React.createClass({
                     </div>
                     <hr/>
                     <div id="footer" dangerouslySetInnerHTML={{__html: this.rawFooter()}}/>
+                    <hr/>
                     <div>
                         <div className="description" dangerouslySetInnerHTML={{__html: window.gtng.body}}/>
                         <div>

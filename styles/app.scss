@@ -319,12 +319,26 @@ label {
     a {
       color: $app_blue;
       font-weight: 400;
-      &:after {
-        content: " \27f6";
-      }
-      &:hover:after {
-        text-decoration: none;
+      display: inline-block;
+      position: relative;
+      padding-right: 1.5em;
+      
 
+      &:after {
+        font-family: 'mfgenerator';
+        content: $icon-trending_neutral;
+        font-weight: 100;
+        font-size: 1.33em;
+        margin-left: .25em;
+        position: absolute;
+        right: 0;
+        top: -.05em;
+      }
+      &:hover {
+        text-decoration: underline;
+        &:after {
+          text-decoration: none;
+        }
       }
     }
   }

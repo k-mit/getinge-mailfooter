@@ -20,6 +20,8 @@ var Page5 = React.createClass({
             var change = {};
             var change2 = {};
             change['file'] = this.state.file;
+
+
             this.setState(change, function () {
                 this.props.updateCall({banner: this.state});
             });
@@ -29,6 +31,7 @@ var Page5 = React.createClass({
             });
             var self = this;
             var jsonSuccess = function (data) {
+                if(data.substr(0,4) !== "http") return;
                 change2['image'] = data;
                 self.setState(change2, function () {
                     this.props.updateCall({banner: this.state});
@@ -42,7 +45,9 @@ var Page5 = React.createClass({
             var ajaxError = function (data) {
                 console.error('Error on upload');
             };
+            console.log(file);
             var data = new FormData(jQuery('form')[0]);
+            console.log(data);
             $.ajax({
                 type: 'POST',
                 url: '?action=fileupload',
@@ -80,7 +85,7 @@ var Page5 = React.createClass({
 
     },
     render: function () {
-        var uploader = (<Uploader onUploadComplete={this.onDrop} fileObj={this.state.file} />);
+        var uploader = (<Uploader onUploadComplete={this.onDrop} fileObj={this.state.file} height={this.state.file.height} />);
 
         return (
             <div className="page page5">
@@ -92,7 +97,7 @@ var Page5 = React.createClass({
                             <label>
                                 <input type="checkbox" name="link_suffix"  onChange={this.suffixChange} checked={this.state.link_suffix} /> Append tracking parameters to the banner link if url is provided
                             </label>
-                        </div>
+                        </div><br/>
                         <p className="pe">
                             <strong>Drop files in the box below or click on it to select a file.</strong>
                             <br/>
@@ -154,6 +159,7 @@ var Uploader = React.createClass({
             thumbnailHeight: 0,
             dictInvalidFileType: 'Only png or jpg files in the correct size',
             accept: function (file, done) {
+                return;
                 if (self.state.fileOk == 3) {
                     this.emit("addedfile", file);
                     this.emit("thumbnail", file, file.preview);
@@ -229,10 +235,10 @@ var Uploader = React.createClass({
             className += ' active';
         }
         ;
-
+        console.log(this.props);
         var style = this.props.style || {
                 width: this.props.width || 300,
-                height: this.props.height || 100,
+                height: Math.round(this.props.fileObj[0].height/2) || 100,
                 borderStyle: "dashed",
                 borderWidth: "thin",
                 backgroundImage: "url(" + this.props.fileObj[0].preview + ")" || '',

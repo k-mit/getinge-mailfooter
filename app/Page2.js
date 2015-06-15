@@ -27,7 +27,7 @@ var LogoSelector = React.createClass({
                     link : 'http://www.getingegroup.com/',
                     size : {
                         width: 190,
-                        height: 52
+                        height: 67
                     }
 
                 },
@@ -37,7 +37,7 @@ var LogoSelector = React.createClass({
                     link : 'http://www.maquet.com/',
                     size : {
                         width: 160,
-                        height: 58
+                        height: 73
                     }
                 },
                 'getinge'      : {
@@ -46,7 +46,7 @@ var LogoSelector = React.createClass({
                     link : 'http://www.getinge.com/',
                     size : {
                         width: 156,
-                        height: 59
+                        height: 74
                     }
                 },
                 'arjohuntleigh': {
@@ -55,7 +55,7 @@ var LogoSelector = React.createClass({
                     link : 'http://www.arjohuntleigh.com/',
                     size : {
                         width: 232,
-                        height: 50
+                        height: 65
                     }
                 }
             }
