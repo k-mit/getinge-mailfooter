@@ -46,7 +46,7 @@ class UploadHandler
             'script_url' => $this->get_full_url().'/'.basename($this->get_server_var('SCRIPT_NAME')),
             'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/files/',
             'upload_url' => $this->get_full_url().'/files/',
-            'user_dirs' => false,
+            'user_dirs' => true,
             'mkdir_mode' => 0755,
             'param_name' => 'files',
             // Set the following option to 'POST', if your server does not support
@@ -60,8 +60,7 @@ class UploadHandler
                 'GET',
                 'POST',
                 'PUT',
-                'PATCH',
-                'DELETE'
+                'PATCH'
             ),
             'access_control_allow_headers' => array(
                 'Content-Type',
@@ -82,12 +81,12 @@ class UploadHandler
             //     3. Set to 3 to send a X-Accel-Redirect header for nginx
             // If set to 2 or 3, adjust the upload_url option to the base path of
             // the redirect parameter, e.g. '/files/'.
-            'download_via_php' => false,
+            'download_via_php' => 0,
             // Read files in chunks to avoid memory limits when download_via_php
             // is enabled, set to 0 to disable chunked reading of files:
             'readfile_chunk_size' => 10 * 1024 * 1024, // 10 MiB
             // Defines which files can be displayed inline when downloaded:
-            'inline_file_types' => '/\.(gif|jpe?g|png)$/i',
+            'inline_file_types' => '/\.(jpe?g|png)$/i',
             // Defines which files (based on their names) are accepted for upload:
             'accept_file_types' => '/.+$/i',
             // The php.ini settings upload_max_filesize and post_max_size
@@ -95,15 +94,15 @@ class UploadHandler
             'max_file_size' => null,
             'min_file_size' => 1,
             // The maximum number of files for the upload directory:
-            'max_number_of_files' => null,
+            'max_number_of_files' => 20000,
             // Defines which files are handled as image files:
-            'image_file_types' => '/\.(gif|jpe?g|png)$/i',
+            'image_file_types' => '/\.(jpe?g|png)$/i',
             // Use exif_imagetype on all files to correct file extensions:
-            'correct_image_extensions' => false,
+            'correct_image_extensions' => true,
             // Image resolution restrictions:
-            'max_width' => null,
-            'max_height' => null,
-            'min_width' => 1,
+            'max_width' => 601,
+            'max_height' => 3800,
+            'min_width' => 599,
             'min_height' => 1,
             // Set the following option to false to enable resumable uploads:
             'discard_aborted_uploads' => true,
@@ -133,7 +132,7 @@ class UploadHandler
                 // The empty image version key defines options for the original image:
                 '' => array(
                     // Automatically rotate images based on EXIF meta data:
-                    'auto_orient' => true
+                    'auto_orient' => false
                 ),
                 // Uncomment the following to create medium sized images:
                 /*
