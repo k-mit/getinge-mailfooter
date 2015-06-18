@@ -1,4 +1,10 @@
 
+.margin-top1em {
+    margin-top: 1em;
+}
+#fileupload{
+height: 110px;
+}
 .navigator {
   display: table;
   list-style: none;
@@ -11,7 +17,10 @@
 .dz-preview {
   display: none;
 }
-
+.bar {
+    height: 18px;
+    background: green;
+}
 .navigator__item {
   display: table-cell;
   position: relative;

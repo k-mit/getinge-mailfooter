@@ -74,7 +74,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'fileupload') {
             gtng.urlPrefix = '<?=get_template_directory_uri();?>/signaturegenerator/';
         </script>
         <div id="main_jsx_mailfooter"></div>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.2.0/ZeroClipboard.js"></script>
         <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
         <script src="<?=get_template_directory_uri();?>/signaturegenerator/main.js"></script>
 

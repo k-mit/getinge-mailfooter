@@ -1,72 +1,63 @@
 var React = require('react');
-var Dropzone = require('dropzone');
-
 var Router = require('react-router');
+var Bootstrap = require('react-bootstrap');
 var { Link } = Router;
 var InputField = require('./components/InputField');
 var Popover = require('react-bootstrap/lib/Popover');
 var OverlayTrigger = require('react-bootstrap/lib/OverlayTrigger');
+var bannerSuffix = typeof window.gtng ? window.gtng.bannerSuffix || 'utm_source=email&utm_medium=signature&utm_campaign=banner' : 'utm_source=email&utm_medium=signature&utm_campaign=banner';
 
 var Page5 = React.createClass({
     getInitialState: function () {
         return this.props.initUserObj.banner;
     },
-
-    onDrop: function (file, fileOk) {
+    componentDidMount: function () {
+        var self = this;
+        this.setState({errorText: ''});
         this.setState({error: false});
-        if (fileOk == 1) {
-            file.preview = URL.createObjectURL(file);
-            this.setState({file: [file]});
-            var change = {};
-            var change2 = {};
-            change['file'] = this.state.file;
+        jQuery(React.findDOMNode(this.refs.fileupload)).fileupload({
+            dataType: 'json',
+            url: '/php/',
+            allowedFileExtensions: ['jpg', 'png', 'jpeg'],
+            autoUpload: true,
+            done: function (e, data) {
+                var uself=self;
 
+                var file = data.result.files[0]
+                if (file.error) {
+                    self.setState({errorText: file.error});
+                    self.setState({error: true});
+                } else {
+                    var img = new Image();
+                    img.onload = function () {
+                        var width = this.width;
+                        var height = this.height;
+                        uself.setState({width: width, height: height});
+                    }
+                    img.src = file.url;
+                    self.setState({error: false, file: [file],image: file.url});
+                    var change = {};
+                    change['file'] = self.state.file;
+                    self.setState(change, function () {
+                        self.props.updateCall({banner: self.state});
+                    });
 
-            this.setState(change, function () {
-                this.props.updateCall({banner: this.state});
-            });
-            change2['image'] = file.preview;
-            this.setState(change2, function () {
-                this.props.updateCall({banner: this.state});
-            });
-            var self = this;
-            var jsonSuccess = function (data) {
-                if(data.substr(0,4) !== "http") return;
-                change2['image'] = data;
-                self.setState(change2, function () {
-                    this.props.updateCall({banner: this.state});
-                });
-                console.log('success:', data);
-            };
-            var ajaxComplete = function (data) {
-                console.log('Complete Fired');
-            };
+                }
+            },
+            fail: function (e, data) {
+            },
+            add: function (e, data) {
+                var files;
+                if (data.dataTransfer) {
+                    files = data.dataTransfer.files;
+                } else if (data) {
+                    files = data.files;
+                }
+                var file = files[0];
+                data.submit();
+            }
 
-            var ajaxError = function (data) {
-                console.error('Error on upload');
-            };
-            console.log(file);
-            var data = new FormData(jQuery('form')[0]);
-            console.log(data);
-            $.ajax({
-                type: 'POST',
-                url: '?action=fileupload',
-                data: data,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: jsonSuccess,
-                error: ajaxError,
-                complete: ajaxComplete
-            });
-
-            console.log('File format was ok!');
-        } else {
-            console.log('File format was not ok!');
-            this.setState({error: true});
-
-
-        }
+        });
     },
     handleChange: function (fieldvalues) {
         var change = {};
@@ -84,33 +75,38 @@ var Page5 = React.createClass({
         });
 
     },
+    banner: function () {
+        return this.state.image ? '<img width="300" height="' + Math.round(parseInt(this.state.height) / 2) + '" src="' + this.state.image + '">' : '';
+    },
     render: function () {
-        var uploader = (<Uploader onUploadComplete={this.onDrop} fileObj={this.state.file} height={this.state.file.height} />);
-
+        var banner = this.state.image ? '<img width="300" height="' + Math.round(parseInt(this.state.height) / 2) + '" src="' + this.state.image + '">' : '';
         return (
             <div className="page page5">
                 <div className="content">
                     <div className="card">
                         <h3>Promotional Banner (optional)</h3>
                         <InputField name="link" value={this.state.link.value} onChange={this.handleChange} placeholder="http://www.getingegroup.com" label="Banner Link Target"/>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="link_suffix"  onChange={this.suffixChange} checked={this.state.link_suffix} /> Append tracking parameters to the banner link if url is provided
-                            </label>
-                        </div><br/>
-                        <p className="pe">
-                            <strong>Drop files in the box below or click on it to select a file.</strong>
-                            <br/>
-                            File formats accepted are JPG and PNG only.
-                            <br />
-                            The image must be 600 pixels wide.
-                        </p>
 
+                        <div className="checkbox">
+                            <label>
+                                <input type="checkbox" name="link_suffix"  onChange={this.suffixChange} checked={this.state.link_suffix} />
+                                Append tracking parameters to the banner link if url is provided
+                            </label>
+
+                        </div>
                         <div id="findme" />
-                        {uploader}
+
+
+                        <span className="btn btn-success fileinput-button">
+
+                            <span> Click here to select a file to upload.<br />File formats accepted are JPG and PNG only.<br />
+                                The image must be 600 pixels wide.</span>
+                            <input id="fileupload" type="file" name="files[]" ref="fileupload" />
+                        </span>
+                        <div id="banner" className="margin-top1em" dangerouslySetInnerHTML={{__html: this.banner()}}/>
                         <Error active={this.state.error}>
-                            <strong>Something went wrong!</strong>
-                            The image you tried to upload does not meet the requirements</Error>
+                            <strong>Something went wrong!: </strong>
+                        {this.state.errorText}</Error>
                         <br/>
                         <br/>
                         <div className="clearfix">
@@ -129,137 +125,12 @@ var Error = React.createClass({
     render: function () {
         if (this.props.active) {
             return (
-                <div className="alert alert-danger" role="alert">{this.props.children}</div>
+                <div className="alert alert-danger margin-top1em" role="alert">{this.props.children}</div>
             )
         } else {
             return null;
         }
     }
 });
-var maxImageWidth = 600;
 
-
-var Uploader = React.createClass({
-    getInitialState: function () {
-        return {
-            isDragActive: false,
-            fileOk: 3
-        }
-    },
-    // invoked immediately after mounting occurs, initialize plugins
-    componentDidMount: function () {
-        var self = this;
-
-        Dropzone.autoDiscover = false;
-        var myDropzone = new Dropzone(this.getDOMNode(), {
-            url: '?action=fileupload',
-            acceptedFiles: "image/*",
-            dictDefaultMessage: '',
-            thumbnailWidth: 0,
-            thumbnailHeight: 0,
-            dictInvalidFileType: 'Only png or jpg files in the correct size',
-            accept: function (file, done) {
-                return;
-                if (self.state.fileOk == 3) {
-                    this.emit("addedfile", file);
-                    this.emit("thumbnail", file, file.preview);
-                }
-                done;
-            },
-            init: function () {
-                this.on("addedfile", function (file) {
-                    file.acceptFile = function () {
-                        self.setState({fileOk: 1});
-                    }
-                    file.rejectFile = function () {
-                        self.setState({fileOk: 0});
-                    }
-                });
-
-                this.on("thumbnail", function (file) {
-                    if (file.width != maxImageWidth || !(file.type == "image/png" || file.type == "image/jpg" || file.type == "image/jpeg")) {
-                        self.props.onUploadComplete(file, 0);
-                    } else {
-                        self.props.onUploadComplete(file, 1);
-                    }
-
-                    // Do the dimension checks you want to do
-                });
-            }
-        });
-
-        myDropzone.on("complete", function (file) {
-            if (self.state.fileOk == 3) {
-                this.emit("addedfile", file);
-                this.emit("thumbnail", file, file.preview);
-            }
-
-            self.props.onUploadComplete(file, self.state.fileOk);
-        });
-        this.props.myDropzone = myDropzone;
-    },
-
-    onClick: function () {
-        this.refs.fileInput.getDOMNode().click();
-    },
-    onDrop: function (e) {
-        var self = this;
-        var files;
-        if (e.dataTransfer) {
-            files = e.dataTransfer.files;
-        } else if (e.target) {
-            files = e.target.files;
-        }
-        files = Array.prototype.slice.call(files);
-        if (this.state.fileOk == 3) {
-            files[0].preview = URL.createObjectURL(files[0]);
-            var file = files[0];
-
-            var img = new Image();
-            img.onload = function () {
-                file.width = this.width;
-                file.height = this.height;
-                if (file.width != maxImageWidth || !(file.type == "image/png" || file.type == "image/jpg" || file.type == "image/jpeg")) {
-                    self.props.onUploadComplete(file, 0);
-                } else {
-                    self.props.onUploadComplete(file, 1);
-                }
-            }
-            img.src = file.preview;
-        }
-    },
-    render: function () {
-        var inputstyle = {display: 'none'};
-        var className = this.props.className || 'dzReactClass';
-        if (this.state.isDragActive) {
-            className += ' active';
-        }
-        ;
-        console.log(this.props);
-        var style = this.props.style || {
-                width: this.props.width || 300,
-                height: Math.round(this.props.fileObj[0].height/2) || 100,
-                borderStyle: "dashed",
-                borderWidth: "thin",
-                backgroundImage: "url(" + this.props.fileObj[0].preview + ")" || '',
-                backgroundSize: "cover"
-            };
-
-        if (this.props.className) {
-            style = this.props.style;
-        }
-        return (
-            <div>
-                <form action="?action=fileupload" className="dropzone" id="dropzone" method="post">
-                    <div className={className} style={style} onDragLeave={this.onDragLeave} onDragEnter={this.onDragEnter} onClick={this.onClick}>
-                    {this.props.children}
-                        <input type="file" style={inputstyle} id="fileInput" name="fileInput" ref="fileInput" onChange={this.onDrop} />
-                        <i className="fa fa-cloud-upload fa-4x"></i>
-                    </div>
-
-                </form>
-            </div>
-        );
-    }
-});
 module.exports = Page5;

@@ -3,7 +3,7 @@
 
 if (isset($_GET['action']) && $_GET['action'] == 'fileupload') {
 	define ('MF_SITE_ROOT', realpath(dirname(__FILE__)));
-	$target_dir = "/uploads/";
+	$target_dir = "/php/files/";
 	$fi = new FilesystemIterator(MF_SITE_ROOT.$target_dir, FilesystemIterator::SKIP_DOTS);
 	$filecnt=iterator_count($fi)+1;
 	$target_file = $target_dir .$filecnt. basename($_FILES["fileInput"]["name"]);

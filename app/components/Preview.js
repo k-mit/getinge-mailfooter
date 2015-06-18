@@ -4,8 +4,6 @@
  * Created: 06/05/15 | 18:39
  */
 var React = require('react');
-var ZeroClipboard = require('zeroclipboard');
-var ReactZeroClipboard = require('react-zeroclipboard');
 var Popover = require('react-bootstrap/lib/Popover');
 var OverlayTrigger = require('react-bootstrap/lib/OverlayTrigger');
 var urlPrefix = typeof window.gtng ? window.gtng.urlPrefix || '' : '';
@@ -56,6 +54,7 @@ var Preview = React.createClass({
                             preview: "images/banner_placeholder.png"
                         }
                     ],
+                    progress: '0%',
                     width: 300,
                     height: 108
                 }
@@ -121,7 +120,7 @@ var Preview = React.createClass({
         },
         rawFooter: function () {
             var bannerHref = this.getValue('banner.link',true,false)!== '';
-            var banner = this.getValue('banner.image') ? (bannerHref?'<a href="' + this.getValue('banner.link',true,false) + (this.getValue('banner.link_suffix')?(this.getValue('banner.link',true,false).indexOf('?')===-1?'?':'&')+bannerSuffix:'') + '" class="banner">':'')+'<img width="300" height="'+Math.round(parseInt(this.getValue('banner.file.height'))/2)+'" src="' + this.getValue('banner.image') + '">'+(bannerHref?'</a>':'') : '';
+            var banner = this.getValue('banner.image') ? (bannerHref?'<a href="' + this.getValue('banner.link',true,false) + (this.getValue('banner.link_suffix')?(this.getValue('banner.link',true,false).indexOf('?')===-1?'?':'&')+bannerSuffix:'') + '" class="banner">':'')+'<img width="600" src="' + this.getValue('banner.image') + '">'+(bannerHref?'</a>':'') : '';
             return '<div style="font-family: \'Arial\'; font-size: 12px; color: #000; line-height: 14px">' +
                 (this.getValue('info.user_name') + ln) +
                 (this.getValue('info.user_position') ? this.getValue('info.user_position') + ln : '') +

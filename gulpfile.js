@@ -200,6 +200,12 @@ var copyAssetsTask = function (options) {
         .pipe(gulp.dest(options.dest+'/fonts'));
     gulp.src('./app/images/**/*.{jpg,png,gif,jpeg}')
         .pipe(gulp.dest(options.dest+'/images'));
+    gulp.src('./app/libs/**/*.{js,min}')
+        .pipe(gulp.dest(options.dest+'/libs')).pipe(notify({
+            title: "libs copied",
+            message: "the libs files are copied",
+            onLast: true
+        }));
 };
 // Starts our development workflow
 gulp.task('default', function () {

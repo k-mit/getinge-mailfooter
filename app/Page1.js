@@ -13,7 +13,6 @@ var Page1 = React.createClass({
         willTransitionFrom: function (transition, element) {
             var validated = true;
             for (var key in element.state) {
-                console.log(key, element.state[key]);
                 if(element.state[key].valid === false) validated = false;
             }
             //if (!confirm('Some fields are not filled corretly, do you want to leave this page?')) {
