@@ -15,9 +15,23 @@ var Page5 = React.createClass({
         var self = this;
         this.setState({errorText: ''});
         this.setState({error: false});
+
+        jQuery(React.findDOMNode(this.refs.fileupload)).on('change', function() {
+            var input = $(this),
+                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, ''),
+                textfield = jQuery(React.findDOMNode(self.refs.fileuploadtext)),
+                log = numFiles > 1 ? numFiles + ' files selected' : label;
+            if( textfield.length ) {
+                textfield.val(log);
+            } else {
+                if( log ) alert(log);
+            }
+        });
+
         jQuery(React.findDOMNode(this.refs.fileupload)).fileupload({
             dataType: 'json',
-            url: '/php/',
+            url: window.gtng.uploadUrl,
             allowedFileExtensions: ['jpg', 'png', 'jpeg'],
             autoUpload: true,
             done: function (e, data) {
@@ -76,10 +90,9 @@ var Page5 = React.createClass({
 
     },
     banner: function () {
-        return this.state.image ? '<img width="300" height="' + Math.round(parseInt(this.state.height) / 2) + '" src="' + this.state.image + '">' : '';
+        return this.state.image ? '<img width="600" height="' + Math.round(parseInt(this.state.height)) + '" src="' + this.state.image + '">' : '';
     },
     render: function () {
-        var banner = this.state.image ? '<img width="300" height="' + Math.round(parseInt(this.state.height) / 2) + '" src="' + this.state.image + '">' : '';
         return (
             <div className="page page5">
                 <div className="content">
@@ -94,18 +107,26 @@ var Page5 = React.createClass({
                             </label>
 
                         </div>
-                        <div id="findme" />
 
-
-                        <span className="btn btn-success fileinput-button">
-
-                            <span> Click here to select a file to upload.<br />File formats accepted are JPG and PNG only.<br />
-                                The image must be 600 pixels wide.</span>
-                            <input id="fileupload" type="file" name="files[]" ref="fileupload" />
+                        <br/>
+                        <div className="form-group">
+                        <label>Upload file</label>
+                        <div className="input-group">
+                            <span className="input-group-btn">
+                                <span className="btn btn-primary fileinput-button btn-file">
+                                    <span className="icon-folder" /> Browse <input id="fileupload" type="file" name="files[]" ref="fileupload" />
+                                </span>
+                            </span>
+                            <input ref="fileuploadtext" type="text" className="form-control" readOnly />
+                        </div>
+                        <span className="help-block">
+                            File formats accepted are JPG and PNG only.<br />
+                            The image must be 600 pixels wide.
                         </span>
+                            </div>
                         <div id="banner" className="margin-top1em" dangerouslySetInnerHTML={{__html: this.banner()}}/>
                         <Error active={this.state.error}>
-                            <strong>Something went wrong!: </strong>
+                            <strong>There was a problem uploading the file! </strong>
                         {this.state.errorText}</Error>
                         <br/>
                         <br/>
