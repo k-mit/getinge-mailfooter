@@ -90,7 +90,7 @@ var Page5 = React.createClass({
 
     },
     banner: function () {
-        return this.state.image ? '<img width="600" height="' + Math.round(parseInt(this.state.height)) + '" src="' + this.state.image + '">' : '';
+        return this.state.image ? '<img src="' + this.state.image + '" />' : '';
     },
     render: function () {
         return (
