@@ -4,6 +4,7 @@
  * Created: 06/05/15 | 18:39
  */
 var React = require('react');
+var ReactZeroClipboard = require('react-zeroclipboard');
 var Popover = require('react-bootstrap/lib/Popover');
 var OverlayTrigger = require('react-bootstrap/lib/OverlayTrigger');
 var urlPrefix = typeof window.gtng ? window.gtng.urlPrefix || '' : '';
