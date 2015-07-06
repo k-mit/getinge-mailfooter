@@ -240,6 +240,8 @@ gulp.task('deploy', function () {
     );
     gulp.src('./app/signature_generator.php')
         .pipe(gulp.dest('./dist'));
+    gulp.src('./app/UploadHandler.php')
+        .pipe(gulp.dest('./dist/signaturegenerator/'));
 
 
     browserifyTask({
