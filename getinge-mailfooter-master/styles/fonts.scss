@@ -1,0 +1,100 @@
+@font-face {
+    font-family: 'mfgenerator';
+    src:url('fonts/mfgenerator.eot?nmokjp');
+    src:url('fonts/mfgenerator.eot?#iefixnmokjp') format('embedded-opentype'),
+    url('fonts/mfgenerator.woff?nmokjp') format('woff'),
+    url('fonts/mfgenerator.ttf?nmokjp') format('truetype'),
+    url('fonts/mfgenerator.svg?nmokjp#mfgenerator') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'mfgenerator';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-warning:before {
+    content: "\e600";
+}
+
+.icon-chevron-down:before {
+    content: "\e601";
+}
+
+.icon-chevron-left:before {
+    content: "\e602";
+}
+
+.icon-chevron-right:before {
+    content: "\e603";
+}
+
+.icon-chevron-up:before {
+    content: "\e604";
+}
+
+.icon-chevron-with-circle-down:before {
+    content: "\e605";
+}
+
+.icon-chevron-with-circle-left:before {
+    content: "\e606";
+}
+
+.icon-chevron-with-circle-right:before {
+    content: "\e607";
+}
+
+.icon-chevron-with-circle-up:before {
+    content: "\e608";
+}
+
+.icon-download:before {
+    content: "\e609";
+}
+
+.icon-upload:before {
+    content: "\e611";
+}
+
+.icon-attachment:before {
+    content: "\e60a";
+}
+
+.icon-check:before {
+    content: "\e60b";
+}
+
+.icon-clipboard:before {
+    content: "\e60c";
+}
+
+.icon-folder:before {
+    content: "\e60d";
+}
+
+.icon-plus:before {
+    content: "\e60e";
+}
+
+.icon-squared-minus:before {
+    content: "\e60f";
+}
+
+.icon-squared-plus:before {
+    content: "\e610";
+}
+
+.icon-arrow-right:before {
+  content: "\e612";
+}
