@@ -32,6 +32,10 @@ var Page1 = React.createClass({
     handleChange: function (fieldvalues) {
         var change = {};
         change[fieldvalues.name] = fieldvalues;
+<<<<<<< HEAD
+        console.log(change);
+=======
+>>>>>>> f7c569b199e8d21722a46abeb675763485ea6803
         this.setState(change, function () {
             this.props.updateCall({info: this.state});
         });
@@ -50,7 +54,10 @@ var Page1 = React.createClass({
                         <h3>Employee Info</h3>
                         <InputField minlength={2} name="user_name" value={this.state.user_name.value} onChange={this.handleChange} placeholder="Name" label="Full Name" required/>
                         <InputField minlength={2} name="user_position" value={this.state.user_position.value} onChange={this.handleChange} placeholder="Position/Title" label="Position or Title" required/>
+<<<<<<< HEAD
+=======
                         <InputField minlength={2} name="user_department" value={this.state.user_department.value} onChange={this.handleChange} placeholder="Department" label="Department" required/>
+>>>>>>> f7c569b199e8d21722a46abeb675763485ea6803
                     </form>
                 </div>
                 <div className="clearfix">

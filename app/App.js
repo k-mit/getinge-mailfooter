@@ -24,9 +24,22 @@ var App = React.createClass({
                 info: {
                     user_name: {value: null},
                     user_position: {value: null},
+<<<<<<< HEAD
+                },
+                department: {
+                    mainDropValue: {value: null},
+                    user_department: {value: null},
+                    salesRegion: {value: null},
+                    buscatunit: {value: null},
+                    bottom_logos: {value: []}
+                },
+                address: {
+                    user_businessname: {value: null},
+=======
                     user_department: {value: null}
                 },
                 address: {
+>>>>>>> f7c569b199e8d21722a46abeb675763485ea6803
                     user_street: {value: null},
                     user_city: {value: null},
                     user_state: {value: null, valid: true},

@@ -10,6 +10,24 @@ var Page3 = React.createClass({
     getInitialState: function () {
         return this.props.initUserObj.address;
     },
+<<<<<<< HEAD
+    renderSelect: function (id, label, values, selectedValue, bindname, startoption) {
+        var lkey = 1;
+        var options = values.map(function (value) {
+            lkey++;
+            return <option value={value} key={lkey}>{value}</option>
+        })
+
+        return (
+
+            <select className="form-control" id={id} onChange={this.handleChangeDrop.bind(this, bindname)} ref={id} value={this.state.address_format}>
+                <option value="" key={lkey++}>{startoption}</option>
+                {options}
+            </select>
+        )
+    },
+=======
+>>>>>>> f7c569b199e8d21722a46abeb675763485ea6803
     componentDidMount: function () {
         /*$.ajax({
          url: '//freegeoip.net/json/',
@@ -29,6 +47,8 @@ var Page3 = React.createClass({
          }});*/
 
     },
+<<<<<<< HEAD
+=======
     renderSelect: function (id, label, values, selectedValue, bindname, startoption) {
         var lkey = 1;
         var options = values.map(function (value) {
@@ -44,6 +64,7 @@ var Page3 = React.createClass({
             </select>
         )
     },
+>>>>>>> f7c569b199e8d21722a46abeb675763485ea6803
     handleChange: function (fieldvalues) {
         var change = {};
         change[fieldvalues.name] = fieldvalues;
@@ -67,6 +88,10 @@ var Page3 = React.createClass({
                 <div className="content">
                     <div className="card">
                         <h3>Address</h3>
+<<<<<<< HEAD
+                        <InputField name="user_businessname" value={this.state.user_businessname.value} onChange={this.handleChange} placeholder="Business Name" label="Business Name" required/>
+=======
+>>>>>>> f7c569b199e8d21722a46abeb675763485ea6803
                         <InputField name="user_street" value={this.state.user_street.value} onChange={this.handleChange} placeholder="Street Address" label="Street Address" required/>
                         <InputField name="user_city" value={this.state.user_city.value} onChange={this.handleChange} placeholder="City" label="City" required/>
                         <InputField name="user_state" value={this.state.user_state.value} onChange={this.handleChange} placeholder="State/Territory" label="State/Territory" />

@@ -15,10 +15,24 @@ var Preview = React.createClass({
             var defaultObject = {
                 info: {
                     user_name: "Your Full Name",
+<<<<<<< HEAD
+                    user_position: "Position or title"
+                },
+                department: {
+                    mainDropValue: "",
+                    user_department: "Department",
+                    salesRegion: "",
+                    buscatunit: "",
+                    bottom_logos: []
+                },
+                address: {
+                    user_businessname: "Business name",
+=======
                     user_position: "Position or title",
                     user_department: "Department"
                 },
                 address: {
+>>>>>>> f7c569b199e8d21722a46abeb675763485ea6803
                     user_street: "Street address",
                     user_city: "City",
                     user_state: "",
@@ -120,22 +134,87 @@ var Preview = React.createClass({
             )
         },
         rawFooter: function () {
+<<<<<<< HEAD
+            var logosmain = {
+                'getingegroup': {
+                    title: 'Getinge Group',
+                    url: 'images/logotypes/getingegroup.png',
+                    link: 'http://www.getingegroup.com/',
+                    size: {
+                        width: 190,
+                        height: 67
+                    }
+
+                },
+                'maquet': {
+                    title: 'Maquet Getinge Group',
+                    url: 'images/logotypes/maquet_getingegroup_small.png',
+                    link: 'http://www.maquet.com/',
+                    size: {
+                        width: 96,
+                        height: 34
+                    }
+                },
+                'getinge': {
+                    title: 'Getinge Getinge Group',
+                    url: 'images/logotypes/getinge_getingegroup_small.png',
+                    link: 'http://www.getinge.com/',
+                    size: {
+                        width: 94,
+                        height: 35
+                    }
+                },
+                'arjohuntleigh': {
+                    title: 'Arjo Huntleigh Getinge Group',
+                    url: 'images/logotypes/arjohuntleigh_getingegroup_small.png',
+                    link: 'http://www.arjohuntleigh.com/',
+                    size: {
+                        width: 175,
+                        height: 35
+                    }
+                }
+            };
             var bannerHref = this.getValue('banner.link',true,false)!== '';
+            var bottom_logos = this.getValue('department.bottom_logos',false,false);
+            console.log(bottom_logos);
+            var logos ='';
+            for(var logosloopcounter=0;logosloopcounter < bottom_logos.length;logosloopcounter++){
+                var activelogo = logosmain[bottom_logos[logosloopcounter]];
+                console.log(bottom_logos[logosloopcounter]);
+                logos = logos +'<a href="' + activelogo.link + '" target="_blank"><img border="0" width="' + (activelogo.size.width) + '" height="' + (activelogo.size.height) + '" title="' + activelogo.title + '" alt="' + activelogo.title + '"  src="' + urlPrefix + activelogo.url+'" /></a><img src="'+urlPrefix+'/images/empty_pixel.png" width="24" />';
+            }
+
+=======
+            var bannerHref = this.getValue('banner.link',true,false)!== '';
+>>>>>>> f7c569b199e8d21722a46abeb675763485ea6803
             var banner = this.getValue('banner.image') ? (bannerHref?'<a href="' + this.getValue('banner.link',true,false) + (this.getValue('banner.link_suffix')?(this.getValue('banner.link',true,false).indexOf('?')===-1?'?':'&')+bannerSuffix:'') + '" class="banner">':'')+'<img width="600" src="' + this.getValue('banner.image') + '">'+(bannerHref?'</a>':'') : '';
             return '<div style="font-family: \'Arial\'; font-size: 12px; color: #000; line-height: 14px">' +
                 (this.getValue('info.user_name') + ln) +
                 (this.getValue('info.user_position') ? this.getValue('info.user_position') + ln : '') +
+<<<<<<< HEAD
+                (this.getValue('department.user_department') ? this.getValue('department.user_department') + ln : '') +
+                ln +
+                (this.getValue('logo.properties.link') ? '<a href="' + this.getValue('logo.properties.link') + '" target="_blank"><img border="0" width="' + this.getValue('logo.properties.size.width') + '" height="' + this.getValue('logo.properties.size.height') + '" title="' + this.getValue('logo.properties.title') + '" alt="' + this.getValue('logo.properties.title') + '"  src="' + urlPrefix + this.getValue('logo.properties.url') + '" /></a><br>\n' : '') +
+                ln +
+=======
                 (this.getValue('info.user_department') ? this.getValue('info.user_department') + ln : '') +
                 ln +
                 (this.getValue('logo.properties.link') ? '<a href="' + this.getValue('logo.properties.link') + '" target="_blank"><img border="0" width="' + this.getValue('logo.properties.size.width') + '" height="' + this.getValue('logo.properties.size.height') + '" title="' + this.getValue('logo.properties.title') + '" alt="' + this.getValue('logo.properties.title') + '"  src="' + urlPrefix + this.getValue('logo.properties.url') + '" /></a><br>\n' : '') +
                 ln +
                 (this.getValue('company') ? this.getValue('company') + ln : '') +
+>>>>>>> f7c569b199e8d21722a46abeb675763485ea6803
                 this.address_string() +
                 ln +
                 (this.getValue('contacts.user_phone', true).length > 0 ? 'Phone:' + ' ' + this.getValue('contacts.user_phone', true) + ln : '') +
                 (this.getValue('contacts.user_mobile', true).length > 0 ? 'Mobile:' + ' ' + this.getValue('contacts.user_mobile', true) + ln : '') +
                 (this.getValue('contacts.user_fax', true).length > 0 ? 'Fax:' + ' ' + this.getValue('contacts.user_fax', true) + ln : '') +
+<<<<<<< HEAD
+                (this.getValue('contacts.user_email') ? '' + this.getValue('contacts.user_email') + '' + ln : '') +
+                'http://www.getingegroup.com'+ln+ln+
+                logos+
+=======
                 (this.getValue('contacts.user_email') ? '<a href="mailto:' + this.getValue('contacts.user_email', true) + '" style="font-family: \'Arial\';font-size  : 12px;color     : #0046ad;line-height: 14px">' + this.getValue('contacts.user_email') + '</a>' + ln : '') + ln +
+>>>>>>> f7c569b199e8d21722a46abeb675763485ea6803
                 banner +
                 '</div>';
         },
@@ -146,19 +225,37 @@ var Preview = React.createClass({
             var state = this.getValue('address.user_state');
             var zip = this.getValue('address.user_zip');
             var country = this.getValue('address.user_country');
+<<<<<<< HEAD
+            var businessname = this.getValue('address.user_businessname');
+            switch (this.state.userObj.address.address_format) {
+                case 'USA':
+                    adstr = businessname+ln+
+                    (street ? street + ln : '') +
+=======
             switch (this.state.userObj.address.address_format) {
                 case 'USA':
                     adstr = (street ? street + ln : '') +
+>>>>>>> f7c569b199e8d21722a46abeb675763485ea6803
                     (city || state || zip ? city + ', ' + state + ' ' + zip + ln : '') +
                     (country ? country + ln : '');
                     break;
                 case 'Europe':
+<<<<<<< HEAD
+                    adstr = businessname+ln+
+                        (street ? street + ln : '') +
+=======
                     adstr = (street ? street + ln : '') +
+>>>>>>> f7c569b199e8d21722a46abeb675763485ea6803
                     (city || zip ? zip + ' ' + city + ln : '') +
                     (country ? country + ln : '');
                     break;
                 case 'UK':
+<<<<<<< HEAD
+                    adstr = businessname+ln+
+                        (street ? street + ln : '') +
+=======
                     adstr = (street ? street + ln : '') +
+>>>>>>> f7c569b199e8d21722a46abeb675763485ea6803
                     (city || state || zip ? city + ', ' + state + ' ' + zip + ln : '') +
                     (country ? country + ln : '');
                     break;
