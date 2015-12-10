@@ -72,7 +72,7 @@ var Page2 = React.createClass({
                 change['bottom_logos'] = ['maquet'];
                 break;
             case '2':
-                text_value="Patient & Post Acute Car";
+                text_value="Patient & Post Acute Care";
                 change['bottom_logos'] = ['arjohuntleigh'];
                 break;
             case '3':
@@ -94,9 +94,9 @@ var Page2 = React.createClass({
                 <RadioGroup name="salesRegionRadio" selectedValue={this.state.salesRegion} onChange={this.handleSalesRegionChange}>
                     {Radio => (
                         <div>
-                            <Radio value="Americas" />&nbsp;&nbsp;Americas<br/>
-                            <Radio value="Europe, Middle East & Africa" />&nbsp;&nbsp;Europe, Middle East & Africa<br/>
-                            <Radio value="Asia Pacific" />&nbsp;&nbsp;Asia Pacific<br/>
+                            <div className="radio"><label><Radio value="Americas" />Americas</label></div>
+                            <div className="radio"><label><Radio value="Europe, Middle East & Africa" />Europe, Middle East & Africa</label></div>
+                            <div className="radio"><label><Radio value="Asia Pacific" />Asia Pacific</label></div>
                         </div>
                     )}
                 </RadioGroup>
@@ -109,9 +109,9 @@ var Page2 = React.createClass({
                 <RadioGroup name="buscatunitRadio" selectedValue={this.state.buscatunit} onChange={this.handleBuscatunitChange}>
                     {Radio => (
                         <div>
-                            <Radio value="1" />&nbsp;&nbsp;Acute Care Therapies<br/>
-                            <Radio value="2" />&nbsp;&nbsp;Patient & Post Acute Care<br/>
-                            <Radio value="3" />&nbsp;&nbsp;Surgical Workflows<br/>
+                            <div className="radio"><label><Radio value="1" />Acute Care Therapies</label></div>
+                            <div className="radio"><label><Radio value="2" />Patient & Post Acute Care</label></div>
+                                <div className="radio"><label><Radio value="3" />Surgical Workflows</label></div>
                         </div>
                     )}
                 </RadioGroup>
@@ -132,7 +132,7 @@ var Page2 = React.createClass({
                 <div className="content">
                     <div className="card">
                         <h3>Business Area</h3>
-                        Select your sales region,business category unit or department. Your selection will determin the logos used in your signature.<br/><br/>
+                        Select your sales region, business category unit or department. Your selection will determin the logos used in your signature.<br/><br/>
                         Sales Region / Business Category Unit / Department<br/><br/>
                         {this.renderMainSelect('mainDropValue', 'Sales Region / Business Category Unit / Department', bareaarray, this.state.mainDropValue.value, 'mainDropValue', 'Select one')}<br />
                         {this.renderMainResult()}

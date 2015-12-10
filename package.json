@@ -15,10 +15,7 @@
     "gulp-jasmine2-phantomjs": "^0.1.1",
     "gulp-livereload": "^2.1.1",
     "gulp-notify": "^1.4.2",
-<<<<<<< HEAD
     "gulp-sass": "^2.1.0",
-=======
->>>>>>> f7c569b199e8d21722a46abeb675763485ea6803
     "gulp-shell": "^0.2.10",
     "gulp-streamify": "0.0.5",
     "gulp-uglify": "^0.3.1",
@@ -44,6 +41,7 @@
     "joi": "^6.4.1",
     "react": "^0.13.2",
     "react-bootstrap": "^0.21.2",
+    "react-radio-group": "^2.2.0",
     "react-router": "^0.13.3",
     "react-validation-mixin": "^4.0.4",
     "react-zeroclipboard": "^1.0.0",

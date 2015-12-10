@@ -144,8 +144,8 @@ var Preview = React.createClass({
                     url: 'images/logotypes/maquet_getingegroup_small.png',
                     link: 'http://www.maquet.com/',
                     size: {
-                        width: 96,
-                        height: 34
+                        width: 65,
+                        height: 22
                     }
                 },
                 'getinge': {
@@ -153,8 +153,8 @@ var Preview = React.createClass({
                     url: 'images/logotypes/getinge_getingegroup_small.png',
                     link: 'http://www.getinge.com/',
                     size: {
-                        width: 94,
-                        height: 35
+                        width: 62,
+                        height: 22
                     }
                 },
                 'arjohuntleigh': {
@@ -162,8 +162,8 @@ var Preview = React.createClass({
                     url: 'images/logotypes/arjohuntleigh_getingegroup_small.png',
                     link: 'http://www.arjohuntleigh.com/',
                     size: {
-                        width: 175,
-                        height: 35
+                        width: 122,
+                        height: 22
                     }
                 }
             };
