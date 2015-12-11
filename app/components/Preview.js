@@ -169,12 +169,11 @@ var Preview = React.createClass({
             };
             var bannerHref = this.getValue('banner.link',true,false)!== '';
             var bottom_logos = this.getValue('department.bottom_logos',false,false);
-            console.log(bottom_logos);
             var logos ='';
             for(var logosloopcounter=0;logosloopcounter < bottom_logos.length;logosloopcounter++){
                 var activelogo = logosmain[bottom_logos[logosloopcounter]];
-                console.log(bottom_logos[logosloopcounter]);
-                logos = logos +'<a href="' + activelogo.link + '" target="_blank"><img border="0" width="' + (activelogo.size.width) + '" height="' + (activelogo.size.height) + '" title="' + activelogo.title + '" alt="' + activelogo.title + '"  src="' + urlPrefix + activelogo.url+'" /></a><img src="'+urlPrefix+'/images/empty_pixel.png" width="24" />';
+
+                logos = logos +'<a href="' + activelogo.link + '" target="_blank"><img border="0" width="' + (activelogo.size.width) + '" height="' + (activelogo.size.height) + '" title="' + activelogo.title + '" alt="' + activelogo.title + '"  src="' + urlPrefix + activelogo.url+'" /></a><img src="'+urlPrefix+'images/empty_pixel.png" width="24" />';
             }
             var banner = this.getValue('banner.image') ? (bannerHref?'<a href="' + this.getValue('banner.link',true,false) + (this.getValue('banner.link_suffix')?(this.getValue('banner.link',true,false).indexOf('?')===-1?'?':'&')+bannerSuffix:'') + '" class="banner">':'')+'<img width="600" src="' + this.getValue('banner.image') + '">'+(bannerHref?'</a>':'') : '';
             return '<div style="font-family: \'Arial\'; font-size: 12px; color: #000; line-height: 14px">' +
