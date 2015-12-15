@@ -26,11 +26,11 @@ var App = React.createClass({
                     user_position: {value: null},
                 },
                 department: {
-                    mainDropValue: {value: null},
-                    user_department: {value: null},
-                    salesRegion: {value: null},
-                    buscatunit: {value: null},
-                    bottom_logos: {value: []}
+                    mainDropValue: {value: null, valid: true},
+                    user_department: {value: null, valid: true},
+                    salesRegion: {value: null, valid: true},
+                    buscatunit: {value: null, valid: true},
+                    bottom_logos: {value: [], valid: true}
                 },
                 address: {
                     user_businessname: {value: null},
@@ -42,7 +42,7 @@ var App = React.createClass({
                     address_format: 'USA'
                 },
                 logo: {
-                    name: {value: null},
+                    name: {value: null, valid: true},
                     properties: {
                         title: 'Getinge Group',
                         url: 'images/logotypes/getingegroup.png',
@@ -50,10 +50,10 @@ var App = React.createClass({
                         size: {
                             width: 199,
                             height: 67
-                        }
+                        }, valid: true
                     }
                 },
-                company: {value: null},
+                company: {value: null, valid: true},
                 contacts: {
                     user_phone: {value: null, valid: true},
                     user_mobile: {value: null, valid: true},

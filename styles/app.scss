@@ -14,6 +14,44 @@ height: 110px;
   border: 1px solid $app_blue;
 }
 
+input[type=radio   ]:not(old){
+  width     : 2em;
+  margin    : 0;
+  padding   : 0;
+  font-size : 1em;
+  opacity   : 0;
+}
+input[type=radio   ]:not(old) + label{
+  display      : inline-block;
+  margin-left  : -2em;
+  line-height  : 2em;
+}
+input[type=radio   ]:not(old) + label > span:first-of-type{
+  display          : inline-block;
+  width            : 1.5em;
+  height           : 1.5em;
+  margin           : 0.25em 0.5em 0.25em 0.25em;
+  background       : #f1f1f2;
+  vertical-align   : bottom;
+}
+input[type=radio]:not(old):checked + label > span:first-of-type:before{
+  font-family: 'MaquetIcons';
+  content     : '\e613';
+  display     : block;
+  width       : 1.75em;
+  height       : 1.75em;
+  color       : #FFFFFF;
+  font-size   : .875em;
+  background: #fcaf17;
+  line-height : 1.75em;
+  text-align  : center;
+  font-weight: 100;
+}
+
+
+
+
+
 .dz-preview {
   display: none;
 }
@@ -396,5 +434,6 @@ img {
 
   }
 }
+
 
 

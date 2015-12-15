@@ -49,7 +49,7 @@ var Page2 = React.createClass({
     handleChange: function (fieldvalues) {
         var change = {};
         change[fieldvalues.name] = fieldvalues;
-        change['bottom_logos'] = ['maquet','arjohuntleigh','getinge'];
+        change['bottom_logos'] = ['maquetArjoGetinge'];
         this.setState(change, function () {
             this.props.updateCall({department: this.state});
         });
@@ -58,7 +58,7 @@ var Page2 = React.createClass({
         var change = {};
         change['salesRegion'] = value;
         change['user_department'] = value;
-        change['bottom_logos'] = ['maquet','arjohuntleigh','getinge'];
+        change['bottom_logos'] = ['maquetArjoGetinge'];
         this.setState(change, function () {
             this.props.updateCall({department: this.state});
         });
@@ -77,7 +77,7 @@ var Page2 = React.createClass({
                 break;
             case '3':
                 text_value="Surgical Workflows";
-                change['bottom_logos'] = ['maquet','getinge'];
+                change['bottom_logos'] = ['maquetGetinge'];
                 break;
         }
         change['buscatunit'] = value;
@@ -94,9 +94,9 @@ var Page2 = React.createClass({
                 <RadioGroup name="salesRegionRadio" selectedValue={this.state.salesRegion} onChange={this.handleSalesRegionChange}>
                     {Radio => (
                         <div>
-                            <div className="radio"><label><Radio value="Americas" />Americas</label></div>
-                            <div className="radio"><label><Radio value="Europe, Middle East & Africa" />Europe, Middle East & Africa</label></div>
-                            <div className="radio"><label><Radio value="Asia Pacific" />Asia Pacific</label></div>
+                            <div className="radio"><Radio id="americasradio" value="Americas" /><label htmlFor="americasradio"><span><span></span></span>Americas</label></div>
+                            <div className="radio"><Radio id="europeradio" value="Europe, Middle East & Africa" /><label htmlFor="europeradio"><span><span></span></span>Europe, Middle East & Africa</label></div>
+                            <div className="radio"><Radio id="asiaradio" value="Asia Pacific" /><label htmlFor="asiaradio"><span><span></span></span>Asia Pacific</label></div>
                         </div>
                     )}
                 </RadioGroup>
@@ -109,9 +109,9 @@ var Page2 = React.createClass({
                 <RadioGroup name="buscatunitRadio" selectedValue={this.state.buscatunit} onChange={this.handleBuscatunitChange}>
                     {Radio => (
                         <div>
-                            <div className="radio"><label><Radio value="1" />Acute Care Therapies</label></div>
-                            <div className="radio"><label><Radio value="2" />Patient & Post Acute Care</label></div>
-                                <div className="radio"><label><Radio value="3" />Surgical Workflows</label></div>
+                            <div className="radio"><Radio id="acuteradio" value="1" /><label htmlFor="acuteradio"><span><span></span></span>Acute Care Therapies</label></div>
+                            <div className="radio"><Radio id="postacuteradio" value="2" /><label htmlFor="postacuteradio"><span><span></span></span>Patient & Post Acute Care</label></div>
+                                <div className="radio"><Radio id="surgicalradio" value="3" /><label htmlFor="surgicalradio"><span><span></span></span>Surgical Workflows</label></div>
                         </div>
                     )}
                 </RadioGroup>

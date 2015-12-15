@@ -1,0 +1,68 @@
+
+@font-face {
+    font-family: 'MaquetIcons';
+    src: url('fonts/icons/MaquetIcons.eot?-w056w0');
+    src: url('fonts/icons/MaquetIcons.eot?#iefix-w056w0') format('embedded-opentype'), url('fonts/icons/MaquetIcons.woff?-w056w0') format('woff'), url('fonts/icons/MaquetIcons.ttf?-w056w0') format('truetype'), url('fonts/icons/MaquetIcons.svg?-w056w0#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal
+}
+
+.Icon {
+    font-family: 'MaquetIcons';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.Icon:before {
+    display: inline-block
+}
+
+.Icon--asianChars:before {
+    content: ""
+}
+
+.Icon--download:before {
+    content: ""
+}
+
+.Icon--checkMark:before {
+    content: ""
+}
+
+.Icon--worldMap:before {
+    content: ""
+}
+
+.Icon--arrowLeft:before {
+    content: ""
+}
+
+.Icon--arrowRight:before {
+    content: ""
+}
+
+.Icon--calendarCircle:before {
+    content: ""
+}
+
+.Icon--calendar:before {
+    content: ""
+}
+
+.Icon--close:before {
+    content: ""
+}
+
+.Icon--noteCircle:before {
+    content: ""
+}
+
+.Icon--note:before {
+    content: ""
+}

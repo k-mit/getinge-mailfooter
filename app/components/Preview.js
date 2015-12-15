@@ -165,6 +165,24 @@ var Preview = React.createClass({
                         width: 122,
                         height: 22
                     }
+                },
+                'maquetArjoGetinge': {
+                    title: 'Logos',
+                    url: 'images/logotypes/maquetArjoGetinge.png',
+                    link: 'http://www.getingegroup.com/',
+                    size: {
+                        width: 273,
+                        height: 22
+                    }
+                },
+                'maquetGetinge': {
+                    title: 'Logos',
+                    url: 'images/logotypes/maquetGetinge.png',
+                    link: 'http://www.getingegroup.com/',
+                    size: {
+                        width: 140,
+                        height: 22
+                    }
                 }
             };
             var bannerHref = this.getValue('banner.link',true,false)!== '';
@@ -172,8 +190,7 @@ var Preview = React.createClass({
             var logos ='';
             for(var logosloopcounter=0;logosloopcounter < bottom_logos.length;logosloopcounter++){
                 var activelogo = logosmain[bottom_logos[logosloopcounter]];
-
-                logos = logos +'<a href="' + activelogo.link + '" target="_blank"><img border="0" width="' + (activelogo.size.width) + '" height="' + (activelogo.size.height) + '" title="' + activelogo.title + '" alt="' + activelogo.title + '"  src="' + urlPrefix + activelogo.url+'" /></a><img src="'+urlPrefix+'images/empty_pixel.png" width="24" />';
+                logos = logos +'<a href="' + activelogo.link + '" target="_blank"><img border="0" width="' + (activelogo.size.width) + '" height="' + (activelogo.size.height) + '" title="' + activelogo.title + '" alt="' + activelogo.title + '"  src="' + urlPrefix + activelogo.url+'" /></a>';
             }
             var banner = this.getValue('banner.image') ? (bannerHref?'<a href="' + this.getValue('banner.link',true,false) + (this.getValue('banner.link_suffix')?(this.getValue('banner.link',true,false).indexOf('?')===-1?'?':'&')+bannerSuffix:'') + '" class="banner">':'')+'<img width="600" src="' + this.getValue('banner.image') + '">'+(bannerHref?'</a>':'') : '';
             return '<div style="font-family: \'Arial\'; font-size: 12px; color: #000; line-height: 14px">' +
@@ -189,7 +206,7 @@ var Preview = React.createClass({
                 (this.getValue('contacts.user_mobile', true).length > 0 ? 'Mobile:' + ' ' + this.getValue('contacts.user_mobile', true) + ln : '') +
                 (this.getValue('contacts.user_fax', true).length > 0 ? 'Fax:' + ' ' + this.getValue('contacts.user_fax', true) + ln : '') +
                 (this.getValue('contacts.user_email') ? '' + this.getValue('contacts.user_email') + '' + ln : '') +
-                'http://www.getingegroup.com'+ln+ln+
+                'www.getingegroup.com'+ln+ln+
                 logos+
                 banner +
                 '</div>';
@@ -234,11 +251,15 @@ var Preview = React.createClass({
                         var child = node[key];
 
                         if(this.checkNode(child)===false) {
+                            console.log(child);
                             return false;
                         }
                     }
                 } else {
-                    if (node.valid !== true) return false;
+                    if (node.valid !== true){
+                        console.log(node);
+                        return false;
+                    }
                 }
             }
             return true;
