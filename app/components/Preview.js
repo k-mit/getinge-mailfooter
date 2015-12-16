@@ -251,13 +251,11 @@ var Preview = React.createClass({
                         var child = node[key];
 
                         if(this.checkNode(child)===false) {
-                            console.log(child);
                             return false;
                         }
                     }
                 } else {
                     if (node.valid !== true){
-                        console.log(node);
                         return false;
                     }
                 }
