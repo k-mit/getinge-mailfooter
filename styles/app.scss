@@ -23,7 +23,7 @@ input[type=radio   ]:not(old){
 }
 input[type=radio   ]:not(old) + label{
   display      : inline-block;
-  margin-left  : -2em;
+  margin-left  : -1.6em;
   line-height  : 2em;
 }
 input[type=radio   ]:not(old) + label > span:first-of-type{

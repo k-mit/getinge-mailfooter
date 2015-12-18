@@ -51,7 +51,7 @@ var Preview = React.createClass({
                     user_phone: "+00 0 000 00 00",
                     user_mobile: "+00 000 00 00 00",
                     user_fax: "+00 000 00 00 00",
-                    user_email: "your.email@getingegroup.com"
+                    user_email: "your.email@getinge.com"
 
                 },
                 banner: {
