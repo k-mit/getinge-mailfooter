@@ -53,7 +53,7 @@ var Page1 = React.createClass({
                     </form>
                 </div>
                 <div className="clearfix">
-                    <Link className="btn btn-gtng pull-right" to="area">Next: Business Area</Link>
+                    <Link className="btn btn-gtng pull-right" to="area">Next: Business function</Link>
                 </div>
             </div>
         );

@@ -206,7 +206,7 @@ var Preview = React.createClass({
                 (this.getValue('contacts.user_mobile', true).length > 0 ? 'Mobile:' + ' ' + this.getValue('contacts.user_mobile', true) + ln : '') +
                 (this.getValue('contacts.user_fax', true).length > 0 ? 'Fax:' + ' ' + this.getValue('contacts.user_fax', true) + ln : '') +
                 (this.getValue('contacts.user_email') ? '' + this.getValue('contacts.user_email') + '' + ln : '') +
-                'www.getingegroup.com'+ln+ln+
+                '<a href="http://www.getingegroup.com">www.getingegroup.com</a>'+ln+ln+
                 logos+
                 banner +
                 '</div>';

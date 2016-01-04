@@ -131,7 +131,7 @@ var Page2 = React.createClass({
             <div className="page page2">
                 <div className="content">
                     <div className="card">
-                        <h3>Business Area</h3>
+                        <h3>Business function</h3>
                         Select your sales region, business category unit or department. Your selection will determin the logos used in your signature.<br/><br/>
                         Sales Region / Business Category Unit / Department<br/><br/>
                         {this.renderMainSelect('mainDropValue', 'Sales Region / Business Category Unit / Department', bareaarray, this.state.mainDropValue.value, 'mainDropValue', 'Select one')}<br />
