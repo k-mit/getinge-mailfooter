@@ -101,7 +101,7 @@ var App = React.createClass({
                                     <Link to="info">Info</Link>
                                 </li>
                                 <li className="navigator__item">
-                                    <Link to="area">Business Area</Link>
+                                    <Link to="area">Business function</Link>
                                 </li>
                                 <li className="navigator__item">
                                     <Link to="address">Address</Link>

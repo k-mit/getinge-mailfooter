@@ -129,9 +129,6 @@ input[type=radio]:not(old):checked + label > span:first-of-type:before{
   }
 }
 
-a {
-  color: inherit;
-}
 
 .input-group + .input-group {
   //margin-top: 1em;
@@ -365,7 +362,6 @@ label {
   .description {
     margin-bottom: 1em;
     a {
-      color: $app_blue;
       font-weight: 400;
       display: inline-block;
       position: relative;
